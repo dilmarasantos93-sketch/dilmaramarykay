@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Dilmara Santos | Mary Kay Exclusive</title>
+    <meta name="title" content="Dilmara Santos | Mary Kay Exclusive">
+    <meta name="description" content="Descubra sua rotina de beleza ideal, agende uma consultoria VIP e explore os kits mais desejados da Mary Kay.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seusite.com/">
+    <meta property="og:title" content="Dilmara Santos | Mary Kay Exclusive">
+    <meta property="og:description" content="Descubra sua rotina de beleza ideal, agende uma consultoria VIP e explore os kits mais desejados da Mary Kay.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600">
+    <meta name="theme-color" content="#faf7f8">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --rose-gold: #c07c88; --rose-gold-light: #e8c5cb; --pink-vibrant: #d81b60;
+            --pink-r: 216; --pink-g: 27; --pink-b: 96;
+            --rose-r: 192; --rose-g: 124; --rose-b: 136;
+            --bg-color-1: #faf7f8; --bg-color-2: #fff0f5;
+            --bg-mesh-1: rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.7);
+            --bg-mesh-2: rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.2);
+            --gold-luxury: #d4af37; --text-dark: #2c2829; --text-muted: #7a7375;
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-shadow: 0 15px 35px -5px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.2);
+            --shadow-inner: inset 2px 2px 5px rgba(255, 255, 255, 0.9), inset -3px -3px 7px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.08);
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        }
+
+        [data-theme="dark"] {
+            --bg-color-1: #100d0e; --bg-color-2: #161214;
+            --bg-mesh-1: rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.15);
+            --bg-mesh-2: rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.12);
+            --text-dark: #f8f4f5; --text-muted: #b0a7aa;
+            --glass-bg: rgba(18, 14, 15, 0.85);
+            --glass-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
+            --shadow-inner: inset 1px 1px 3px rgba(255, 255, 255, 0.07), inset -2px -2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background-color 0.5s, color 0.5s, border-color 0.5s, box-shadow 0.5s; }
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color-1); min-height: 100vh; overflow-x: hidden; overscroll-behavior-y: contain; user-select: none; -webkit-user-select: none; }
+        
+        .pull-banner { position: fixed; top: -60px; left: 0; width: 100%; height: 60px; background: var(--pink-vibrant); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; z-index: 9997; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        .fomo-badge { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 9998; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+        .fomo-dot { width: 8px; height: 8px; background: #ff4b4b; border-radius: 50%; animation: blinkRed 1s infinite; }
+
+        .lipstick-kiss { position: absolute; font-size: 3rem; transform: translate(-50%, -50%) rotate(-15deg); pointer-events: none; z-index: 9999; animation: kissFade 2s forwards; text-shadow: 2px 2px 10px rgba(216,27,96,0.5); }
+
+        #unboxing-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-color-1); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        .gift-container { position: relative; cursor: pointer; animation: floatGift 3s ease-in-out infinite; outline: none; }
+        .gift-container:focus-visible { border-radius: 8px; box-shadow: 0 0 0 4px var(--pink-vibrant); animation: none; }
+        .gift-container:active { transform: scale(0.9); }
+        .gift-box { width: 140px; height: 110px; background: linear-gradient(135deg, var(--rose-gold-light), var(--rose-gold)); border-radius: 8px; position: relative; box-shadow: 0 20px 40px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.4); display: flex; justify-content: center; }
+        .gift-lid { position: absolute; top: -15px; left: -5px; width: 150px; height: 35px; background: linear-gradient(135deg, var(--pink-vibrant), #e91e63); border-radius: 6px; z-index: 3; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s; display: flex; justify-content: center; }
+        .gift-ribbon-v { position: absolute; top: 0; width: 24px; height: 100%; background: linear-gradient(to right, #f9e596, #d4af37); z-index: 2; }
+        .gift-ribbon-h { position: absolute; top: 40%; left: 0; width: 100%; height: 24px; background: linear-gradient(to bottom, #f9e596, #d4af37); z-index: 2; }
+        .gift-bow { position: absolute; top: -25px; display: flex; justify-content: center; align-items: flex-end; z-index: 4; }
+        .bow-left, .bow-right { width: 35px; height: 25px; border: 6px solid #d4af37; border-radius: 50% 50% 0 50%; border-bottom: none; border-right: none; transform: rotate(-30deg); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1); }
+        .bow-right { border-radius: 50% 50% 50% 0; border-left: none; border-right: 6px solid #d4af37; transform: rotate(30deg); }
+        .bow-center { position: absolute; bottom: -5px; width: 15px; height: 15px; background: #c59b27; border-radius: 50%; z-index: 5; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .unboxing-text { margin-top: 50px; font-family: 'Great Vibes', cursive; color: var(--pink-vibrant); font-size: 2.2rem; text-shadow: 1px 1px 5px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.3); }
+        .unboxing-sub { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-top: 5px; animation: pulseText 1.5s infinite; }
+        .opened .gift-container { animation: none; }
+        .opened .gift-lid { transform: translateY(-100px) rotate(-15deg); opacity: 0; }
+        .opened .gift-box { transform: translateY(50px) scale(0.8); opacity: 0; transition: all 0.6s ease 0.2s; }
+        .opened .unboxing-text, .opened .unboxing-sub { opacity: 0; transition: opacity 0.3s; }
+
+        .blush-transition { position: fixed; top: 0; left: -150vw; width: 120vw; height: 100vh; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, var(--rose-gold-light) 40%, var(--pink-vibrant) 100%); z-index: 9999; pointer-events: none; border-radius: 0 50% 50% 0; transition: left 0.7s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: 20px 0 50px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); display: flex; align-items: center; justify-content: flex-end; padding-right: 15vw; }
+        .blush-transition.active { left: -10vw; border-radius: 0; width: 110vw; }
+        .blush-icon { font-size: 5rem; color: rgba(255,255,255,0.8); transform: rotate(-45deg); opacity: 0; transition: opacity 0.3s; }
+        .blush-transition.active .blush-icon { opacity: 1; }
+
+        .mesh-gradient { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at 20% 20%, var(--bg-mesh-1), transparent 60%), radial-gradient(circle at 80% 80%, var(--bg-mesh-2), transparent 60%); z-index: -3; }
+        .noise-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.04"/%3E%3C/svg%3E'); z-index: -2; pointer-events: none; }
+        #fairy-dust-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; }
+        .sparkle-particle { position: absolute; border-radius: 50%; opacity: 0; animation: twinkle var(--duration) ease-in-out infinite alternate; }
+        .click-sparkle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 9999; }
+
+        .app-container { width: 100%; max-width: 500px; margin: 0 auto; padding: 4rem 1.25rem 6rem 1.25rem; position: relative; z-index: 10; display: none; }
+        .theme-toggle { position: absolute; top: 25px; right: 20px; background: var(--glass-bg); border-top: 1px solid rgba(255,255,255,0.8); border-left: 1px solid rgba(255,255,255,0.5); width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--text-dark); backdrop-filter: blur(20px); z-index: 100; box-shadow: var(--glass-shadow), var(--shadow-inner); cursor: pointer; }
+        .touch-target { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .touch-target:active { transform: scale(0.95) !important; transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .header-profile { text-align: center; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; }
+        .avatar-wrapper { position: relative; width: 130px; height: 130px; margin-bottom: 1rem; }
+        .aura-glow { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: radial-gradient(circle, var(--rose-gold-light) 0%, transparent 70%); opacity: 0.6; z-index: 1; animation: pulseAura 3s ease-in-out infinite alternate; }
+        .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--glass-highlight); box-shadow: 0 10px 25px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.4); position: relative; z-index: 2; }
+        .btn-audio { position: absolute; bottom: 0; right: 0; width: 38px; height: 38px; background: var(--pink-vibrant); border: 3px solid var(--bg-color-1); border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 4px 10px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.5); }
+        .profile-name { font-family: 'Great Vibes', cursive; font-size: clamp(2.8rem, 12vw, 4.5rem); color: var(--rose-gold); line-height: 1; margin-bottom: -5px; text-shadow: 1px 1px 5px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.2); white-space: nowrap; }
+        .profile-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-top: 5px; }
+        .greeting-text { color: var(--pink-vibrant); font-weight: 700; }
+        [data-theme="dark"] .greeting-text { color: var(--rose-gold-light); }
+
+        .stories-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 10px; overflow-x: hidden; }
+        .stories-container { display: inline-flex; gap: 15px; padding: 10px; overflow-x: auto; scroll-behavior: smooth; max-width: 100%; }
+        .stories-container::-webkit-scrollbar { display: none; }
+        .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
+        .story-ring { width: 68px; height: 68px; border-radius: 50%; background: var(--rose-gold-light); padding: 2px; box-shadow: 0 5px 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.2); position: relative; }
+        .story-img-wrapper { width: 100%; height: 100%; background: var(--bg-color-1); border-radius: 50%; padding: 2px; overflow: hidden; position: relative; }
+        .story-img-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .story-title { font-size: 0.7rem; font-weight: 600; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .custom-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10005; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; }
+        .custom-modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--bg-color-1); padding: 25px; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; width: 100%; max-width: 350px; transform: translateY(20px); transition: transform 0.4s var(--ease-spring); border: 2px solid var(--rose-gold-light); }
+        .custom-modal.active .modal-content { transform: translateY(0); }
+        [data-theme="dark"] .modal-content { background: #161214; border-color: var(--rose-gold); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-title { font-family: 'Playfair Display', serif; color: var(--rose-gold); font-size: 1.4rem; margin-bottom: 8px; line-height: 1.2; }
+        .modal-subtitle { font-size: 0.9rem; color: var(--text-dark); margin-bottom: 20px; line-height: 1.4; opacity: 0.8; }
+        .btn-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-bottom: 12px; background: var(--pink-vibrant); color: #fff; border: none; border-radius: 14px; font-weight: 700; font-size: 1rem; box-shadow: 0 8px 20px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); cursor: pointer; }
+        .btn-whatsapp { background: #25D366; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+        .btn-close { margin-top: 5px; background: transparent; border: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-decoration: underline; }
+        .copy-box { background: rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.08); border: 1px dashed var(--rose-gold); border-radius: 12px; padding: 15px; font-size: 0.9rem; color: var(--text-dark); font-style: italic; margin-bottom: 20px; text-align: left; }
+        [data-theme="dark"] .copy-box { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+        .bento-layout { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(120px, auto); gap: 14px; width: 100%; }
+        .bento-card {
+            background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border-radius: 24px; border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.6); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glass-shadow), var(--shadow-inner);
+            padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-decoration: none; color: var(--text-dark); position: relative; overflow: hidden; opacity: 0; will-change: transform, opacity;
+        }
+        [data-theme="dark"] .bento-card { border-top: 1px solid rgba(255, 255, 255, 0.12); border-left: 1px solid rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(0, 0, 0, 0.3); }
+
+        .item-social { grid-column: span 2; grid-row: span 1; padding: 10px 0; }
+        .item-whatsapp { grid-column: span 2; grid-row: span 1; animation: pulseAttention 8s infinite; }
+        .item-concierge { grid-column: span 2; grid-row: span 1; background: linear-gradient(135deg, #2d2d2d, #111); border-color: rgba(255,255,255,0.1); color: white; }
+        .item-biorhythm { grid-column: span 2; grid-row: span 1; background: linear-gradient(145deg, var(--bg-color-1), var(--rose-gold-light)); }
+        .item-slider { grid-column: span 2; grid-row: span 2; padding: 0; position: relative; }
+        .item-skin { grid-column: span 2; grid-row: span 2; } 
+        .item-moods { grid-column: span 2; grid-row: span 1; justify-content: flex-start; padding: 15px; }
+        .item-sneakpeek { grid-column: span 2; grid-row: span 2; padding: 0; position: relative; }
+        .item-flip { grid-column: span 1; grid-row: span 1; padding: 0; perspective: 1000px; background: transparent; box-shadow: none; border: none; }
+        .item-mirrorme { grid-column: span 1; grid-row: span 1; background: linear-gradient(135deg, #111, #2a2a2a); color: white; border-color: rgba(255,255,255,0.1); }
+        .item-quiz1 { grid-column: span 1; grid-row: span 1; }
+        .item-quiz2 { grid-column: span 1; grid-row: span 1; }
+        .item-scratch { grid-column: span 2; grid-row: span 1; padding: 0; position: relative; } 
+        .item-shipping { grid-column: span 2; grid-row: span 1; justify-content: flex-start; padding: 20px; align-items: flex-start; text-align: left; }
+        .item-alarm { grid-column: span 2; grid-row: span 1; border: 2px dashed var(--rose-gold-light); background: rgba(255,255,255,0.3); }
+        [data-theme="dark"] .item-alarm { background: rgba(0,0,0,0.2); border-color: var(--rose-gold); }
+        .item-reviews { grid-column: span 2; grid-row: span 1; padding: 15px; justify-content: flex-start; }
+        .item-vitrine { grid-column: span 2; grid-row: span 2; }
+        .item-polo1 { grid-column: span 1; grid-row: span 1; }
+        .item-polo2 { grid-column: span 1; grid-row: span 1; }
+        .item-vip { grid-column: span 2; grid-row: span 1; }
+
+        .card-icon { font-size: 2rem; color: var(--rose-gold); margin-bottom: 8px; z-index: 2; position: relative; stroke-width: 2px; }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; text-align: center; z-index: 2; line-height: 1.1;}
+        .card-subtitle { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 6px; z-index: 2; font-weight: 500; }
+        [data-theme="dark"] .card-icon { color: var(--rose-gold-light); text-shadow: 0 0 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.6); }
+
+        .social-dock { display: flex; flex-direction: row; justify-content: center; gap: 15px; opacity: 0; animation: cardReveal 0.6s var(--ease-spring) forwards; }
+        .social-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--glass-bg); backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.9); border-left: 1px solid rgba(255,255,255,0.6); display: flex; justify-content: center; align-items: center; color: var(--rose-gold); font-size: 1.5rem; box-shadow: var(--glass-shadow); }
+        [data-theme="dark"] .social-btn { background: rgba(30,26,28,0.7); border-color: rgba(255,255,255,0.08); }
+
+        .card-whatsapp { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3), inset 2px 2px 5px rgba(255,255,255,0.4); overflow: hidden; position: relative; }
+        .card-whatsapp::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent); transform: skewX(-25deg); z-index: 1; animation: shimmerSweep 3.5s infinite; pointer-events: none; }
+        .card-whatsapp .card-icon, .card-whatsapp .card-title { color: #ffffff; text-shadow: none; z-index: 2; }
+        .card-whatsapp .card-subtitle { color: rgba(255,255,255,0.9); z-index: 2; }
+        
+        .item-concierge .card-icon { color: #d4af37; }
+        .item-concierge .card-title { color: #ffffff; }
+        .item-concierge .card-subtitle { color: #aaa; }
+
+        .progress-container { width: 100%; height: 8px; background: rgba(0,0,0,0.1); border-radius: 10px; margin: 10px 0; overflow: hidden; position: relative; }
+        [data-theme="dark"] .progress-container { background: rgba(255,255,255,0.1); }
+        .progress-bar { height: 100%; width: 65%; background: linear-gradient(90deg, var(--rose-gold), var(--pink-vibrant)); border-radius: 10px; animation: loadProgress 2s ease-out forwards; }
+        .progress-text { font-size: 0.75rem; color: var(--text-dark); font-weight: 600; width: 100%; text-align: left; }
+        .progress-text span { color: var(--pink-vibrant); font-weight: 800; }
+
+        .sneak-img-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border-radius: 24px; z-index: 1; }
+        .sneak-img { width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transition: filter 2s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform: scale(1.1); }
+        .sneak-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); color: white; z-index: 2; transition: opacity 1s; padding: 20px; text-align: center; }
+        .sneak-countdown { font-family: 'Plus Jakarta Sans', monospace; font-size: 2.5rem; font-weight: 700; letter-spacing: 2px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); margin: 10px 0; color: var(--gold-luxury); }
+        .sneak-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .sneak-content { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: opacity 1s; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); border-radius: 24px; padding-top: 80px; }
+        .sneak-unlocked .sneak-img { filter: blur(0); transform: scale(1); }
+        .sneak-unlocked .sneak-overlay { opacity: 0; pointer-events: none; }
+        .sneak-unlocked .sneak-content { opacity: 1; pointer-events: auto; }
+
+        .slider-wrapper { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 24px; }
+        .img-background, .img-foreground { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; transition: opacity 0.3s; }
+        .img-foreground { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); z-index: 2; }
+        .slider-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 4; cursor: pointer; touch-action: pan-y; }
+        .slider-line { position: absolute; top: 0; left: 50%; width: 3px; height: 100%; background: var(--glass-highlight); z-index: 3; transform: translateX(-50%); box-shadow: 0 0 10px rgba(0,0,0,0.3); pointer-events: none; }
+        .slider-button { position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; background: var(--glass-highlight); border-radius: 50%; transform: translate(-50%, -50%); z-index: 3; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); pointer-events: none; border: 2px solid var(--rose-gold); color: var(--rose-gold); font-size: 1.2rem; transition: border-color 0.5s, color 0.5s; }
+        .slider-labels { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; z-index: 3; pointer-events: none; }
+        .slider-label { background: rgba(0,0,0,0.6); color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; backdrop-filter: blur(4px); }
+        .slider-pagination { position: absolute; top: 10px; width: 100%; display: flex; justify-content: center; gap: 8px; z-index: 5; pointer-events: auto; }
+        .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s; }
+        .slider-dot.active { background: var(--pink-vibrant); transform: scale(1.3); border-color: rgba(255,255,255,0.8); box-shadow: 0 0 5px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.5); }
+
+        .card-tech { justify-content: center; background: linear-gradient(145deg, var(--glass-bg), var(--bg-color-2)); border-left: 1px solid var(--rose-gold-light); border-top: 1px solid var(--rose-gold-light); }
+        .badge-gift { position: absolute; top: 15px; right: 15px; background: var(--pink-vibrant); color: #ffffff; padding: 5px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; animation: float 3s infinite ease-in-out; z-index: 10; }
+        .tech-bg-icon { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 8rem; opacity: 0.04; color: var(--pink-vibrant); }
+
+        .mood-container { display: flex; justify-content: space-between; width: 100%; gap: 8px; margin-top: 10px; }
+        .btn-mood { flex: 1; display: flex; flex-direction: column; align-items: center; background: var(--glass-highlight); padding: 10px 5px; border-radius: 12px; border: 1px solid var(--glass-border); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        [data-theme="dark"] .btn-mood { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        .btn-mood:active { transform: scale(0.95); }
+        .btn-mood span { font-size: 1.5rem; margin-bottom: 4px; }
+        .btn-mood p { font-size: 0.65rem; font-weight: 700; color: var(--text-dark); margin: 0; text-align: center; }
+
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; border-radius: 24px; box-shadow: var(--glass-shadow); }
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; text-align: center; }
+        .flip-card-front { background: var(--glass-bg); backdrop-filter: blur(25px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.6); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        [data-theme="dark"] .flip-card-front { background: rgba(18, 14, 15, 0.85); border-color: rgba(255,255,255,0.1); }
+        .flip-card-back { background: linear-gradient(135deg, var(--rose-gold), var(--pink-vibrant)); color: white; transform: rotateY(180deg); box-shadow: inset 2px 2px 10px rgba(255,255,255,0.2); }
+        .flip-card-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
+
+        .card-mirrorme { position: relative; overflow: hidden; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); color: white; }
+        .card-mirrorme::before { content:''; position: absolute; top:0; left:-150%; width:50%; height:100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-25deg); animation: shimmerSweep 3s infinite 1.5s; pointer-events: none; }
+        .card-mirrorme .card-icon, .card-mirrorme .card-title { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .card-mirrorme .card-subtitle { color: #ccc; }
+
+        .card-img-icon { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid var(--glass-highlight); box-shadow: 0 8px 20px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.2); }
+        [data-theme="dark"] .card-img-icon { border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 20px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); }
+
+        .scratch-prize-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--glass-highlight); z-index: 1; pointer-events: none; }
+        [data-theme="dark"] .scratch-prize-bg { background: rgba(30,26,28,0.9); }
+        .scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; border-radius: 24px; touch-action: none; cursor: crosshair; transition: opacity 0.5s ease; }
+        .prize-pop { animation: popPrize 0.6s var(--ease-spring) forwards; }
+        .btn-resgatar { margin-top: 10px; padding: 8px 24px; background: var(--pink-vibrant); color: #ffffff; border-radius: 25px; font-size: 0.85rem; font-weight: 700; border: none; box-shadow: 0 5px 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); opacity: 0; transform: translateY(15px); transition: all 0.5s var(--ease-spring); pointer-events: none; }
+        .btn-resgatar.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+        /* NOVA ESTILIZAÇÃO DAS REVIEWS - 1 POR VEZ */
+        .reviews-wrapper { width: 100%; position: relative; min-height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .reviews-track { width: 100%; height: 100%; position: relative; }
+        .review-box { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-30%) scale(0.95); opacity: 0; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255,255,255,0.4); border-radius: 12px; padding: 15px; text-align: left; font-size: 0.8rem; font-style: italic; color: var(--text-dark); border-left: 3px solid var(--rose-gold); box-shadow: 0 4px 10px rgba(0,0,0,0.02); pointer-events: none; margin: 0; }
+        [data-theme="dark"] .review-box { background: rgba(255,255,255,0.05); }
+        .review-box.active { opacity: 1; transform: translateY(-50%) scale(1); pointer-events: auto; z-index: 2; }
+        .review-author { font-weight: 700; font-size: 0.7rem; color: var(--pink-vibrant); font-style: normal; margin-top: 4px; display: block; }
+        [data-theme="dark"] .review-author { color: var(--rose-gold-light); }
+
+        .card-vitrine { align-items: flex-start; justify-content: flex-start; padding: 25px 0 0 25px; position: relative; }
+        .scroll-hint { position: absolute; right: 0; top: 0; bottom: 0; width: 45px; background: linear-gradient(to left, var(--glass-bg), transparent); border-radius: 0 24px 24px 0; pointer-events: none; z-index: 5; }
+        [data-theme="dark"] .scroll-hint { background: linear-gradient(to left, var(--glass-bg), transparent); }
+        .vitrine-header { display: flex; align-items: center; margin-bottom: 15px; padding-right: 25px; width: 100%; justify-content: space-between; position: relative; z-index: 6; }
+        
+        .kits-scroll { display: flex; gap: 15px; overflow-x: auto; width: 100%; padding-right: 40px; padding-bottom: 20px; height: 100%; align-items: center; scroll-behavior: smooth; }
+        .kits-scroll::-webkit-scrollbar { display: block; height: 6px; }
+        .kits-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; margin-right: 25px; }
+        [data-theme="dark"] .kits-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .kits-scroll::-webkit-scrollbar-thumb { background: var(--rose-gold); border-radius: 10px; }
+
+        .kit-item { min-width: 130px; background: var(--glass-highlight); border-radius: 16px; padding: 8px; box-shadow: 0 8px 20px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.12); scroll-snap-align: start; border-top: 1px solid rgba(255,255,255,0.9); text-decoration: none; display: block; }
+        .kit-img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; pointer-events: none; }
+        .kit-name { font-size: 0.8rem; font-weight: 700; text-align: center; color: var(--text-dark); pointer-events: none; }
+        [data-theme="dark"] .kit-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 20px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.3); }
+
+        .card-vip { background: linear-gradient(135deg, #111 0%, #2a2a2a 100%); border: none; border-top: 1px solid rgba(255,255,255,0.2); box-shadow: 0 15px 30px -10px rgba(0,0,0,0.6); flex-direction: row; gap: 15px; text-align: left; padding: 20px 30px; position: relative; overflow: hidden; }
+        .card-vip::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: skewX(-25deg); z-index: 1; animation: shimmerSweep 4s infinite; pointer-events: none; }
+        .card-vip .card-icon { font-size: 2.8rem; color: #d4af37; margin: 0; text-shadow: 0 0 10px rgba(212,175,55,0.5); z-index: 2; }
+        .card-vip .text-box { display: flex; flex-direction: column; z-index: 2; }
+        .card-vip .card-title { color: #f9e596; text-align: left; margin-bottom: 2px; }
+        .card-vip .card-subtitle { color: #a39c9e; text-align: left; margin: 0; font-size: 0.75rem; }
+
+        .sos-floating-btn { position: fixed; bottom: 25px; right: 20px; background: linear-gradient(135deg, var(--pink-vibrant), #ff4b82); color: #ffffff; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; z-index: 9998; cursor: pointer; border: none; box-shadow: 0 10px 25px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); animation: pulseAlert 2s infinite; border: 2px solid rgba(255,255,255,0.5); }
+        .sos-floating-btn i { font-size: 1.5rem; }
+        
+        .shake-hint { width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+        .shake-hint i { font-size: 1.2rem; color: var(--rose-gold); animation: float 2s infinite; }
+
+        .color-palette { position: fixed; bottom: 25px; left: 20px; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 8px; border-radius: 30px; display: flex; gap: 8px; box-shadow: var(--glass-shadow); border: 1px solid var(--glass-border); z-index: 9998; }
+        [data-theme="dark"] .color-palette { background: rgba(30,26,28,0.7); border-color: rgba(255,255,255,0.08); }
+        .palette-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s; }
+        .palette-dot:active { transform: scale(0.8); }
+
+        footer { margin-top: 1rem; text-align: center; width: 100%; padding-bottom: 3rem; }
+        .signature-mark { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--text-muted); opacity: 0.6; }
+
+        @media (min-width: 768px) {
+            .app-container { max-width: 950px; padding-top: 3rem; }
+            .header-profile { flex-direction: row; justify-content: flex-start; gap: 30px; text-align: left; margin-bottom: 2rem; }
+            
+            .bento-layout { grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(140px, auto); }
+            .item-social { grid-column: span 4; }
+            .item-biorhythm { grid-column: span 4; }
+            .item-whatsapp { grid-column: span 2; }
+            .item-concierge { grid-column: span 2; }
+            .item-slider { grid-column: span 2; grid-row: span 2; }
+            .item-skin { grid-column: span 2; grid-row: span 2; } 
+            .item-moods { grid-column: span 4; }
+            .item-sneakpeek { grid-column: span 2; grid-row: span 2; }
+            .item-vitrine { grid-column: span 2; grid-row: span 2; }
+            .item-flip { grid-column: span 1; }
+            .item-mirrorme { grid-column: span 1; }
+            .item-quiz1 { grid-column: span 1; }
+            .item-quiz2 { grid-column: span 1; }
+            .item-scratch { grid-column: span 2; }
+            .item-shipping { grid-column: span 2; }
+            .item-alarm { grid-column: span 2; }
+            .item-vip { grid-column: span 2; }
+            .item-polo1 { grid-column: span 2; } 
+            .item-polo2 { grid-column: span 2; } 
+            .item-reviews { grid-column: span 4; }
+
+            .sos-floating-btn { bottom: 40px; right: 40px; padding: 15px 25px; font-size: 1rem; }
+            .color-palette { bottom: 40px; left: 40px; }
+        }
+
+        /* Keyframes */
+        @keyframes floatGift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulseText { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        @keyframes pulseAura { 0% { transform: scale(0.95); opacity: 0.4; } 100% { transform: scale(1.05); opacity: 0.8; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes pulseAlert { 0% { box-shadow: 0 0 0 0 rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.7); } 70% { box-shadow: 0 0 0 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0); } }
+        @keyframes cardReveal { 0% { opacity: 0; transform: translateY(30px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.2) rotate(180deg); } 100% { opacity: 0; transform: scale(0.5) rotate(360deg); } }
+        @keyframes shimmerSweep { 0% { left: -100%; } 20%, 100% { left: 200%; } }
+        @keyframes popPrize { 0% { transform: scale(1); } 50% { transform: scale(1.15); color: var(--rose-gold); } 100% { transform: scale(1.1); } }
+        @keyframes pulseAttention { 0%, 90% { transform: scale(1); } 92% { transform: scale(1.05); } 95% { transform: scale(1); } 97% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes kissFade { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); } 20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(-15deg); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(-15deg); } }
+        @keyframes blinkRed { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes loadProgress { 0% { width: 0; } 100% { width: 65%; } }
+    </style>
+</head>
+<body>
+
+    <div class="fomo-badge" id="fomoBadge">
+        <div class="fomo-dot"></div>
+        <span id="fomoText">12 mulheres vendo ofertas</span>
+    </div>
+
+    <div id="pullBanner" class="pull-banner">Ei, não vá! Seu kit perfeito está lá embaixo 👇</div>
+
+    <audio id="vipAudio" src="audiodilmara.aac"></audio>
+
+    <div id="unboxing-layer">
+        <div class="gift-container" id="giftTrigger" role="button" tabindex="0" aria-label="Abrir presente para acessar o site">
+            <div class="gift-box">
+                <div class="gift-lid"><div class="gift-ribbon-v"></div><div class="gift-bow"><div class="bow-left"></div><div class="bow-center"></div><div class="bow-right"></div></div></div>
+                <div class="gift-body"><div class="gift-ribbon-v"></div><div class="gift-ribbon-h"></div></div>
+            </div>
+        </div>
+        <h1 class="unboxing-text">Dilmara Santos</h1>
+        <p class="unboxing-sub">Toque para abrir seu presente 🎁</p>
+    </div>
+
+    <div id="blushSweep" class="blush-transition"><i class="ph-light ph-paint-brush blush-icon"></i></div>
+
+    <div id="fairy-dust-container"></div>
+    <div class="mesh-gradient"></div>
+    <div class="noise-overlay"></div>
+
+    <div id="regionModal" class="custom-modal">
+        <div class="modal-content">
+            <i class="ph-fill ph-map-pin" style="font-size: 3.5rem; color: var(--pink-vibrant); margin-bottom: 10px;"></i>
+            <h3 class="modal-title">Escolha seu Local</h3>
+            <p class="modal-subtitle">Para qual estado você deseja acessar o catálogo?</p>
+            <button class="btn-primary touch-target btn-region" data-region="sp">📍 Local São Paulo</button>
+            <button class="btn-primary touch-target btn-region" data-region="pb" style="background: var(--rose-gold);">📍 Local Paraíba</button>
+            <button class="btn-close close-modal-generic">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="sosModal" class="custom-modal">
+        <div class="modal-content">
+            <i class="ph-fill ph-video-camera" style="font-size: 3.5rem; color: var(--pink-vibrant); margin-bottom: 10px;"></i>
+            <h3 class="modal-title">SOS Make: Aulas Online</h3>
+            <p class="modal-subtitle">Aprenda a se maquiar comigo! Ofereço <strong>aulas online exclusivas de automaquiagem</strong>.</p>
+            <button class="btn-primary touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Preciso de ajuda para me maquiar. Quero agendar minha aula online SOS Make!">
+                <i class="ph-bold ph-calendar-plus"></i> Agendar Minha Aula
+            </button>
+            <button class="btn-close close-modal-generic">Depois eu vejo</button>
+        </div>
+    </div>
+
+    <div id="quizModal" class="custom-modal">
+        <div class="modal-content">
+            <i class="ph-fill ph-sparkle" style="font-size: 3.5rem; color: var(--pink-vibrant); margin-bottom: 10px;"></i>
+            <h3 class="modal-title" id="quizModalTitle">Descubra sua Base!</h3>
+            <p class="modal-subtitle" id="quizModalDesc">Vamos te direcionar para o quiz oficial.</p>
+            <button class="btn-primary touch-target" id="btnGoQuiz">
+                <i class="ph-bold ph-arrow-right"></i> Fazer o Quiz Agora
+            </button>
+            <button class="btn-close close-modal-generic">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="copyWaModal" class="custom-modal">
+        <div class="modal-content">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size: 3.5rem; color: #25D366; margin-bottom: 10px;"></i>
+            <h3 class="modal-title">Sua mensagem está pronta!</h3>
+            <p class="modal-subtitle">Deixamos o texto preparado para você <strong>colar</strong> lá no chat comigo:</p>
+            <div class="copy-box" id="waTextToCopy">Oi, Dilmara!</div>
+            <button class="btn-primary btn-whatsapp touch-target" id="btnCopyAndGo">
+                <i class="ph-bold ph-copy"></i> Copiar e Abrir WhatsApp
+            </button>
+            <button class="btn-close close-modal-generic">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="vipVideoModal" class="custom-modal">
+        <div class="modal-content" style="max-width: 400px; padding: 20px;">
+            <h3 class="modal-title" style="font-size: 1.4rem;">Oportunidade Mary Kay</h3>
+            <p class="modal-subtitle" style="margin-bottom: 10px;">Assista ao vídeo e descubra como transformar sua vida sendo uma consultora!</p>
+            <div style="border-radius: 16px; overflow: hidden; margin-bottom: 15px; background: var(--glass-bg); box-shadow: var(--shadow-inner); position: relative; height: 380px;">
+                <iframe src="https://www.instagram.com/reel/DUMtf1HEY62/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; top: 0; left: 0;"></iframe>
+            </div>
+            <div class="copy-box" id="vipWaTextToCopy" style="font-size: 0.8rem; padding: 10px;">Oi, Dilmara! Assisti ao vídeo e quero entrar no Clube VIP da oportunidade Mary Kay!</div>
+            <button class="btn-primary btn-whatsapp touch-target" id="btnCopyVip"><i class="ph-bold ph-copy"></i> Copiar e Falar com Dilmara</button>
+            <button class="btn-close close-modal-generic">Fechar</button>
+        </div>
+    </div>
+
+    <main class="app-container" id="mainApp">
+        <button class="theme-toggle touch-target" id="themeToggle" aria-label="Alternar modo escuro"><i class="ph-light ph-moon" id="themeIcon"></i></button>
+
+        <header class="header-profile">
+            <div class="avatar-wrapper">
+                <div class="aura-glow"></div>
+                <img src="dilmara.jpeg" alt="Dilmara Santos" class="avatar-img">
+                <div class="btn-audio touch-target" id="btnAudio"><i class="ph-fill ph-play" id="audioIcon"></i></div>
+            </div>
+            <div>
+                <h1 class="profile-name">Dilmara Santos</h1>
+                <p class="profile-title" id="dynamicGreeting">Mary Kay Executive</p>
+            </div>
+        </header>
+
+        <div class="stories-wrapper stagger-item">
+            <div class="stories-container" id="storiesContainer">
+                <div class="story-item touch-target btn-story" data-cat="maquiagem"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=100&q=80" alt="Make"></div></div><span class="story-title">Make</span></div>
+                <div class="story-item touch-target btn-story" data-cat="fragrancia"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=100&q=80" alt="Perfume"></div></div><span class="story-title">Perfume</span></div>
+                <div class="story-item touch-target btn-story" data-cat="facial"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=100&q=80" alt="Facial"></div></div><span class="story-title">Facial</span></div>
+                <div class="story-item touch-target btn-story" data-cat="corporal"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=100&q=80" alt="Corpo"></div></div><span class="story-title">Corpo</span></div>
+                <div class="story-item touch-target btn-story" data-cat="presente"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=100&q=80" alt="Presente"></div></div><span class="story-title">Presentes</span></div>
+            </div>
+        </div>
+
+        <section class="bento-layout">
+            
+            <div class="item-social social-dock">
+                <a href="#" class="social-btn touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vim pelo seu site e gostaria de conversar."><i class="ph-light ph-whatsapp-logo"></i></a>
+                <a href="#" class="social-btn touch-target link-effect"><i class="ph-light ph-instagram-logo"></i></a>
+                <a href="#" class="social-btn touch-target link-effect"><i class="ph-light ph-tiktok-logo"></i></a>
+                <a href="#" class="social-btn touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Quero receber o catálogo digital atualizado."><i class="ph-light ph-book-open-text"></i></a>
+            </div>
+
+            <a href="#" class="bento-card item-biorhythm stagger-item touch-target btn-wa-trigger" id="biorhythmCard" data-wa-text="Oi Dilmara, quero conhecer a dica do momento!">
+                <i class="ph-light ph-sun card-icon" id="bioIcon"></i>
+                <h2 class="card-title" id="bioTitle">Bom dia! Proteção Solar</h2>
+                <p class="card-subtitle" id="bioSub">Já passou seu protetor solar hoje?</p>
+            </a>
+
+            <a href="#" class="bento-card item-whatsapp card-whatsapp stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Gostaria de agendar um atendimento VIP e exclusivo.">
+                <i class="ph-light ph-whatsapp-logo card-icon"></i>
+                <h2 class="card-title">Atendimento VIP</h2>
+                <p class="card-subtitle">Fale comigo agora</p>
+            </a>
+
+            <a href="#" class="bento-card item-concierge stagger-item touch-target btn-wa-trigger" data-wa-text="Oi Dilmara! Preciso de um presente de até R$ _____ para minha esposa/namorada, me salva!">
+                <i class="ph-light ph-gift card-icon"></i>
+                <h2 class="card-title">Concierge de Presentes</h2>
+                <p class="card-subtitle">Vai presentear uma mulher e não sabe como? Eu te ajudo!</p>
+            </a>
+
+            <div class="bento-card item-slider stagger-item">
+                <div class="slider-wrapper">
+                    <div class="slider-pagination" id="sliderDots"><button class="slider-dot active" data-index="0"></button><button class="slider-dot" data-index="1"></button><button class="slider-dot" data-index="2"></button></div>
+                    <img src="image2.jpeg" class="img-background" id="imgBackground" alt="Antes"><img src="image1.jpeg" class="img-foreground" id="imgForeground" alt="Depois">
+                    <input type="range" min="0" max="100" value="50" class="slider-input" id="baSlider">
+                    <div class="slider-line" id="sliderLine"></div><div class="slider-button" id="sliderBtn"><i class="ph-bold ph-arrows-left-right"></i></div>
+                    <div class="slider-labels"><span class="slider-label">Antes</span><span class="slider-label">Depois</span></div>
+                </div>
+            </div>
+
+            <a href="#" class="bento-card item-skin card-tech stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Quero fazer minha análise facial com você através do Skin Analyzer!">
+                <div class="badge-gift"><i class="ph-bold ph-gift"></i> Presente</div>
+                <i class="ph-light ph-device-mobile tech-bg-icon"></i>
+                <i class="ph-light ph-magic-wand card-icon" style="font-size: 2.5rem;"></i>
+                <h2 class="card-title" style="font-size: 1.3rem;">Skin Analyzer</h2>
+                <p class="card-subtitle">Análise facial feita por mim. Descubra sua rotina.</p>
+            </a>
+
+            <div class="bento-card item-moods stagger-item">
+                <h2 class="card-title" style="font-size: 1rem;">Como você quer se sentir hoje?</h2>
+                <div class="mood-container">
+                    <div class="btn-mood touch-target btn-story" data-cat="fragrancia"><span>👑</span><p>Poderosa</p></div>
+                    <div class="btn-mood touch-target btn-story" data-cat="facial"><span>🧖‍♀️</span><p>Zen</p></div>
+                    <div class="btn-mood touch-target btn-story" data-cat="corporal"><span>🍃</span><p>Natural</p></div>
+                </div>
+            </div>
+
+            <div class="bento-card item-sneakpeek stagger-item" id="sneakCard">
+                <div class="sneak-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80" alt="Mistério" class="sneak-img">
+                    <div class="sneak-overlay">
+                        <i class="ph-fill ph-lock-key" style="font-size: 2rem;"></i>
+                        <div class="sneak-countdown" id="countdownTimer">00:00:10</div>
+                        <span class="sneak-title">Lançamento em Breve</span>
+                    </div>
+                    <div class="sneak-content">
+                        <h2 class="card-title" style="color:white; margin-bottom: 10px;">Lançamento Liberado!</h2>
+                        <button class="btn-primary touch-target btn-wa-trigger" style="width: 80%; padding: 8px;" data-wa-text="Oi Dilmara! Eu quero a edição exclusiva que acabou de ser liberada no site!">Quero Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card item-vitrine card-vitrine stagger-item">
+                <div class="scroll-hint"></div>
+                <div class="vitrine-header">
+                    <h2 class="card-title" style="color: var(--text-dark);">Kits Favoritos</h2>
+                    <i class="ph-light ph-arrow-right" style="color: var(--rose-gold); font-size: 1.2rem;"></i>
+                </div>
+                <div class="kits-scroll" id="kitsCarousel">
+                    <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit Milagre 3D no seu site e estou interessada.">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80" alt="TimeWise" class="kit-img">
+                        <p class="kit-name">Milagre 3D</p>
+                    </a>
+                    <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit Make Intacta no seu site e estou interessada.">
+                        <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=300&q=80" alt="Make" class="kit-img">
+                        <p class="kit-name">Make Intacta</p>
+                    </a>
+                    <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit Lábios de Seda no seu site e estou interessada.">
+                        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=300&q=80" alt="Lábios" class="kit-img">
+                        <p class="kit-name">Seda</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="item-flip flip-card touch-target stagger-item" id="flipCard">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <i class="ph-light ph-hand-pointing card-icon" style="animation: float 2s infinite;"></i>
+                        <h2 class="card-title">Seu Biscoito</h2>
+                        <p class="card-subtitle">Toque no espelho</p>
+                    </div>
+                    <div class="flip-card-back"><p class="flip-card-text" id="flipMessage"></p></div>
+                </div>
+            </div>
+
+            <a href="https://www.marykay.com.br/pt-br/tips-and-trends/makeover-and-beauty-tools/mirror-me" target="_blank" class="bento-card item-mirrorme card-mirrorme stagger-item touch-target link-wa">
+                <i class="ph-light ph-camera card-icon"></i>
+                <h2 class="card-title">Espelho Mágico</h2>
+                <p class="card-subtitle">Teste makes na SUA pele</p>
+            </a>
+
+            <a href="#" class="bento-card item-quiz1 stagger-item touch-target btn-quiz-trigger" data-quiz-url="https://quizdabasemarykay.com.br/" data-quiz-title="Descubra sua Base!" data-quiz-desc="Vamos te direcionar para o quiz oficial da Mary Kay.">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=150&q=80" alt="Base" class="card-img-icon">
+                <h2 class="card-title">Sua Base</h2><p class="card-subtitle">Tom Ideal</p>
+            </a>
+
+            <a href="#" class="bento-card item-quiz2 stagger-item touch-target btn-quiz-trigger" data-quiz-url="https://quizminhafragmarykay.com.br/" data-quiz-title="Sua Assinatura Olfativa!" data-quiz-desc="Faça o teste oficial e descubra qual fragrância Mary Kay foi feita para você.">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=150&q=80" alt="Perfume" class="card-img-icon">
+                <h2 class="card-title">Perfume</h2><p class="card-subtitle">Sua Essência</p>
+            </a>
+
+            <div class="bento-card item-scratch stagger-item">
+                <div class="scratch-prize-bg">
+                    <i class="ph-fill ph-confetti" style="font-size: 2rem; color: var(--pink-vibrant); margin-bottom: 5px;"></i>
+                    <h2 class="card-title" id="prizeText" style="color: var(--pink-vibrant); font-size: 1.2rem;">Ganhou 10% OFF!</h2>
+                    <button class="btn-resgatar touch-target btn-wa-trigger" id="btnResgatar" data-wa-text="Oi, Dilmara! Raspei o cartão no seu site e ganhei os 10% OFF! Quero resgatar meu cupom.">Resgatar Cupom</button>
+                </div>
+                <canvas id="scratchPad" class="scratch-canvas"></canvas>
+            </div>
+
+            <a href="#" class="bento-card item-shipping stagger-item touch-target btn-wa-trigger" data-wa-text="Oi Dilmara, me ajude a montar meu carrinho para ganhar o Frete Grátis e o Mimo!">
+                <h2 class="card-title" style="font-size: 0.9rem; text-align:left;">Frete Grátis + Mimo 🎁</h2>
+                <div class="progress-container"><div class="progress-bar"></div></div>
+                <p class="progress-text">Nas compras acima de <span>R$ 249,90</span>. <br>Toque para eu te ajudar a montar o carrinho!</p>
+            </a>
+
+            <div class="bento-card item-alarm stagger-item touch-target" id="btnAlarm">
+                <i class="ph-light ph-calendar-check card-icon" style="color: var(--pink-vibrant);"></i>
+                <h2 class="card-title">Alarme da Beleza</h2>
+                <p class="card-subtitle">Nunca mais fique sem sua make! Toque para eu te lembrar.</p>
+            </div>
+
+            <a href="#" class="bento-card item-vip card-vip stagger-item touch-target btn-vip-trigger">
+                <i class="ph-fill ph-lock-key card-icon"></i>
+                <div class="text-box"><h2 class="card-title">Clube VIP</h2><p class="card-subtitle">Oportunidade Mary Kay</p></div>
+            </a>
+
+            <a href="#" class="bento-card item-polo1 stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Gostaria de saber sobre os produtos a pronta entrega no Local Paraíba." style="border-left: 3px solid var(--rose-gold);">
+                <i class="ph-light ph-map-pin card-icon"></i><h2 class="card-title">Loja Online PB</h2><p class="card-subtitle">Pronta Entrega</p>
+            </a>
+            
+            <a href="#" class="bento-card item-polo2 stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Gostaria de saber sobre os produtos a pronta entrega no Local São Paulo." style="border-left: 3px solid var(--pink-vibrant);">
+                <i class="ph-light ph-buildings card-icon"></i><h2 class="card-title">Loja Online SP</h2><p class="card-subtitle">Pronta Entrega</p>
+            </a>
+
+            <div class="bento-card item-reviews stagger-item">
+                <h2 class="card-title" style="font-size: 0.9rem; margin-bottom:10px; color: var(--rose-gold);"><i class="ph-fill ph-star"></i> O que dizem as clientes</h2>
+                <div class="reviews-wrapper">
+                    <div class="reviews-track" id="reviewsTrack">
+                        <div class="review-box">"Amei meu kit TimeWise! Minha pele nunca esteve tão hidratada." <span class="review-author">- Letícia S.</span></div>
+                        <div class="review-box">"Dilmara acerta sempre no meu tom de base! O atendimento é perfeito." <span class="review-author">- Camila F.</span></div>
+                        <div class="review-box">"Entrega super rápida e ainda veio com um mimo lindo!" <span class="review-author">- Juliana M.</span></div>
+                        <div class="review-box">"A aula de SOS Make salvou meu evento de sábado. Obrigada, Di!" <span class="review-author">- Mariana C.</span></div>
+                        <div class="review-box">"Os perfumes são maravilhosos, e a embalagem de presente arrasou." <span class="review-author">- Fernanda L.</span></div>
+                        <div class="review-box">"Comprei na loja online e a entrega foi super rápida!" <span class="review-author">- Joana P.</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="shake-hint" id="shakeHintBtn"><i class="ph-fill ph-device-mobile-vibration"></i> Em dúvida? Toque aqui</div>
+            <div class="signature-mark">Dilmara Santos</div>
+        </footer>
+
+        <button id="btnSosMake" class="sos-floating-btn touch-target"><i class="ph-bold ph-shopping-bag"></i> SOS Me Ensina</button>
+
+        <div class="color-palette stagger-item">
+            <div class="palette-dot" data-theme="classic" style="background: #d81b60;"></div>
+            <div class="palette-dot" data-theme="nude" style="background: #a8877b;"></div>
+            <div class="palette-dot" data-theme="peach" style="background: #ff6f47;"></div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const vibrate = (pattern = 15) => { if (navigator.vibrate) navigator.vibrate(pattern); };
+
+            // TÍTULO DINÂMICO
+            const originalTitle = document.title;
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden') {
+                    document.title = '🎀 Volte aqui, maravilhosa!';
+                } else {
+                    document.title = originalTitle;
+                }
+            });
+
+            // CATÁLOGO BIORRÍTMICO
+            const hour = new Date().getHours();
+            const bioCard = document.getElementById('biorhythmCard');
+            const bioIcon = document.getElementById('bioIcon');
+            const bioTitle = document.getElementById('bioTitle');
+            const bioSub = document.getElementById('bioSub');
+            
+            let greetingText = "Olá";
+            if (hour >= 5 && hour < 12) {
+                greetingText = "☀️ Bom dia";
+                bioIcon.className = "ph-light ph-sun card-icon";
+                bioTitle.innerText = "Bom dia! Proteção Solar";
+                bioSub.innerText = "Já passou seu protetor hoje?";
+                bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Preciso repor meu protetor solar Mary Kay.');
+            } else if (hour >= 12 && hour < 18) {
+                greetingText = "☕ Boa tarde";
+                bioIcon.className = "ph-light ph-sparkle card-icon";
+                bioTitle.innerText = "Retoque a Make!";
+                bioSub.innerText = "Garanta seu pó translúcido.";
+                bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Quero produtos para o dia a dia e retoque de pele.');
+            } else {
+                greetingText = "🌙 Boa noite";
+                bioIcon.className = "ph-light ph-moon-stars card-icon";
+                bioTitle.innerText = "Hora do Skin-Spa";
+                bioSub.innerText = "Tire a make e relaxe.";
+                bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Quero saber sobre demaquilante e creme noturno.');
+            }
+            document.getElementById('dynamicGreeting').innerHTML = `<span class="greeting-text">${greetingText}, maravilhosa!</span> | Mary Kay Exec`;
+
+            // PULL TO REVEAL
+            let startY = 0;
+            const pullBanner = document.getElementById('pullBanner');
+            document.body.addEventListener('touchstart', e => startY = e.touches[0].clientY, {passive: true});
+            document.body.addEventListener('touchmove', e => {
+                if(window.scrollY === 0) {
+                    const currentY = e.touches[0].clientY;
+                    if(currentY - startY > 50) pullBanner.style.transform = 'translateY(60px)';
+                }
+            }, {passive: true});
+            document.body.addEventListener('touchend', () => pullBanner.style.transform = 'translateY(0)');
+
+            // FOMO
+            setTimeout(() => {
+                const fomoBadge = document.getElementById('fomoBadge');
+                const fomoText = document.getElementById('fomoText');
+                fomoBadge.style.opacity = '1';
+                setInterval(() => {
+                    const randomNum = Math.floor(Math.random() * (25 - 8 + 1)) + 8;
+                    fomoText.innerText = `${randomNum} mulheres vendo ofertas`;
+                }, 12000);
+            }, 3000);
+
+            // SHAKE TO SHUFFLE
+            const triggerSurprise = () => {
+                vibrate([50, 50, 100]);
+                const blushSweep = document.getElementById('blushSweep'); 
+                blushSweep.classList.add('active'); 
+                
+                setTimeout(() => { 
+                    window.open('https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/NO-mcm6Rp64H', '_blank'); 
+                    blushSweep.classList.remove('active'); 
+                }, 600);
+            };
+
+            document.getElementById('shakeHintBtn').addEventListener('click', triggerSurprise);
+
+            if (window.DeviceMotionEvent) {
+                let lastX, lastY, lastZ;
+                let moveCounter = 0;
+                window.addEventListener('devicemotion', (event) => {
+                    let acc = event.accelerationIncludingGravity;
+                    if(!acc.x) return;
+                    
+                    if(!lastX) { lastX = acc.x; lastY = acc.y; lastZ = acc.z; return; }
+                    
+                    let deltaX = Math.abs(acc.x - lastX);
+                    let deltaY = Math.abs(acc.y - lastY);
+                    let deltaZ = Math.abs(acc.z - lastZ);
+                    
+                    if (deltaX + deltaY + deltaZ > 20) { 
+                        moveCounter++;
+                        if (moveCounter > 3) { triggerSurprise(); moveCounter = 0; }
+                    } else { moveCounter = Math.max(0, moveCounter - 1); }
+                    
+                    lastX = acc.x; lastY = acc.y; lastZ = acc.z;
+                });
+            }
+            
+            const btnAudio = document.getElementById('btnAudio');
+            const audioIcon = document.getElementById('audioIcon');
+            const vipAudio = document.getElementById('vipAudio');
+            let isPlaying = false;
+            btnAudio.addEventListener('click', (e) => {
+                e.stopPropagation(); vibrate(10);
+                if(isPlaying) { vipAudio.pause(); audioIcon.classList.replace('ph-pause', 'ph-play'); } 
+                else { vipAudio.play(); audioIcon.classList.replace('ph-play', 'ph-pause'); }
+                isPlaying = !isPlaying;
+            });
+            vipAudio.onended = () => { isPlaying = false; audioIcon.classList.replace('ph-pause', 'ph-play'); };
+
+            const phrases = ["Você é incrivelmente linda hoje! ✨", "Sua força inspira. Arrase! 👑", "O mundo precisa da sua luz. Brilhe! 💖", "Você é capaz de coisas maravilhosas! 🌟", "Seu sorriso é o seu melhor acessório! 😊"];
+            const flipCard = document.getElementById('flipCard');
+            flipCard.addEventListener('click', () => {
+                vibrate(15);
+                if(!flipCard.classList.contains('is-flipped')){ document.getElementById('flipMessage').innerText = phrases[Math.floor(Math.random() * phrases.length)]; flipCard.classList.add('is-flipped'); } 
+                else { flipCard.classList.remove('is-flipped'); }
+            });
+
+            document.body.style.overflow = 'hidden'; 
+            const unboxingLayer = document.getElementById('unboxing-layer');
+            const giftTrigger = document.getElementById('giftTrigger');
+            const mainApp = document.getElementById('mainApp');
+            let isUnboxed = false;
+
+            const openGiftBox = () => {
+                if(isUnboxed) return; isUnboxed = true; vibrate(40); unboxingLayer.classList.add('opened'); 
+                setTimeout(() => {
+                    unboxingLayer.style.opacity = '0'; mainApp.style.display = 'block'; document.body.style.overflow = 'auto'; 
+                    setTimeout(setupScratchCard, 100);
+                    setTimeout(() => { 
+                        unboxingLayer.style.display = 'none'; 
+                        startStaggerAnimation(); 
+                        startSneakPeekTimer();
+                        
+                        setTimeout(() => {
+                            const stories = document.getElementById('storiesContainer');
+                            stories.scrollBy({ left: 60, behavior: 'smooth' });
+                            setTimeout(() => stories.scrollBy({ left: -60, behavior: 'smooth' }), 500);
+                        }, 1000);
+
+                    }, 500);
+                }, 800);
+            }
+
+            giftTrigger.addEventListener('click', openGiftBox);
+            giftTrigger.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGiftBox(); } });
+
+            const startStaggerAnimation = () => {
+                const items = document.querySelectorAll('.stagger-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animation = `cardReveal 0.6s var(--ease-spring) forwards ${Array.from(items).indexOf(entry.target) * 0.08}s`;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                items.forEach(item => observer.observe(item));
+            };
+
+            const startSneakPeekTimer = () => {
+                let timeLeft = 10; 
+                const countdownEl = document.getElementById('countdownTimer');
+                const sneakCard = document.getElementById('sneakCard');
+                const timerInterval = setInterval(() => {
+                    if(timeLeft <= 0) { clearInterval(timerInterval); sneakCard.classList.add('sneak-unlocked'); vibrate([30, 30, 50]); } 
+                    else {
+                        let h = Math.floor(timeLeft / 3600).toString().padStart(2, '0'); let m = Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0'); let s = (timeLeft % 60).toString().padStart(2, '0');
+                        countdownEl.innerText = `${h}:${m}:${s}`; timeLeft--;
+                    }
+                }, 1000);
+            };
+
+            const themes = {
+                classic: { p: '#d81b60', pr: 216, pg: 27, pb: 96, r: '#c07c88', rr: 192, rg: 124, rb: 136, rl: '#e8c5cb' },
+                nude: { p: '#8b5a4b', pr: 139, pg: 90, pb: 75, r: '#bca398', rr: 188, rg: 163, rb: 152, rl: '#e3d1c9' },
+                peach: { p: '#ff6f47', pr: 255, pg: 111, pb: 71, r: '#ff9a76', rr: 255, rg: 154, rb: 118, rl: '#ffcbb8' }
+            };
+            document.querySelectorAll('.palette-dot').forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    vibrate(20); const t = themes[e.target.getAttribute('data-theme')]; const root = document.documentElement;
+                    root.style.setProperty('--pink-vibrant', t.p); root.style.setProperty('--pink-r', t.pr); root.style.setProperty('--pink-g', t.pg); root.style.setProperty('--pink-b', t.pb);
+                    root.style.setProperty('--rose-gold', t.r); root.style.setProperty('--rose-r', t.rr); root.style.setProperty('--rose-g', t.rg); root.style.setProperty('--rose-b', t.rb);
+                    root.style.setProperty('--rose-gold-light', t.rl);
+                    triggerExplosion(e.pageX, e.pageY, [t.p, t.r, t.rl], 15); 
+                });
+            });
+
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            themeToggle.addEventListener('click', () => {
+                vibrate(); 
+                if(document.body.getAttribute('data-theme') === 'dark') { document.body.removeAttribute('data-theme'); themeIcon.classList.replace('ph-sun', 'ph-moon'); } 
+                else { document.body.setAttribute('data-theme', 'dark'); themeIcon.classList.replace('ph-moon', 'ph-sun'); }
+            });
+
+            const modalRegion = document.getElementById('regionModal');
+            const modalSos = document.getElementById('sosModal');
+            const modalCopyWa = document.getElementById('copyWaModal');
+            const modalQuiz = document.getElementById('quizModal');
+            const modalVipVideo = document.getElementById('vipVideoModal');
+            
+            document.querySelectorAll('.close-modal-generic').forEach(btn => {
+                btn.addEventListener('click', (e) => { vibrate(10); e.target.closest('.custom-modal').classList.remove('active'); });
+            });
+            document.getElementById('btnSosMake').addEventListener('click', () => { vibrate(15); modalSos.classList.add('active'); });
+            document.querySelector('.btn-vip-trigger').addEventListener('click', (e) => { e.preventDefault(); vibrate(15); modalVipVideo.classList.add('active'); });
+            
+            const catalogLinks = {
+                'maquiagem': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/NO-mcm6Rp64H', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/ZdumWWIXOBZM' },
+                'fragrancia': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/rcEq56Gr4e4e', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/vxLwYwz7W8V4' },
+                'facial': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/DguUU0HWBUag', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/N82qmWz3Nyb9' },
+                'corporal': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/q3s7UkAIdLlU', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/Et1Q275jsm9Q' },
+                'presente': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/XQ9lrMlsFt0B', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/06zoeLvGxpjJ' }
+            };
+            let currentCategory = '';
+            document.querySelectorAll('.btn-story').forEach(btn => {
+                btn.addEventListener('click', () => { vibrate(15); currentCategory = btn.getAttribute('data-cat'); modalRegion.classList.add('active'); });
+            });
+            document.querySelectorAll('.btn-region').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    vibrate(20); const region = btn.getAttribute('data-region'); const link = catalogLinks[currentCategory][region]; modalRegion.classList.remove('active');
+                    const blushSweep = document.getElementById('blushSweep'); blushSweep.classList.add('active'); 
+                    setTimeout(() => { window.open(link, '_blank'); blushSweep.classList.remove('active'); }, 600);
+                });
+            });
+
+            let currentQuizUrl = '';
+            document.querySelectorAll('.btn-quiz-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); vibrate(15); currentQuizUrl = btn.getAttribute('data-quiz-url');
+                    document.getElementById('quizModalTitle').innerText = btn.getAttribute('data-quiz-title');
+                    document.getElementById('quizModalDesc').innerText = btn.getAttribute('data-quiz-desc');
+                    modalQuiz.classList.add('active');
+                });
+            });
+            document.getElementById('btnGoQuiz').addEventListener('click', () => {
+                vibrate(20); modalQuiz.classList.remove('active');
+                const blushSweep = document.getElementById('blushSweep'); blushSweep.classList.add('active'); 
+                setTimeout(() => { window.open(currentQuizUrl, '_blank'); blushSweep.classList.remove('active'); }, 600);
+            });
+
+            const waBaseUrl = 'https://wa.me/message/CNUK2VEUY6WSG1';
+            let globalTextToCopy = '';
+            document.querySelectorAll('.btn-wa-trigger').forEach(btn => {
+                if(btn.classList.contains('btn-vip-trigger')) return;
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); vibrate(15);
+                    if(modalSos.classList.contains('active')) modalSos.classList.remove('active');
+                    globalTextToCopy = btn.getAttribute('data-wa-text');
+                    document.getElementById('waTextToCopy').innerText = globalTextToCopy;
+                    if(navigator.clipboard) navigator.clipboard.writeText(globalTextToCopy).catch(()=>{}); 
+                    modalCopyWa.classList.add('active');
+                });
+            });
+
+            const copyAndRedirect = (btnId, modalElement) => {
+                vibrate(20); const btn = document.getElementById(btnId); const originalHtml = btn.innerHTML;
+                if(navigator.clipboard){
+                    navigator.clipboard.writeText(btnId==='btnCopyVip' ? document.getElementById('vipWaTextToCopy').innerText : globalTextToCopy).then(() => {
+                        btn.innerHTML = '<i class="ph-bold ph-check"></i> Texto Copiado!'; btn.style.background = '#1E40AF'; 
+                        setTimeout(() => { btn.innerHTML = originalHtml; btn.style.background = '#25D366'; window.open(waBaseUrl, '_blank'); modalElement.classList.remove('active'); }, 1000);
+                    }).catch(() => { window.open(waBaseUrl, '_blank'); });
+                } else { window.open(waBaseUrl, '_blank'); }
+            };
+            document.getElementById('btnCopyAndGo').addEventListener('click', () => copyAndRedirect('btnCopyAndGo', modalCopyWa));
+            document.getElementById('btnCopyVip').addEventListener('click', () => copyAndRedirect('btnCopyVip', modalVipVideo));
+
+            const sliderPairs = [{ bg: 'image2.jpeg', fg: 'image1.jpeg' }, { bg: 'image4.jpeg', fg: 'image3.jpeg' }, { bg: 'image6.jpeg', fg: 'image5.jpeg' }];
+            const baSlider = document.getElementById('baSlider');
+            const imgBg = document.getElementById('imgBackground');
+            const imgFg = document.getElementById('imgForeground');
+            const sliderLine = document.getElementById('sliderLine');
+            const sliderBtn = document.getElementById('sliderBtn');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+
+            if(baSlider) {
+                baSlider.addEventListener('input', (e) => {
+                    const val = e.target.value; imgFg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                    sliderLine.style.left = `${val}%`; sliderBtn.style.left = `${val}%`;
+                    if(val % 10 === 0) vibrate(5); 
+                });
+                sliderDots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        vibrate(10); sliderDots.forEach(d => d.classList.remove('active')); e.target.classList.add('active');
+                        const index = parseInt(e.target.getAttribute('data-index'));
+                        imgBg.style.opacity = '0.5'; imgFg.style.opacity = '0.5';
+                        setTimeout(() => {
+                            imgBg.src = sliderPairs[index].bg; imgFg.src = sliderPairs[index].fg;
+                            baSlider.value = 50; imgFg.style.clipPath = `polygon(0 0, 50% 0, 50% 100%, 0 100%)`;
+                            sliderLine.style.left = `50%`; sliderBtn.style.left = `50%`;
+                            imgBg.style.opacity = '1'; imgFg.style.opacity = '1';
+                        }, 200);
+                    });
+                });
+            }
+
+            document.getElementById('btnAlarm').addEventListener('click', () => {
+                vibrate(30); const now = new Date(); const reminderDate = new Date(now); reminderDate.setDate(reminderDate.getDate() + 90); 
+                const formatDate = (date) => { return date.toISOString().replace(/-|:|\.\d+/g, '').substring(0, 15) + 'Z'; };
+                const start = formatDate(reminderDate); const endDate = new Date(reminderDate); endDate.setHours(endDate.getHours() + 1); const end = formatDate(endDate);
+                const icsContent = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Dilmara Santos//Mary Kay//PT", "BEGIN:VEVENT", "UID:" + Math.random().toString(36).substring(2) + "@dilmarasantos.com", "DTSTAMP:" + formatDate(now), "DTSTART:" + start, "DTEND:" + end, "SUMMARY:Hora de repor sua Make com a Dilmara! 💄", "DESCRIPTION:Sua base e seus produtos Mary Kay já devem estar acabando. Fale comigo no WhatsApp para repor: https://wa.me/message/CNUK2VEUY6WSG1", "BEGIN:VALARM", "TRIGGER:-PT10M", "ACTION:DISPLAY", "DESCRIPTION:Repor Make Mary Kay", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join('\n');
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const url = URL.createObjectURL(blob); const link = document.createElement('a');
+                link.href = url; link.setAttribute('download', 'reposicao-make-dilmara.ics');
+                document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url);
+            });
+
+            const dustContainer = document.getElementById('fairy-dust-container');
+            const colorVars = () => [
+                getComputedStyle(document.documentElement).getPropertyValue('--pink-vibrant').trim() || '#d81b60',
+                getComputedStyle(document.documentElement).getPropertyValue('--gold-luxury').trim() || '#d4af37',
+                getComputedStyle(document.documentElement).getPropertyValue('--rose-gold-light').trim() || '#e8c5cb'
+            ];
+            
+            for (let i = 0; i < 30; i++) {
+                let sparkle = document.createElement('div'); sparkle.classList.add('sparkle-particle');
+                sparkle.style.left = Math.random() * 100 + 'vw'; sparkle.style.top = Math.random() * 100 + 'vh';
+                let size = Math.random() * 2 + 1; sparkle.style.width = size + 'px'; sparkle.style.height = size + 'px';
+                let c = colorVars()[Math.floor(Math.random() * 3)];
+                sparkle.style.backgroundColor = c; sparkle.style.boxShadow = `0 0 ${size * 2}px ${c}`;
+                sparkle.style.setProperty('--duration', (Math.random() * 3 + 2) + 's'); sparkle.style.animationDelay = (Math.random() * 5) + 's';
+                dustContainer.appendChild(sparkle);
+            }
+
+            const triggerExplosion = (x, y, customColors = null, count = 4) => {
+                const touchColors = customColors || colorVars();
+                for(let i=0; i<count; i++) {
+                    const spark = document.createElement('div'); spark.classList.add('click-sparkle');
+                    const size = Math.random() * 2 + 2; spark.style.width = `${size}px`; spark.style.height = `${size}px`;
+                    const color = touchColors[Math.floor(Math.random() * touchColors.length)];
+                    spark.style.backgroundColor = color; spark.style.boxShadow = `0 0 6px ${color}`;
+                    spark.style.left = `${x - size/2}px`; spark.style.top = `${y - size/2}px`;
+                    document.body.appendChild(spark);
+                    const angle = Math.random() * Math.PI * 2; const velocity = Math.random() * 25 + 10; 
+                    spark.animate([{ transform: 'translate(0, 0) scale(1)', opacity: 1 }, { transform: `translate(${Math.cos(angle)*velocity}px, ${Math.sin(angle)*velocity-10}px) scale(0)`, opacity: 0 }], { duration: 600 + Math.random() * 300, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', fill: 'forwards' });
+                    setTimeout(() => { spark.remove(); }, 900);
+                }
+            };
+
+            let lastTapTime = 0;
+            let lastSparkleTime = 0;
+            
+            document.body.addEventListener('pointerdown', (e) => {
+                const now = Date.now();
+                const isDoubleClick = (now - lastTapTime < 300) && (now - lastTapTime > 0);
+                lastTapTime = now;
+
+                if(e.target.closest('a') || e.target.closest('button') || e.target.closest('.custom-modal') || e.target.closest('#scratchPad') || e.target.closest('#baSlider') || e.target.closest('.slider-dot') || e.target.closest('#giftTrigger') || e.target.closest('.btn-audio') || e.target.closest('.color-palette')) return;
+                
+                if (isDoubleClick) {
+                    vibrate([15, 30, 15]);
+                    const kiss = document.createElement('div');
+                    kiss.className = 'lipstick-kiss';
+                    kiss.innerText = '💋';
+                    kiss.style.left = e.pageX + 'px';
+                    kiss.style.top = e.pageY + 'px';
+                    document.body.appendChild(kiss);
+                    setTimeout(() => kiss.remove(), 2000);
+                } else {
+                    if (now - lastSparkleTime < 200) return;
+                    lastSparkleTime = now; 
+                    vibrate(10); 
+                    triggerExplosion(e.pageX, e.pageY);
+                }
+            });
+
+            // LÓGICA DO CARROSSEL DE AVALIAÇÕES (NOVO)
+            const reviews = document.querySelectorAll('.review-box');
+            if(reviews.length > 0) {
+                let currentReview = 0;
+                reviews[0].classList.add('active'); // Mostra a primeira avaliação
+                
+                setInterval(() => {
+                    reviews[currentReview].classList.remove('active');
+                    currentReview = (currentReview + 1) % reviews.length;
+                    reviews[currentReview].classList.add('active');
+                }, 4000); // Passa para a próxima a cada 4 segundos
+            }
+
+            const setupScratchCard = () => {
+                const canvas = document.getElementById('scratchPad');
+                if(!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let isDrawing = false, isRevealed = false, scratchFrames = 0;
+                
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width; canvas.height = rect.height;
+
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, '#f9e596'); gradient.addColorStop(1, '#d5a698');
+                ctx.fillStyle = gradient; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.font = 'bold 20px "Plus Jakarta Sans"'; ctx.fillStyle = '#5a3a31';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText('✨ Raspe Aqui', canvas.width / 2, canvas.height / 2);
+                ctx.globalCompositeOperation = 'destination-out';
+
+                const scratch = (x, y) => { ctx.beginPath(); ctx.arc(x, y, 30, 0, Math.PI * 2); ctx.fill(); };
+                const getCoordinates = (e) => {
+                    const r = canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return { x: clientX - r.left, y: clientY - r.top };
+                };
+                
+                const checkReveal = () => {
+                    if (isRevealed) return;
+                    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                    let transparent = 0;
+                    for (let i = 3; i < pixels.length; i += 4) if (pixels[i] === 0) transparent++;
+                    if (transparent / (pixels.length / 4) > 0.45) {
+                        isRevealed = true; canvas.style.opacity = '0'; 
+                        document.getElementById('prizeText').classList.add('prize-pop');
+                        document.getElementById('btnResgatar').classList.add('show');
+                        vibrate([50, 50, 100]); 
+                        
+                        if(typeof confetti === 'function') {
+                            confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: colorVars(), zIndex: 10000 });
+                        }
+                        setTimeout(() => { canvas.style.display = 'none'; }, 500);
+                    }
+                };
+
+                const startScratch = (e) => { if (isRevealed) return; isDrawing = true; const { x, y } = getCoordinates(e); scratch(x, y); vibrate(15); };
+                const moveScratch = (e) => {
+                    if (!isDrawing || isRevealed) return; e.preventDefault(); 
+                    const { x, y } = getCoordinates(e); scratch(x, y);
+                    if(Math.random() > 0.8) vibrate(5); 
+                    if(++scratchFrames % 15 === 0) checkReveal();
+                };
+                const stopScratch = () => { isDrawing = false; if (!isRevealed) checkReveal(); };
+
+                canvas.addEventListener('mousedown', startScratch); canvas.addEventListener('mousemove', moveScratch);
+                canvas.addEventListener('mouseup', stopScratch); canvas.addEventListener('mouseleave', stopScratch);
+                canvas.addEventListener('touchstart', startScratch, { passive: false }); canvas.addEventListener('touchmove', moveScratch, { passive: false });
+                canvas.addEventListener('touchend', stopScratch);
+            };
+
+            let windowWidth = window.innerWidth;
+            window.addEventListener('resize', () => { if(window.innerWidth !== windowWidth) { windowWidth = window.innerWidth; setupScratchCard(); } });
+
+            const kitsCarousel = document.getElementById('kitsCarousel');
+            let scrollDir = 1, isHover = false;
+            kitsCarousel.addEventListener('mouseenter', () => isHover = true); kitsCarousel.addEventListener('mouseleave', () => isHover = false);
+            kitsCarousel.addEventListener('touchstart', () => isHover = true, {passive: true}); kitsCarousel.addEventListener('touchend', () => isHover = false);
+            setInterval(() => {
+                if(isHover) return; 
+                let maxScroll = kitsCarousel.scrollWidth - kitsCarousel.clientWidth;
+                if (maxScroll <= 0) return; 
+                if (kitsCarousel.scrollLeft >= maxScroll - 5) scrollDir = -1; else if (kitsCarousel.scrollLeft <= 5) scrollDir = 1;
+                kitsCarousel.scrollBy({ left: 160 * scrollDir, behavior: 'smooth' });
+            }, 3000);
+
+        });
+    </script>
+</body>
+</html>
