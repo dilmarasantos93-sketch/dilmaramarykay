@@ -286,11 +286,15 @@
         .palette-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .palette-dot:active { transform: scale(0.8); }
 
-        footer { 
-    margin-top: 4rem; /* Aumentamos de 1rem para 4rem para afastar do grid */
+       footer { 
+    margin-top: 4rem; 
     text-align: center; 
     width: 100%; 
-    padding-bottom: 5rem; /* Dei um espacinho extra embaixo por causa dos botões flutuantes */
+    padding-bottom: 5rem;
+    display: flex;             /* Adicionamos isso para controlar o layout interno */
+    flex-direction: column;    /* Coloca um item embaixo do outro */
+    align-items: center;       /* Centraliza horizontalmente */
+    gap: 30px;                 /* AQUI É O SEGREDO: aumenta o espaço entre a frase e o nome */
 }
         .signature-mark { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--text-muted); opacity: 0.6; }
 
@@ -1192,6 +1196,7 @@
     </script>
 </body>
 </html>
+
 
 
 
