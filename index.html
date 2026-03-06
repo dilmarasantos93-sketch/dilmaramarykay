@@ -1121,9 +1121,15 @@
                 // Animação de vai e vem suave (se a usuária não estiver tocando)
                 const animateSlider = () => {
                     if (!isInteracting) {
-                        sliderPhase += 0.015; // Velocidade do vai e vem (aumente para mais rápido)
-                        // Calcula um valor entre 20% e 80% usando seno (Math.sin)
-                        const autoVal = 50 + Math.sin(sliderPhase) * 35;
+                        sliderPhase += 0.015; // Velocidade do vai e vem
+                        
+                        // Mudamos de 35 para 50 para ir de 0% a 100%
+                        let autoVal = 50 + Math.sin(sliderPhase) * 50;
+                        
+                        // Trava de segurança para garantir que não passe das bordas
+                        if (autoVal < 0) autoVal = 0;
+                        if (autoVal > 100) autoVal = 100;
+
                         updateSliderPos(autoVal);
                     }
                     requestAnimationFrame(animateSlider); // Fica repetindo a animação
@@ -1137,7 +1143,7 @@
                             let nextSlide = (currentSlide + 1) % sliderPairs.length;
                             goToSlide(nextSlide);
                         }
-                    }, 6000); 
+                    }, 15000); 
                 };
 
                 // Pausar automação quando a usuária interagir
@@ -1181,6 +1187,7 @@
     </script>
 </body>
 </html>
+
 
 
 
