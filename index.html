@@ -286,7 +286,12 @@
         .palette-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .palette-dot:active { transform: scale(0.8); }
 
-        footer { margin-top: 1rem; text-align: center; width: 100%; padding-bottom: 3rem; }
+        footer { 
+    margin-top: 4rem; /* Aumentamos de 1rem para 4rem para afastar do grid */
+    text-align: center; 
+    width: 100%; 
+    padding-bottom: 5rem; /* Dei um espacinho extra embaixo por causa dos botões flutuantes */
+}
         .signature-mark { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--text-muted); opacity: 0.6; }
 
         @media (min-width: 768px) {
@@ -1187,6 +1192,7 @@
     </script>
 </body>
 </html>
+
 
 
 
