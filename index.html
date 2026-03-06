@@ -199,9 +199,8 @@
         .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s; }
         .slider-dot.active { background: var(--pink-vibrant); transform: scale(1.3); border-color: rgba(255,255,255,0.8); box-shadow: 0 0 5px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.5); }
 
-        .card-tech { justify-content: center; background: linear-gradient(145deg, var(--glass-bg), var(--bg-color-2)); border-left: 1px solid var(--rose-gold-light); border-top: 1px solid var(--rose-gold-light); }
+        .card-tech { justify-content: center; background: linear-gradient(145deg, var(--glass-bg), var(--bg-color-2)); border-left: 1px solid var(--rose-gold-light); border-top: 1px solid var(--rose-gold-light); overflow: hidden; }
         .badge-gift { position: absolute; top: 15px; right: 15px; background: var(--pink-vibrant); color: #ffffff; padding: 5px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; animation: float 3s infinite ease-in-out; z-index: 10; }
-        .tech-bg-icon { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 8rem; opacity: 0.04; color: var(--pink-vibrant); }
 
         .mood-container { display: flex; justify-content: space-between; width: 100%; gap: 8px; margin-top: 10px; }
         .btn-mood { flex: 1; display: flex; flex-direction: column; align-items: center; background: var(--glass-highlight); padding: 10px 5px; border-radius: 12px; border: 1px solid var(--glass-border); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -233,7 +232,7 @@
         .btn-resgatar { margin-top: 10px; padding: 8px 24px; background: var(--pink-vibrant); color: #ffffff; border-radius: 25px; font-size: 0.85rem; font-weight: 700; border: none; box-shadow: 0 5px 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); opacity: 0; transform: translateY(15px); transition: all 0.5s var(--ease-spring); pointer-events: none; }
         .btn-resgatar.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-        /* NOVA ESTILIZAÇÃO DAS REVIEWS - 1 POR VEZ */
+        /* ESTILIZAÇÃO DAS REVIEWS */
         .reviews-wrapper { width: 100%; position: relative; min-height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .reviews-track { width: 100%; height: 100%; position: relative; }
         .review-box { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-30%) scale(0.95); opacity: 0; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255,255,255,0.4); border-radius: 12px; padding: 15px; text-align: left; font-size: 0.8rem; font-style: italic; color: var(--text-dark); border-left: 3px solid var(--rose-gold); box-shadow: 0 4px 10px rgba(0,0,0,0.02); pointer-events: none; margin: 0; }
@@ -491,11 +490,11 @@
             </div>
 
             <a href="#" class="bento-card item-skin card-tech stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Quero fazer minha análise facial com você através do Skin Analyzer!">
-                <div class="badge-gift"><i class="ph-bold ph-gift"></i> Presente</div>
-                <i class="ph-light ph-device-mobile tech-bg-icon"></i>
-                <i class="ph-light ph-magic-wand card-icon" style="font-size: 2.5rem;"></i>
-                <h2 class="card-title" style="font-size: 1.3rem;">Skin Analyzer</h2>
-                <p class="card-subtitle">Análise facial feita por mim. Descubra sua rotina.</p>
+                <img src="analyser.jpeg" alt="Fundo Analyzer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; pointer-events: none; mix-blend-mode: multiply;">
+                <div class="badge-gift" style="z-index: 2;"><i class="ph-bold ph-gift"></i> Presente</div>
+                <i class="ph-light ph-magic-wand card-icon" style="font-size: 2.5rem; z-index: 2;"></i>
+                <h2 class="card-title" style="font-size: 1.3rem; z-index: 2;">Skin Analyzer</h2>
+                <p class="card-subtitle" style="z-index: 2;">Análise facial feita por mim. Descubra sua rotina.</p>
             </a>
 
             <div class="bento-card item-moods stagger-item">
@@ -595,10 +594,10 @@
                 <p class="progress-text">Nas compras acima de <span>R$ 249,90</span>. <br>Toque para eu te ajudar a montar o carrinho!</p>
             </a>
 
-            <div class="bento-card item-alarm stagger-item touch-target" id="btnAlarm">
+            <div class="bento-card item-alarm stagger-item touch-target" id="btnAlarm" style="cursor: pointer;">
                 <i class="ph-light ph-calendar-check card-icon" style="color: var(--pink-vibrant);"></i>
                 <h2 class="card-title">Alarme da Beleza</h2>
-                <p class="card-subtitle">Nunca mais fique sem sua make! Toque para eu te lembrar.</p>
+                <p class="card-subtitle">Nunca mais fique sem sua make! Toque para eu te lembrar no Google Agenda.</p>
             </div>
 
             <a href="#" class="bento-card item-vip card-vip stagger-item touch-target btn-vip-trigger">
@@ -606,28 +605,17 @@
                 <div class="text-box"><h2 class="card-title">Clube VIP</h2><p class="card-subtitle">Oportunidade Mary Kay</p></div>
             </a>
 
-            <button 
-class="bento-card item-polo1 stagger-item touch-target"
-onclick="window.location.href='https://loja.marykay.com.br/minha-vitrine?slug=dilmara'"
-style="border-left: 3px solid var(--rose-gold);">
+            <a href="https://loja.marykay.com.br/minha-vitrine?slug=dilmara" target="_blank" class="bento-card item-polo1 stagger-item touch-target" style="border-left: 3px solid var(--rose-gold);">
+                <i class="ph-light ph-map-pin card-icon"></i>
+                <h2 class="card-title">Loja Online PB</h2>
+                <p class="card-subtitle">Pronta Entrega</p>
+            </a>
 
-<i class="ph-light ph-map-pin card-icon"></i>
-<h2 class="card-title">Loja Online PB</h2>
-<p class="card-subtitle">Pronta Entrega</p>
-
-</button>
-
-
-<button 
-class="bento-card item-polo2 stagger-item touch-target"
-onclick="window.location.href='https://loja.marykay.com.br/minha-vitrine?slug=seus-queridinhos-aqui'"
-style="border-left: 3px solid var(--pink-vibrant);">
-
-<i class="ph-light ph-buildings card-icon"></i>
-<h2 class="card-title">Loja Online SP</h2>
-<p class="card-subtitle">Pronta Entrega</p>
-
-</button>
+            <a href="https://loja.marykay.com.br/minha-vitrine?slug=seus-queridinhos-aqui" target="_blank" class="bento-card item-polo2 stagger-item touch-target" style="border-left: 3px solid var(--pink-vibrant);">
+                <i class="ph-light ph-buildings card-icon"></i>
+                <h2 class="card-title">Loja Online SP</h2>
+                <p class="card-subtitle">Pronta Entrega</p>
+            </a>
 
             <div class="bento-card item-reviews stagger-item">
                 <h2 class="card-title" style="font-size: 0.9rem; margin-bottom:10px; color: var(--rose-gold);"><i class="ph-fill ph-star"></i> O que dizem as clientes</h2>
@@ -962,15 +950,26 @@ style="border-left: 3px solid var(--pink-vibrant);">
                 });
             }
 
+            // --- NOVO SCRIPT PARA O ALARME (GOOGLE AGENDA URL) ---
             document.getElementById('btnAlarm').addEventListener('click', () => {
-                vibrate(30); const now = new Date(); const reminderDate = new Date(now); reminderDate.setDate(reminderDate.getDate() + 90); 
+                vibrate(30); 
+                const now = new Date(); 
+                const reminderDate = new Date(now); 
+                reminderDate.setDate(reminderDate.getDate() + 90); // Daqui a 90 dias
+                
                 const formatDate = (date) => { return date.toISOString().replace(/-|:|\.\d+/g, '').substring(0, 15) + 'Z'; };
-                const start = formatDate(reminderDate); const endDate = new Date(reminderDate); endDate.setHours(endDate.getHours() + 1); const end = formatDate(endDate);
-                const icsContent = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Dilmara Santos//Mary Kay//PT", "BEGIN:VEVENT", "UID:" + Math.random().toString(36).substring(2) + "@dilmarasantos.com", "DTSTAMP:" + formatDate(now), "DTSTART:" + start, "DTEND:" + end, "SUMMARY:Hora de repor sua Make com a Dilmara! 💄", "DESCRIPTION:Sua base e seus produtos Mary Kay já devem estar acabando. Fale comigo no WhatsApp para repor: https://wa.me/message/CNUK2VEUY6WSG1", "BEGIN:VALARM", "TRIGGER:-PT10M", "ACTION:DISPLAY", "DESCRIPTION:Repor Make Mary Kay", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join('\n');
-                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-                const url = URL.createObjectURL(blob); const link = document.createElement('a');
-                link.href = url; link.setAttribute('download', 'reposicao-make-dilmara.ics');
-                document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url);
+                const start = formatDate(reminderDate); 
+                
+                const endDate = new Date(reminderDate); 
+                endDate.setHours(endDate.getHours() + 1); 
+                const end = formatDate(endDate);
+                
+                const title = encodeURIComponent("Hora de repor sua Make com a Dilmara! 💄");
+                const details = encodeURIComponent("Sua base e seus produtos Mary Kay já devem estar acabando. Fale comigo no WhatsApp para repor: https://wa.me/message/CNUK2VEUY6WSG1");
+                
+                // Redireciona diretamente para o Google Agenda
+                const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}`;
+                window.open(googleCalendarUrl, '_blank');
             });
 
             const dustContainer = document.getElementById('fairy-dust-container');
@@ -1032,17 +1031,16 @@ style="border-left: 3px solid var(--pink-vibrant);">
                 }
             });
 
-            // LÓGICA DO CARROSSEL DE AVALIAÇÕES (NOVO)
             const reviews = document.querySelectorAll('.review-box');
             if(reviews.length > 0) {
                 let currentReview = 0;
-                reviews[0].classList.add('active'); // Mostra a primeira avaliação
+                reviews[0].classList.add('active'); 
                 
                 setInterval(() => {
                     reviews[currentReview].classList.remove('active');
                     currentReview = (currentReview + 1) % reviews.length;
                     reviews[currentReview].classList.add('active');
-                }, 4000); // Passa para a próxima a cada 4 segundos
+                }, 4000); 
             }
 
             const setupScratchCard = () => {
@@ -1122,14 +1120,3 @@ style="border-left: 3px solid var(--pink-vibrant);">
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
