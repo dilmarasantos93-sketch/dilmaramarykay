@@ -1079,9 +1079,109 @@
             }, 5000); // MUDANÇA: de 3000 para 5000 (5 segundos)
 
         });
+        // --- INÍCIO DO SLIDER AUTOMÁTICO ANTES/DEPOIS ---
+            const sliderPairs = [{ bg: 'image2.jpeg', fg: 'image1.jpeg' }, { bg: 'image4.jpeg', fg: 'image3.jpeg' }, { bg: 'image6.jpeg', fg: 'image5.jpeg' }];
+            const baSlider = document.getElementById('baSlider');
+            const imgBg = document.getElementById('imgBackground');
+            const imgFg = document.getElementById('imgForeground');
+            const sliderLine = document.getElementById('sliderLine');
+            const sliderBtn = document.getElementById('sliderBtn');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+
+            if(baSlider) {
+                let currentSlide = 0;
+                let isInteracting = false; 
+                let autoSlideTimer;
+                let sliderPhase = 0; // Ajuda a fazer o movimento suave de vai e vem
+
+                // Função para atualizar a posição da barra visualmente
+                const updateSliderPos = (val) => {
+                    imgFg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                    sliderLine.style.left = `${val}%`; 
+                    sliderBtn.style.left = `${val}%`;
+                    baSlider.value = val;
+                };
+
+                // Função para trocar de imagem
+                const goToSlide = (index) => {
+                    currentSlide = index;
+                    sliderDots.forEach(d => d.classList.remove('active'));
+                    sliderDots[index].classList.add('active');
+
+                    imgBg.style.opacity = '0.5'; imgFg.style.opacity = '0.5';
+                    setTimeout(() => {
+                        imgBg.src = sliderPairs[index].bg; 
+                        imgFg.src = sliderPairs[index].fg;
+                        updateSliderPos(50); // Volta pro meio quando troca a foto
+                        imgBg.style.opacity = '1'; imgFg.style.opacity = '1';
+                        sliderPhase = 0; // Reinicia o movimento
+                    }, 200);
+                };
+
+                // Animação de vai e vem suave (se a usuária não estiver tocando)
+                const animateSlider = () => {
+                    if (!isInteracting) {
+                        sliderPhase += 0.015; // Velocidade do vai e vem (aumente para mais rápido)
+                        // Calcula um valor entre 20% e 80% usando seno (Math.sin)
+                        const autoVal = 50 + Math.sin(sliderPhase) * 35;
+                        updateSliderPos(autoVal);
+                    }
+                    requestAnimationFrame(animateSlider); // Fica repetindo a animação
+                };
+
+                // Trocar de foto automaticamente a cada 6 segundos
+                const startAutoSwitch = () => {
+                    clearInterval(autoSlideTimer);
+                    autoSlideTimer = setInterval(() => {
+                        if (!isInteracting) {
+                            let nextSlide = (currentSlide + 1) % sliderPairs.length;
+                            goToSlide(nextSlide);
+                        }
+                    }, 6000); 
+                };
+
+                // Pausar automação quando a usuária interagir
+                const stopAuto = () => { isInteracting = true; };
+                
+                // Voltar automação quando a usuária soltar
+                const resumeAuto = () => { 
+                    isInteracting = false; 
+                    startAutoSwitch(); // Zera o tempo para não mudar a foto do nada
+                };
+
+                // Eventos de toque e mouse na barra
+                baSlider.addEventListener('input', (e) => {
+                    isInteracting = true;
+                    updateSliderPos(e.target.value);
+                    if(e.target.value % 10 === 0) vibrate(5); 
+                });
+
+                baSlider.addEventListener('mousedown', stopAuto);
+                baSlider.addEventListener('touchstart', stopAuto, {passive: true});
+                baSlider.addEventListener('mouseup', resumeAuto);
+                baSlider.addEventListener('touchend', resumeAuto);
+                baSlider.addEventListener('mouseleave', resumeAuto);
+
+                // Evento de clique nas bolinhas (dots)
+                sliderDots.forEach((dot, index) => {
+                    dot.addEventListener('click', (e) => {
+                        vibrate(10); 
+                        stopAuto(); // Pausa a animação enquanto troca
+                        goToSlide(index);
+                        // Espera 3 segundos após o clique manual para voltar a ser automático
+                        setTimeout(resumeAuto, 3000);
+                    });
+                });
+
+                // Inicia o processo quando a página carrega
+                startAutoSwitch();
+                animateSlider();
+            }
+            // --- FIM DO SLIDER AUTOMÁTICO ---
     </script>
 </body>
 </html>
+
 
 
 
