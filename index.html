@@ -19,6 +19,32 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
+.item-skin .card-title, 
+.item-skin .card-subtitle, 
+.item-skin .card-icon {
+    position: relative;
+    z-index: 3; /* Garante que o texto fique acima de tudo */
+    text-shadow: 0 0 10px var(--bg-color-1), 0 0 20px var(--bg-color-1), 0 0 30px var(--bg-color-1);
+    font-weight: 800; /* Deixa o título mais gordinho/forte */
+}
+
+.item-skin .card-subtitle {
+    font-weight: 700;
+    color: var(--text-dark); /* Impede que o subtítulo fique cinza apagado */
+}
+
+.item-skin::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Cria um "brilho" no centro focado apenas no texto */
+    background: radial-gradient(circle, var(--bg-color-1) 10%, transparent 75%);
+    opacity: 0.85;
+    z-index: 2; /* Fica por cima da imagem e por baixo do texto */
+    pointer-events: none;
+}
+/* --- FIM DO DESTAQUE --- */
         :root {
             --rose-gold: #c07c88; --rose-gold-light: #e8c5cb; --pink-vibrant: #d81b60;
             --pink-r: 216; --pink-g: 27; --pink-b: 96;
@@ -1120,3 +1146,4 @@
     </script>
 </body>
 </html>
+
