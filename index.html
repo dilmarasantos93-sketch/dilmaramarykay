@@ -19,38 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
-.item-skin {
-    position: relative;
-    /* Mantém a imagem no fundo com um filtro para escurecê-layer */
-    background: #000; /* Fundo preto para a imagem escurecer */
-}
-
-/* Escurecendo a imagem com overlay */
-.item-skin::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4); /* Escurece a imagem em 40% */
-    z-index: 2;
-    border-radius: 24px;
-}
-
-/* Deixando o texto Branco, grosso e com sombra */
-.item-skin .card-title, 
-.item-skin .card-subtitle, 
-.item-skin .card-icon {
-    position: relative;
-    z-index: 3;
-    color: #ffffff !important; /* Força o texto a ser branco */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Sombra preta forte para leitura */
-    font-weight: 800;
-}
-
-.item-skin .card-subtitle {
-    opacity: 0.9;
-}
-/* --- FIM DO DESTAQUE --- */
+       
         :root {
             --rose-gold: #c07c88; --rose-gold-light: #e8c5cb; --pink-vibrant: #d81b60;
             --pink-r: 216; --pink-g: 27; --pink-b: 96;
@@ -1152,5 +1121,6 @@
     </script>
 </body>
 </html>
+
 
 
