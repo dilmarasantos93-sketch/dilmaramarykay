@@ -20,29 +20,35 @@
 
     <style>
         /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
+.item-skin {
+    position: relative;
+    /* Mantém a imagem no fundo com um filtro para escurecê-layer */
+    background: #000; /* Fundo preto para a imagem escurecer */
+}
+
+/* Escurecendo a imagem com overlay */
+.item-skin::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* Escurece a imagem em 40% */
+    z-index: 2;
+    border-radius: 24px;
+}
+
+/* Deixando o texto Branco, grosso e com sombra */
 .item-skin .card-title, 
 .item-skin .card-subtitle, 
 .item-skin .card-icon {
     position: relative;
-    z-index: 3; /* Garante que o texto fique acima de tudo */
-    text-shadow: 0 0 10px var(--bg-color-1), 0 0 20px var(--bg-color-1), 0 0 30px var(--bg-color-1);
-    font-weight: 800; /* Deixa o título mais gordinho/forte */
+    z-index: 3;
+    color: #ffffff !important; /* Força o texto a ser branco */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Sombra preta forte para leitura */
+    font-weight: 800;
 }
 
 .item-skin .card-subtitle {
-    font-weight: 700;
-    color: var(--text-dark); /* Impede que o subtítulo fique cinza apagado */
-}
-
-.item-skin::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Cria um "brilho" no centro focado apenas no texto */
-    background: radial-gradient(circle, var(--bg-color-1) 10%, transparent 75%);
-    opacity: 0.85;
-    z-index: 2; /* Fica por cima da imagem e por baixo do texto */
-    pointer-events: none;
+    opacity: 0.9;
 }
 /* --- FIM DO DESTAQUE --- */
         :root {
@@ -1146,4 +1152,5 @@
     </script>
 </body>
 </html>
+
 
