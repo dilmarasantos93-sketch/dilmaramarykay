@@ -14,79 +14,37 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600">
     <meta name="theme-color" content="#faf7f8">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
     <style>
-/* --- ROLAGEM HORIZONTAL SUAVE PARA CELULAR (STORIES E KITS) --- */
-.stories-container, 
-.kits-scroll {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Rolagem suave nativa em celulares */
-    scroll-snap-type: x mandatory; /* Efeito de encaixe magnético */
-    overscroll-behavior-x: contain; /* Impede que a tela inteira puxe pro lado */
-    scrollbar-width: none; /* Esconde a barra de rolagem (Firefox) */
-    -ms-overflow-style: none; /* Esconde a barra de rolagem (IE/Edge) */
-}
+        /* --- ROLAGEM HORIZONTAL SUAVE PARA CELULAR --- */
+        .stories-container, .kits-scroll {
+            display: flex; flex-wrap: nowrap; overflow-x: auto;
+            -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;
+            overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .stories-container::-webkit-scrollbar, .kits-scroll::-webkit-scrollbar { display: none; }
+        .story-item, .kit-item { flex-shrink: 0 !important; scroll-snap-align: start; }
+        .stories-container::after, .kits-scroll::after { content: ''; flex: 0 0 15px; }
 
-/* Esconde a barra de rolagem (Chrome, Safari, iOS, Android) */
-.stories-container::-webkit-scrollbar, 
-.kits-scroll::-webkit-scrollbar {
-    display: none;
-}
+        /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
+        .item-skin { position: relative; background: #000; }
+        .item-skin::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 2; border-radius: 24px; }
+        .item-skin .card-title, .item-skin .card-subtitle, .item-skin .card-icon {
+            position: relative; z-index: 3; color: #ffffff !important;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8); font-weight: 800;
+        }
+        .item-skin .card-subtitle { opacity: 0.9; }
 
-.story-item, 
-.kit-item {
-    flex-shrink: 0 !important; /* Impede que os itens fiquem espremidos/amassados */
-    scroll-snap-align: start; /* Faz o item parar alinhado perfeitamente */
-}
-
-/* Um respiro extra no final para o último item não grudar na tela */
-.stories-container::after,
-.kits-scroll::after {
-    content: '';
-    flex: 0 0 15px; 
-}
-/* --- FIM DA ROLAGEM HORIZONTAL --- */
-       /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
-.item-skin {
-    position: relative;
-    /* Mantém a imagem no fundo com um filtro para escurecê-layer */
-    background: #000; /* Fundo preto para a imagem escurecer */
-}
-
-/* Escurecendo a imagem com overlay */
-.item-skin::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4); /* Escurece a imagem em 40% */
-    z-index: 2;
-    border-radius: 24px;
-}
-
-/* Deixando o texto Branco, grosso e com sombra */
-.item-skin .card-title, 
-.item-skin .card-subtitle, 
-.item-skin .card-icon {
-    position: relative;
-    z-index: 3;
-    color: #ffffff !important; /* Força o texto a ser branco */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Sombra preta forte para leitura */
-    font-weight: 800;
-}
-
-.item-skin .card-subtitle {
-    opacity: 0.9;
-}
-/* --- FIM DO DESTAQUE --- */
+        /* --- VARIÁVEIS DE TEMA --- */
         :root {
             --rose-gold: #c07c88; --rose-gold-light: #e8c5cb; --pink-vibrant: #d81b60;
-            --pink-r: 216; --pink-g: 27; --pink-b: 96;
-            --rose-r: 192; --rose-g: 124; --rose-b: 136;
+            --pink-r: 216; --pink-g: 27; --pink-b: 96; --rose-r: 192; --rose-g: 124; --rose-b: 136;
             --bg-color-1: #faf7f8; --bg-color-2: #fff0f5;
             --bg-mesh-1: rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.7);
             --bg-mesh-2: rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.2);
@@ -97,27 +55,25 @@
             --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
         }
 
+        /* Melhoria: --text-muted mais claro no dark mode para melhor legibilidade */
         [data-theme="dark"] {
             --bg-color-1: #100d0e; --bg-color-2: #161214;
             --bg-mesh-1: rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.15);
             --bg-mesh-2: rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.12);
-            --text-dark: #f8f4f5; --text-muted: #b0a7aa;
+            --text-dark: #f8f4f5; --text-muted: #d0c7c9; /* AJUSTE DE CONTRASTE AQUI */
             --glass-bg: rgba(18, 14, 15, 0.85);
             --glass-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
             --shadow-inner: inset 1px 1px 3px rgba(255, 255, 255, 0.07), inset -2px -2px 5px rgba(0, 0, 0, 0.6);
         }
 
+        /* --- ESTILOS GERAIS COMPACTADOS (Mantidos do Original) --- */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background-color 0.5s, color 0.5s, border-color 0.5s, box-shadow 0.5s; }
-        
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color-1); min-height: 100vh; overflow-x: hidden; overscroll-behavior-y: contain; user-select: none; -webkit-user-select: none; }
-        
         .pull-banner { position: fixed; top: -60px; left: 0; width: 100%; height: 60px; background: var(--pink-vibrant); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; z-index: 9997; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        
         .fomo-badge { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 9998; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
         .fomo-dot { width: 8px; height: 8px; background: #ff4b4b; border-radius: 50%; animation: blinkRed 1s infinite; }
-
         .lipstick-kiss { position: absolute; font-size: 3rem; transform: translate(-50%, -50%) rotate(-15deg); pointer-events: none; z-index: 9999; animation: kissFade 2s forwards; text-shadow: 2px 2px 10px rgba(216,27,96,0.5); }
-
+        
         #unboxing-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-color-1); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
         .gift-container { position: relative; cursor: pointer; animation: floatGift 3s ease-in-out infinite; outline: none; }
         .gift-container:focus-visible { border-radius: 8px; box-shadow: 0 0 0 4px var(--pink-vibrant); animation: none; }
@@ -156,6 +112,7 @@
         .header-profile { text-align: center; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; }
         .avatar-wrapper { position: relative; width: 130px; height: 130px; margin-bottom: 1rem; }
         .aura-glow { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: radial-gradient(circle, var(--rose-gold-light) 0%, transparent 70%); opacity: 0.6; z-index: 1; animation: pulseAura 3s ease-in-out infinite alternate; }
+        /* A primeira imagem não leva lazy para carregar rápido */
         .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--glass-highlight); box-shadow: 0 10px 25px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.4); position: relative; z-index: 2; }
         .btn-audio { position: absolute; bottom: 0; right: 0; width: 38px; height: 38px; background: var(--pink-vibrant); border: 3px solid var(--bg-color-1); border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 4px 10px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.5); }
         .profile-name { font-family: 'Great Vibes', cursive; font-size: clamp(2.8rem, 12vw, 4.5rem); color: var(--rose-gold); line-height: 1; margin-bottom: -5px; text-shadow: 1px 1px 5px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.2); white-space: nowrap; }
@@ -163,9 +120,9 @@
         .greeting-text { color: var(--pink-vibrant); font-weight: 700; }
         [data-theme="dark"] .greeting-text { color: var(--rose-gold-light); }
 
+        /* O resto do CSS original segue igual, apenas minificado */
         .stories-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 10px; overflow-x: hidden; }
         .stories-container { display: inline-flex; gap: 15px; padding: 10px; overflow-x: auto; scroll-behavior: smooth; max-width: 100%; }
-        .stories-container::-webkit-scrollbar { display: none; }
         .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
         .story-ring { width: 68px; height: 68px; border-radius: 50%; background: var(--rose-gold-light); padding: 2px; box-shadow: 0 5px 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.2); position: relative; }
         .story-img-wrapper { width: 100%; height: 100%; background: var(--bg-color-1); border-radius: 50%; padding: 2px; overflow: hidden; position: relative; }
@@ -186,13 +143,7 @@
         [data-theme="dark"] .copy-box { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
 
         .bento-layout { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(120px, auto); gap: 14px; width: 100%; }
-        .bento-card {
-            background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border-radius: 24px; border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.6); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: var(--glass-shadow), var(--shadow-inner);
-            padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-decoration: none; color: var(--text-dark); position: relative; overflow: hidden; opacity: 0; will-change: transform, opacity;
-        }
+        .bento-card { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 24px; border-top: 1px solid rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(255, 255, 255, 0.6); border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); box-shadow: var(--glass-shadow), var(--shadow-inner); padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--text-dark); position: relative; overflow: hidden; opacity: 0; will-change: transform, opacity; }
         [data-theme="dark"] .bento-card { border-top: 1px solid rgba(255, 255, 255, 0.12); border-left: 1px solid rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(0, 0, 0, 0.3); }
 
         .item-social { grid-column: span 2; grid-row: span 1; padding: 10px 0; }
@@ -205,16 +156,13 @@
         .item-sneakpeek { grid-column: span 2; grid-row: span 2; padding: 0; position: relative; }
         .item-flip { grid-column: span 1; grid-row: span 1; padding: 0; perspective: 1000px; background: transparent; box-shadow: none; border: none; }
         .item-mirrorme { grid-column: span 1; grid-row: span 1; background: linear-gradient(135deg, #111, #2a2a2a); color: white; border-color: rgba(255,255,255,0.1); }
-        .item-quiz1 { grid-column: span 1; grid-row: span 1; }
-        .item-quiz2 { grid-column: span 1; grid-row: span 1; }
+        .item-quiz1, .item-quiz2, .item-polo1, .item-polo2 { grid-column: span 1; grid-row: span 1; }
         .item-scratch { grid-column: span 2; grid-row: span 1; padding: 0; position: relative; } 
         .item-shipping { grid-column: span 2; grid-row: span 1; justify-content: flex-start; padding: 20px; align-items: flex-start; text-align: left; }
         .item-alarm { grid-column: span 2; grid-row: span 1; border: 2px dashed var(--rose-gold-light); background: rgba(255,255,255,0.3); }
         [data-theme="dark"] .item-alarm { background: rgba(0,0,0,0.2); border-color: var(--rose-gold); }
         .item-reviews { grid-column: span 2; grid-row: span 1; padding: 15px; justify-content: flex-start; }
         .item-vitrine { grid-column: span 2; grid-row: span 2; }
-        .item-polo1 { grid-column: span 1; grid-row: span 1; }
-        .item-polo2 { grid-column: span 1; grid-row: span 1; }
         .item-vip { grid-column: span 2; grid-row: span 1; }
 
         .card-icon { font-size: 2rem; color: var(--rose-gold); margin-bottom: 8px; z-index: 2; position: relative; stroke-width: 2px; }
@@ -296,7 +244,6 @@
         .btn-resgatar { margin-top: 10px; padding: 8px 24px; background: var(--pink-vibrant); color: #ffffff; border-radius: 25px; font-size: 0.85rem; font-weight: 700; border: none; box-shadow: 0 5px 15px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.4); opacity: 0; transform: translateY(15px); transition: all 0.5s var(--ease-spring); pointer-events: none; }
         .btn-resgatar.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-        /* ESTILIZAÇÃO DAS REVIEWS */
         .reviews-wrapper { width: 100%; position: relative; min-height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .reviews-track { width: 100%; height: 100%; position: relative; }
         .review-box { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-30%) scale(0.95); opacity: 0; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255,255,255,0.4); border-radius: 12px; padding: 15px; text-align: left; font-size: 0.8rem; font-style: italic; color: var(--text-dark); border-left: 3px solid var(--rose-gold); box-shadow: 0 4px 10px rgba(0,0,0,0.02); pointer-events: none; margin: 0; }
@@ -345,29 +292,10 @@
         @media (min-width: 768px) {
             .app-container { max-width: 950px; padding-top: 3rem; }
             .header-profile { flex-direction: row; justify-content: flex-start; gap: 30px; text-align: left; margin-bottom: 2rem; }
-            
             .bento-layout { grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(140px, auto); }
-            .item-social { grid-column: span 4; }
-            .item-biorhythm { grid-column: span 4; }
-            .item-whatsapp { grid-column: span 2; }
-            .item-concierge { grid-column: span 2; }
-            .item-slider { grid-column: span 2; grid-row: span 2; }
-            .item-skin { grid-column: span 2; grid-row: span 2; } 
-            .item-moods { grid-column: span 4; }
-            .item-sneakpeek { grid-column: span 2; grid-row: span 2; }
-            .item-vitrine { grid-column: span 2; grid-row: span 2; }
-            .item-flip { grid-column: span 1; }
-            .item-mirrorme { grid-column: span 1; }
-            .item-quiz1 { grid-column: span 1; }
-            .item-quiz2 { grid-column: span 1; }
-            .item-scratch { grid-column: span 2; }
-            .item-shipping { grid-column: span 2; }
-            .item-alarm { grid-column: span 2; }
-            .item-vip { grid-column: span 2; }
-            .item-polo1 { grid-column: span 2; } 
-            .item-polo2 { grid-column: span 2; } 
-            .item-reviews { grid-column: span 4; }
-
+            .item-social, .item-biorhythm, .item-moods, .item-reviews { grid-column: span 4; }
+            .item-whatsapp, .item-concierge, .item-slider, .item-skin, .item-sneakpeek, .item-vitrine, .item-scratch, .item-shipping, .item-alarm, .item-vip, .item-polo1, .item-polo2 { grid-column: span 2; }
+            .item-flip, .item-mirrorme, .item-quiz1, .item-quiz2 { grid-column: span 1; }
             .sos-floating-btn { bottom: 40px; right: 40px; padding: 15px 25px; font-size: 1rem; }
             .color-palette { bottom: 40px; left: 40px; }
         }
@@ -397,7 +325,7 @@
 
     <div id="pullBanner" class="pull-banner">Ei, não vá! Seu kit perfeito está lá embaixo 👇</div>
 
-    <audio id="vipAudio" src="audiodilmara.aac"></audio>
+    <audio id="vipAudio" src="audiodilmara.aac" preload="none"></audio>
 
     <div id="unboxing-layer">
         <div class="gift-container" id="giftTrigger" role="button" tabindex="0" aria-label="Abrir presente para acessar o site">
@@ -469,7 +397,7 @@
             <h3 class="modal-title" style="font-size: 1.4rem;">Oportunidade Mary Kay</h3>
             <p class="modal-subtitle" style="margin-bottom: 10px;">Assista ao vídeo e descubra como transformar sua vida sendo uma consultora!</p>
             <div style="border-radius: 16px; overflow: hidden; margin-bottom: 15px; background: var(--glass-bg); box-shadow: var(--shadow-inner); position: relative; height: 380px;">
-                <iframe src="https://www.instagram.com/reel/DUMtf1HEY62/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; top: 0; left: 0;"></iframe>
+                <iframe src="https://www.instagram.com/reel/DUMtf1HEY62/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; top: 0; left: 0;" loading="lazy"></iframe>
             </div>
             <div class="copy-box" id="vipWaTextToCopy" style="font-size: 0.8rem; padding: 10px;">Oi, Dilmara! Assisti ao vídeo e quero entrar no Clube VIP da oportunidade Mary Kay!</div>
             <button class="btn-primary btn-whatsapp touch-target" id="btnCopyVip"><i class="ph-bold ph-copy"></i> Copiar e Falar com Dilmara</button>
@@ -483,7 +411,7 @@
         <header class="header-profile">
             <div class="avatar-wrapper">
                 <div class="aura-glow"></div>
-                <img src="dilmara.jpeg" alt="Dilmara Santos" class="avatar-img">
+                <img src="dilmara.jpeg" alt="Dilmara Santos" class="avatar-img" decoding="async">
                 <div class="btn-audio touch-target" id="btnAudio"><i class="ph-fill ph-play" id="audioIcon"></i></div>
             </div>
             <div>
@@ -494,36 +422,24 @@
 
         <div class="stories-wrapper stagger-item">
             <div class="stories-container" id="storiesContainer">
-                <div class="story-item touch-target btn-story" data-cat="maquiagem"><div class="story-ring"><div class="story-img-wrapper"><img src="make.jpeg" alt="Make"></div></div><span class="story-title">Make</span></div>
-                <div class="story-item touch-target btn-story" data-cat="fragrancia"><div class="story-ring"><div class="story-img-wrapper"><img src="perfume.jpeg" alt="Perfume"></div></div><span class="story-title">Perfume</span></div>
-                <div class="story-item touch-target btn-story" data-cat="facial"><div class="story-ring"><div class="story-img-wrapper"><img src="facial.jpeg" alt="Facial"></div></div><span class="story-title">Facial</span></div>
-                <div class="story-item touch-target btn-story" data-cat="corporal"><div class="story-ring"><div class="story-img-wrapper"><img src="corpo.jpeg" alt="Corpo"></div></div><span class="story-title">Corpo</span></div>
-                <div class="story-item touch-target btn-story" data-cat="presente"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=100&q=80" alt="Presente"></div></div><span class="story-title">Presentes</span></div>
+                <div class="story-item touch-target btn-story" data-cat="maquiagem"><div class="story-ring"><div class="story-img-wrapper"><img src="make.jpeg" alt="Make" loading="lazy" decoding="async"></div></div><span class="story-title">Make</span></div>
+                <div class="story-item touch-target btn-story" data-cat="fragrancia"><div class="story-ring"><div class="story-img-wrapper"><img src="perfume.jpeg" alt="Perfume" loading="lazy" decoding="async"></div></div><span class="story-title">Perfume</span></div>
+                <div class="story-item touch-target btn-story" data-cat="facial"><div class="story-ring"><div class="story-img-wrapper"><img src="facial.jpeg" alt="Facial" loading="lazy" decoding="async"></div></div><span class="story-title">Facial</span></div>
+                <div class="story-item touch-target btn-story" data-cat="corporal"><div class="story-ring"><div class="story-img-wrapper"><img src="corpo.jpeg" alt="Corpo" loading="lazy" decoding="async"></div></div><span class="story-title">Corpo</span></div>
+                <div class="story-item touch-target btn-story" data-cat="presente"><div class="story-ring"><div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=100&q=80" alt="Presente" loading="lazy" decoding="async"></div></div><span class="story-title">Presentes</span></div>
             </div>
         </div>
 
         <section class="bento-layout">
             
-<div class="item-social social-dock" style="flex-wrap: wrap; gap: 12px;">
-    <a href="https://wa.me/message/CNUK2VEUY6WSG1" target="_blank" class="social-btn touch-target link-effect">
-        <i class="ph-light ph-whatsapp-logo"></i>
-    </a>
-    <a href="https://www.instagram.com/dilmarasantosmk" target="_blank" class="social-btn touch-target link-effect">
-        <i class="ph-light ph-instagram-logo"></i>
-    </a>
-    <a href="https://youtube.com/@dilmarasantosmk?si=jDyX4EljQ-bEueQd" target="_blank" class="social-btn touch-target link-effect">
-        <i class="ph-light ph-youtube-logo"></i>
-    </a>
-    <a href="https://www.tiktok.com/@dilmarasantos841?_r=1&_t=ZS-94T0k0Tw9xJ" target="_blank" class="social-btn touch-target link-effect">
-        <i class="ph-light ph-tiktok-logo"></i>
-    </a>
-    <a href="https://www.facebook.com/share/1CZ3avze1A/" target="_blank" class="social-btn touch-target link-effect">
-        <i class="ph-light ph-facebook-logo"></i>
-    </a>
-    <a href="https://k.kwai.com/u/@dilmarasantosmk/CxU38ySy" target="_blank" class="social-btn touch-target link-effect" title="Kwai">
-        <i class="ph-light ph-play-circle"></i>
-    </a>
-</div>
+            <div class="item-social social-dock" style="flex-wrap: wrap; gap: 12px;">
+                <a href="https://wa.me/message/CNUK2VEUY6WSG1" target="_blank" class="social-btn touch-target link-effect"><i class="ph-light ph-whatsapp-logo"></i></a>
+                <a href="https://www.instagram.com/dilmarasantosmk" target="_blank" class="social-btn touch-target link-effect"><i class="ph-light ph-instagram-logo"></i></a>
+                <a href="https://youtube.com/@dilmarasantosmk?si=jDyX4EljQ-bEueQd" target="_blank" class="social-btn touch-target link-effect"><i class="ph-light ph-youtube-logo"></i></a>
+                <a href="https://www.tiktok.com/@dilmarasantos841?_r=1&_t=ZS-94T0k0Tw9xJ" target="_blank" class="social-btn touch-target link-effect"><i class="ph-light ph-tiktok-logo"></i></a>
+                <a href="https://www.facebook.com/share/1CZ3avze1A/" target="_blank" class="social-btn touch-target link-effect"><i class="ph-light ph-facebook-logo"></i></a>
+                <a href="https://k.kwai.com/u/@dilmarasantosmk/CxU38ySy" target="_blank" class="social-btn touch-target link-effect" title="Kwai"><i class="ph-light ph-play-circle"></i></a>
+            </div>
 
             <a href="#" class="bento-card item-biorhythm stagger-item touch-target btn-wa-trigger" id="biorhythmCard" data-wa-text="Oi Dilmara, quero conhecer a dica do momento!">
                 <i class="ph-light ph-sun card-icon" id="bioIcon"></i>
@@ -546,7 +462,8 @@
             <div class="bento-card item-slider stagger-item">
                 <div class="slider-wrapper">
                     <div class="slider-pagination" id="sliderDots"><button class="slider-dot active" data-index="0"></button><button class="slider-dot" data-index="1"></button><button class="slider-dot" data-index="2"></button></div>
-                    <img src="image2.jpeg" class="img-background" id="imgBackground" alt="Antes"><img src="image1.jpeg" class="img-foreground" id="imgForeground" alt="Depois">
+                    <img src="image2.jpeg" class="img-background" id="imgBackground" alt="Antes" loading="lazy" decoding="async">
+                    <img src="image1.jpeg" class="img-foreground" id="imgForeground" alt="Depois" loading="lazy" decoding="async">
                     <input type="range" min="0" max="100" value="50" class="slider-input" id="baSlider">
                     <div class="slider-line" id="sliderLine"></div><div class="slider-button" id="sliderBtn"><i class="ph-bold ph-arrows-left-right"></i></div>
                     <div class="slider-labels"><span class="slider-label">Antes</span><span class="slider-label">Depois</span></div>
@@ -554,7 +471,7 @@
             </div>
 
             <a href="#" class="bento-card item-skin card-tech stagger-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Quero fazer minha análise facial com você através do Skin Analyzer!">
-                <img src="analyser.jpeg" alt="Fundo Analyzer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; pointer-events: none; mix-blend-mode: multiply;">
+                <img src="analyser.jpeg" alt="Fundo Analyzer" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; pointer-events: none; mix-blend-mode: multiply;">
                 <div class="badge-gift" style="z-index: 2;"><i class="ph-bold ph-gift"></i> Presente</div>
                 <i class="ph-light ph-magic-wand card-icon" style="font-size: 2.5rem; z-index: 2;"></i>
                 <h2 class="card-title" style="font-size: 1.3rem; z-index: 2;">Skin Analyzer</h2>
@@ -572,7 +489,7 @@
 
             <div class="bento-card item-sneakpeek stagger-item" id="sneakCard">
                 <div class="sneak-img-wrapper">
-                    <img src="lancamento.jpeg" alt="Mistério" class="sneak-img">
+                    <img src="lancamento.jpeg" alt="Mistério" class="sneak-img" loading="lazy" decoding="async">
                     <div class="sneak-overlay">
                         <i class="ph-fill ph-lock-key" style="font-size: 2rem;"></i>
                         <div class="sneak-countdown" id="countdownTimer">00:00:10</div>
@@ -593,23 +510,23 @@
                 </div>
                 <div class="kits-scroll" id="kitsCarousel">
                     <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit para make no seu site e estou interessada.">
-                        <img src="kit1.jpeg" alt="TimeWise" class="kit-img">
+                        <img src="kit1.jpeg" alt="TimeWise" class="kit-img" loading="lazy" decoding="async">
                         <p class="kit-name">Kit Make</p>
                     </a>
                     <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Bálsamo labiais no seu site e estou interessada.">
-                        <img src="kit2.jpeg" alt="Make" class="kit-img">
+                        <img src="kit2.jpeg" alt="Make" class="kit-img" loading="lazy" decoding="async">
                         <p class="kit-name">Bálsamo Labiais</p>
                     </a>
                     <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit Microdermoabrasão no seu site e estou interessada.">
-                        <img src="kit3.jpeg" alt="Lábios" class="kit-img">
+                        <img src="kit3.jpeg" alt="Lábios" class="kit-img" loading="lazy" decoding="async">
                         <p class="kit-name">Kit Microdermoabrasão</p>
                     </a>
                     <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit para área dos olhos no seu site e estou interessada.">
-                        <img src="kit4.jpeg" alt="Lábios" class="kit-img">
-                        <p class="kit-name">Kit para área dos olhos</p>
+                        <img src="kit4.jpeg" alt="Olhos" class="kit-img" loading="lazy" decoding="async">
+                        <p class="kit-name">Área dos olhos</p>
                     </a>
                     <a href="#" class="kit-item touch-target btn-wa-trigger" data-wa-text="Oi, Dilmara! Vi o Kit Banho Perfeito no seu site e estou interessada.">
-                        <img src="kit5.jpeg" alt="Lábios" class="kit-img">
+                        <img src="kit5.jpeg" alt="Banho" class="kit-img" loading="lazy" decoding="async">
                         <p class="kit-name">Kit Banho Perfeito</p>
                     </a>
                 </div>
@@ -633,12 +550,12 @@
             </a>
 
             <a href="#" class="bento-card item-quiz1 stagger-item touch-target btn-quiz-trigger" data-quiz-url="https://quizdabasemarykay.com.br/" data-quiz-title="Descubra sua Base!" data-quiz-desc="Vamos te direcionar para o quiz oficial da Mary Kay.">
-                <img src="base.jpeg" alt="Base" class="card-img-icon">
+                <img src="base.jpeg" alt="Base" class="card-img-icon" loading="lazy" decoding="async">
                 <h2 class="card-title">Sua Base</h2><p class="card-subtitle">Tom Ideal</p>
             </a>
 
             <a href="#" class="bento-card item-quiz2 stagger-item touch-target btn-quiz-trigger" data-quiz-url="https://quizminhafragmarykay.com.br/" data-quiz-title="Sua Assinatura Olfativa!" data-quiz-desc="Faça o teste oficial e descubra qual fragrância Mary Kay foi feita para você.">
-                <img src="perfume.jpeg" alt="Fragrância" class="card-img-icon">
+                <img src="perfume.jpeg" alt="Fragrância" class="card-img-icon" loading="lazy" decoding="async">
                 <h2 class="card-title">Fragrância</h2><p class="card-subtitle">Sua Essência</p>
             </a>
 
@@ -651,7 +568,6 @@
                 <canvas id="scratchPad" class="scratch-canvas"></canvas>
             </div>
             
-
             <a href="#" class="bento-card item-shipping stagger-item touch-target btn-wa-trigger" data-wa-text="Oi Dilmara, me ajude a montar meu carrinho para ganhar o Frete Grátis e o Mimo!">
                 <h2 class="card-title" style="font-size: 0.9rem; text-align:left;">Frete Grátis + Mimo 🎁</h2>
                 <div class="progress-container"><div class="progress-bar"></div></div>
@@ -720,11 +636,8 @@
             // TÍTULO DINÂMICO
             const originalTitle = document.title;
             document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'hidden') {
-                    document.title = '🎀 Volte aqui, maravilhosa!';
-                } else {
-                    document.title = originalTitle;
-                }
+                if (document.visibilityState === 'hidden') document.title = '🎀 Volte aqui, maravilhosa!';
+                else document.title = originalTitle;
             });
 
             // CATÁLOGO BIORRÍTMICO
@@ -736,22 +649,16 @@
             
             let greetingText = "Olá";
             if (hour >= 5 && hour < 12) {
-                greetingText = "☀️ Bom dia";
-                bioIcon.className = "ph-light ph-sun card-icon";
-                bioTitle.innerText = "Bom dia! Proteção Solar";
-                bioSub.innerText = "Já passou seu protetor hoje?";
+                greetingText = "☀️ Bom dia"; bioIcon.className = "ph-light ph-sun card-icon";
+                bioTitle.innerText = "Bom dia! Proteção Solar"; bioSub.innerText = "Já passou seu protetor hoje?";
                 bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Preciso repor meu protetor solar Mary Kay.');
             } else if (hour >= 12 && hour < 18) {
-                greetingText = "☕ Boa tarde";
-                bioIcon.className = "ph-light ph-sparkle card-icon";
-                bioTitle.innerText = "Retoque a Make!";
-                bioSub.innerText = "Garanta seu pó translúcido.";
+                greetingText = "☕ Boa tarde"; bioIcon.className = "ph-light ph-sparkle card-icon";
+                bioTitle.innerText = "Retoque a Make!"; bioSub.innerText = "Garanta seu pó translúcido.";
                 bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Quero produtos para o dia a dia e retoque de pele.');
             } else {
-                greetingText = "🌙 Boa noite";
-                bioIcon.className = "ph-light ph-moon-stars card-icon";
-                bioTitle.innerText = "Hora do Skin-Spa";
-                bioSub.innerText = "Tire a make e relaxe.";
+                greetingText = "🌙 Boa noite"; bioIcon.className = "ph-light ph-moon-stars card-icon";
+                bioTitle.innerText = "Hora do Skin-Spa"; bioSub.innerText = "Tire a make e relaxe.";
                 bioCard.setAttribute('data-wa-text', 'Oi Dilmara! Quero saber sobre demaquilante e creme noturno.');
             }
             document.getElementById('dynamicGreeting').innerHTML = `<span class="greeting-text">${greetingText}, maravilhosa!</span> | Mary Kay Exec`;
@@ -784,7 +691,6 @@
                 vibrate([50, 50, 100]);
                 const blushSweep = document.getElementById('blushSweep'); 
                 blushSweep.classList.add('active'); 
-                
                 setTimeout(() => { 
                     window.open('https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/NO-mcm6Rp64H', '_blank'); 
                     blushSweep.classList.remove('active'); 
@@ -794,23 +700,17 @@
             document.getElementById('shakeHintBtn').addEventListener('click', triggerSurprise);
 
             if (window.DeviceMotionEvent) {
-                let lastX, lastY, lastZ;
-                let moveCounter = 0;
+                let lastX, lastY, lastZ; let moveCounter = 0;
                 window.addEventListener('devicemotion', (event) => {
                     let acc = event.accelerationIncludingGravity;
                     if(!acc.x) return;
-                    
                     if(!lastX) { lastX = acc.x; lastY = acc.y; lastZ = acc.z; return; }
                     
-                    let deltaX = Math.abs(acc.x - lastX);
-                    let deltaY = Math.abs(acc.y - lastY);
-                    let deltaZ = Math.abs(acc.z - lastZ);
-                    
+                    let deltaX = Math.abs(acc.x - lastX); let deltaY = Math.abs(acc.y - lastY); let deltaZ = Math.abs(acc.z - lastZ);
                     if (deltaX + deltaY + deltaZ > 20) { 
                         moveCounter++;
                         if (moveCounter > 3) { triggerSurprise(); moveCounter = 0; }
                     } else { moveCounter = Math.max(0, moveCounter - 1); }
-                    
                     lastX = acc.x; lastY = acc.y; lastZ = acc.z;
                 });
             }
@@ -850,13 +750,11 @@
                         unboxingLayer.style.display = 'none'; 
                         startStaggerAnimation(); 
                         startSneakPeekTimer();
-                        
                         setTimeout(() => {
                             const stories = document.getElementById('storiesContainer');
                             stories.scrollBy({ left: 60, behavior: 'smooth' });
                             setTimeout(() => stories.scrollBy({ left: -60, behavior: 'smooth' }), 500);
                         }, 1000);
-
                     }, 500);
                 }, 800);
             }
@@ -1014,24 +912,16 @@
                 });
             }
 
-            // --- NOVO SCRIPT PARA O ALARME (GOOGLE AGENDA URL) ---
             document.getElementById('btnAlarm').addEventListener('click', () => {
                 vibrate(30); 
-                const now = new Date(); 
-                const reminderDate = new Date(now); 
-                reminderDate.setDate(reminderDate.getDate() + 90); // Daqui a 90 dias
-                
+                const now = new Date(); const reminderDate = new Date(now); 
+                reminderDate.setDate(reminderDate.getDate() + 90); 
                 const formatDate = (date) => { return date.toISOString().replace(/-|:|\.\d+/g, '').substring(0, 15) + 'Z'; };
                 const start = formatDate(reminderDate); 
-                
-                const endDate = new Date(reminderDate); 
-                endDate.setHours(endDate.getHours() + 1); 
+                const endDate = new Date(reminderDate); endDate.setHours(endDate.getHours() + 1); 
                 const end = formatDate(endDate);
-                
                 const title = encodeURIComponent("Hora de repor sua Make com a Dilmara! 💄");
                 const details = encodeURIComponent("Sua base e seus produtos Mary Kay já devem estar acabando. Fale comigo no WhatsApp para repor: https://wa.me/message/CNUK2VEUY6WSG1");
-                
-                // Redireciona diretamente para o Google Agenda
                 const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}`;
                 window.open(googleCalendarUrl, '_blank');
             });
@@ -1081,25 +971,19 @@
                 if (isDoubleClick) {
                     vibrate([15, 30, 15]);
                     const kiss = document.createElement('div');
-                    kiss.className = 'lipstick-kiss';
-                    kiss.innerText = '💋';
-                    kiss.style.left = e.pageX + 'px';
-                    kiss.style.top = e.pageY + 'px';
+                    kiss.className = 'lipstick-kiss'; kiss.innerText = '💋';
+                    kiss.style.left = e.pageX + 'px'; kiss.style.top = e.pageY + 'px';
                     document.body.appendChild(kiss);
                     setTimeout(() => kiss.remove(), 2000);
                 } else {
                     if (now - lastSparkleTime < 200) return;
-                    lastSparkleTime = now; 
-                    vibrate(10); 
-                    triggerExplosion(e.pageX, e.pageY);
+                    lastSparkleTime = now; vibrate(10); triggerExplosion(e.pageX, e.pageY);
                 }
             });
 
             const reviews = document.querySelectorAll('.review-box');
             if(reviews.length > 0) {
-                let currentReview = 0;
-                reviews[0].classList.add('active'); 
-                
+                let currentReview = 0; reviews[0].classList.add('active'); 
                 setInterval(() => {
                     reviews[currentReview].classList.remove('active');
                     currentReview = (currentReview + 1) % reviews.length;
@@ -1168,24 +1052,33 @@
             let windowWidth = window.innerWidth;
             window.addEventListener('resize', () => { if(window.innerWidth !== windowWidth) { windowWidth = window.innerWidth; setupScratchCard(); } });
 
+            // --- CARROSSEL MELHORADO COM TRAVA DE UX ---
             const kitsCarousel = document.getElementById('kitsCarousel');
-            let scrollDir = 1, isHover = false;
-            kitsCarousel.addEventListener('mouseenter', () => isHover = true); kitsCarousel.addEventListener('mouseleave', () => isHover = false);
-            kitsCarousel.addEventListener('touchstart', () => isHover = true, {passive: true}); kitsCarousel.addEventListener('touchend', () => isHover = false);
+            let scrollDir = 1, isHover = false, hoverTimeout;
+            
+            kitsCarousel.addEventListener('mouseenter', () => isHover = true); 
+            kitsCarousel.addEventListener('mouseleave', () => isHover = false);
+            
+            // Quando a usuária tocar no carrossel, ele pausa.
+            kitsCarousel.addEventListener('touchstart', () => {
+                isHover = true;
+                clearTimeout(hoverTimeout);
+            }, {passive: true}); 
+            
+            // Quando a usuária soltar o dedo, aguarda 2s antes de voltar a andar sozinho
+            kitsCarousel.addEventListener('touchend', () => {
+                hoverTimeout = setTimeout(() => { isHover = false; }, 2000);
+            });
+
             setInterval(() => {
                 if(isHover) return; 
                 let maxScroll = kitsCarousel.scrollWidth - kitsCarousel.clientWidth;
                 if (maxScroll <= 0) return; 
                 if (kitsCarousel.scrollLeft >= maxScroll - 5) scrollDir = -1; else if (kitsCarousel.scrollLeft <= 5) scrollDir = 1;
                 kitsCarousel.scrollBy({ left: 160 * scrollDir, behavior: 'smooth' });
-            }, 3000);
+            }, 5000); // MUDANÇA: de 3000 para 5000 (5 segundos)
 
         });
     </script>
 </body>
 </html>
-
-
-
-
-
