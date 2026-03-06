@@ -665,11 +665,16 @@
 <div class="bento-card item-video-makeup stagger-item">
                 <div class="lipstick-sticker">💄</div>
                 <div class="floral-frame">
-                    <video id="videoMake" src="https://youtu.be/7M2OOTNih4M?feature=shared" autoplay loop muted playsinline class="makeup-video" poster="capa-video.jpeg"></video>
+                    <iframe id="videoMake" class="makeup-video" 
+                        src="https://www.youtube.com/embed/7M2OOTNih4M?autoplay=1&mute=1&loop=1&playlist=7M2OOTNih4M&controls=0&disablekb=1&fs=0&modestbranding=1&playsinline=1" 
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media" 
+                        style="pointer-events: none;">
+                    </iframe>
                 </div>
                 <h2 class="card-title">Preparando a Pele</h2>
                 <p class="card-subtitle">Vem se maquiar comigo!</p>
-</div>
+            </div>
             <a href="https://loja.marykay.com.br/minha-vitrine?slug=dilmara" target="_blank" class="bento-card item-polo1 stagger-item touch-target" style="border-left: 3px solid var(--rose-gold);">
                 <i class="ph-light ph-map-pin card-icon"></i>
                 <h2 class="card-title">Loja Online PB</h2>
@@ -1269,20 +1274,21 @@
                 animateSlider();
             }
             // --- FIM DO SLIDER AUTOMÁTICO ---
-        // FORÇAR O AUTOPLAY DO VÍDEO DE MAKE
-const videoMake = document.getElementById('videoMake');
-if (videoMake) {
-    // Tenta dar o play assim que a página carrega
-    setTimeout(() => {
-        videoMake.muted = true; // Reforça que está mudo
-        videoMake.play().catch((erro) => {
-            console.log("O celular bloqueou o autoplay de primeira, aguardando interação.");
-        });
-    }, 1000);
-}
+      // FORÇAR O AUTOPLAY DO VÍDEO DE MAKE
+        const videoMake = document.getElementById('videoMake');
+        if (videoMake) {
+            // Tenta dar o play assim que a página carrega
+            setTimeout(() => {
+                videoMake.muted = true; // Reforça que está mudo
+                videoMake.play().catch((erro) => {
+                    console.log("O celular bloqueou o autoplay de primeira, aguardando interação.");
+                });
+            }, 1000);
+        }
     </script>
 </body>
 </html>
+
 
 
 
