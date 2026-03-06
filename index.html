@@ -19,6 +19,38 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+/* --- ROLAGEM HORIZONTAL SUAVE PARA CELULAR (STORIES E KITS) --- */
+.stories-container, 
+.kits-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Rolagem suave nativa em celulares */
+    scroll-snap-type: x mandatory; /* Efeito de encaixe magnético */
+    overscroll-behavior-x: contain; /* Impede que a tela inteira puxe pro lado */
+    scrollbar-width: none; /* Esconde a barra de rolagem (Firefox) */
+    -ms-overflow-style: none; /* Esconde a barra de rolagem (IE/Edge) */
+}
+
+/* Esconde a barra de rolagem (Chrome, Safari, iOS, Android) */
+.stories-container::-webkit-scrollbar, 
+.kits-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.story-item, 
+.kit-item {
+    flex-shrink: 0 !important; /* Impede que os itens fiquem espremidos/amassados */
+    scroll-snap-align: start; /* Faz o item parar alinhado perfeitamente */
+}
+
+/* Um respiro extra no final para o último item não grudar na tela */
+.stories-container::after,
+.kits-scroll::after {
+    content: '';
+    flex: 0 0 15px; 
+}
+/* --- FIM DA ROLAGEM HORIZONTAL --- */
        /* --- DESTAQUE DO TEXTO DO SKIN ANALYZER --- */
 .item-skin {
     position: relative;
@@ -1152,6 +1184,7 @@
     </script>
 </body>
 </html>
+
 
 
 
