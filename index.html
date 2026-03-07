@@ -644,7 +644,7 @@
                         <img src="lancamento3.jpeg" alt="Lançamento Maçã 2" class="apple-img">
                         <img src="lancamento4.jpeg" alt="Lançamento Maçã 3" class="apple-img">
                     </div>
-<button class="scroll-hint-apple" id="appleBtn"><i class="ph-bold ph-caret-right"></i></button>
+
                 </div>
 
                 <button class="btn-primary touch-target btn-wa-trigger" style="margin-bottom: 0;" data-wa-text="Oi, Dilmara! Fiquei apaixonada pelo lançamento de Retinol. Quero garantir o meu com você!">
@@ -1357,26 +1357,49 @@
                 });
             }, 1000);
         }
-        // --- BOTÃO DO CARROSSEL DE MAÇÃ ---
+        // --- CARROSSEL AUTOMÁTICO DA MAÇÃ ---
+        document.addEventListener('DOMContentLoaded', () => {
             const appleScroll = document.querySelector('.apple-scroll');
-            const appleBtn = document.querySelector('.scroll-hint-apple');
+            
+            if (appleScroll) {
+                let appleHover = false;
+                let appleTimeout;
 
-            if (appleBtn && appleScroll) {
-                appleBtn.addEventListener('click', (e) => {
-                    vibrate(10); // Dá aquela tremidinha no celular
+                // Pausa a animação se a cliente colocar o dedo ou o mouse
+                appleScroll.addEventListener('touchstart', () => { 
+                    appleHover = true; 
+                    clearTimeout(appleTimeout); 
+                }, {passive: true});
+                
+                appleScroll.addEventListener('touchend', () => { 
+                    appleTimeout = setTimeout(() => appleHover = false, 2000); // Volta 2 seg após soltar o dedo
+                });
+                
+                appleScroll.addEventListener('mouseenter', () => appleHover = true);
+                appleScroll.addEventListener('mouseleave', () => appleHover = false);
+
+                // Motorzinho que roda sozinho a cada 3 segundos (3000 milissegundos)
+                setInterval(() => {
+                    if(appleHover) return; // Não faz nada se a cliente estiver mexendo
                     
-                    // Verifica se já chegou no final. Se sim, volta pro começo. Se não, vai pro lado.
-                    if (appleScroll.scrollLeft + appleScroll.clientWidth >= appleScroll.scrollWidth - 10) {
+                    let maxScroll = appleScroll.scrollWidth - appleScroll.clientWidth;
+                    if (maxScroll <= 0) return;
+
+                    // Se chegou na última foto, volta pro começo
+                    if (appleScroll.scrollLeft >= maxScroll - 10) {
                         appleScroll.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
-                        appleScroll.scrollBy({ left: appleScroll.clientWidth * 0.9, behavior: 'smooth' });
+                        // Se não, vai para a próxima foto
+                        appleScroll.scrollBy({ left: appleScroll.clientWidth * 0.85, behavior: 'smooth' });
                     }
-                });
+                }, 3000); 
             }
+        });
     </script>
     
 </body>
 </html>
+
 
 
 
