@@ -112,7 +112,6 @@
         .header-profile { text-align: center; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; }
         .avatar-wrapper { position: relative; width: 130px; height: 130px; margin-bottom: 1rem; }
         .aura-glow { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: radial-gradient(circle, var(--rose-gold-light) 0%, transparent 70%); opacity: 0.6; z-index: 1; animation: pulseAura 3s ease-in-out infinite alternate; }
-        /* A primeira imagem não leva lazy para carregar rápido */
         .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--glass-highlight); box-shadow: 0 10px 25px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.4); position: relative; z-index: 2; }
         .btn-audio { position: absolute; bottom: 0; right: 0; width: 38px; height: 38px; background: var(--pink-vibrant); border: 3px solid var(--bg-color-1); border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; box-shadow: 0 4px 10px rgba(var(--pink-r), var(--pink-g), var(--pink-b), 0.5); }
         .profile-name { font-family: 'Great Vibes', cursive; font-size: clamp(2.8rem, 12vw, 4.5rem); color: var(--rose-gold); line-height: 1; margin-bottom: -5px; text-shadow: 1px 1px 5px rgba(var(--rose-r), var(--rose-g), var(--rose-b), 0.2); white-space: nowrap; }
@@ -120,7 +119,6 @@
         .greeting-text { color: var(--pink-vibrant); font-weight: 700; }
         [data-theme="dark"] .greeting-text { color: var(--rose-gold-light); }
 
-        /* O resto do CSS original segue igual, apenas minificado */
         .stories-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 10px; overflow-x: hidden; }
         .stories-container { display: inline-flex; gap: 15px; padding: 10px; overflow-x: auto; scroll-behavior: smooth; max-width: 100%; }
         .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
@@ -279,39 +277,38 @@
         .sos-floating-btn i { font-size: 1.5rem; }
         
         .shake-hint { 
-    width: 100%; 
-    text-align: center; 
-    font-size: 0.8rem; 
-    margin-top: 15px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 5px; 
-    cursor: pointer; 
-    color: var(--pink-vibrant); /* AQUI MUDA A COR DO TEXTO */
-}
-
-.shake-hint i { 
-    font-size: 1.2rem; 
-    animation: float 2s infinite; 
-    color: var(--pink-vibrant); /* AQUI MUDA A COR DO ÍCONE */
-}
+            width: 100%; 
+            text-align: center; 
+            font-size: 0.8rem; 
+            margin-top: 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 5px; 
+            cursor: pointer; 
+            color: var(--pink-vibrant); 
+        }
+        .shake-hint i { 
+            font-size: 1.2rem; 
+            animation: float 2s infinite; 
+            color: var(--pink-vibrant); 
+        }
 
         .color-palette { position: fixed; bottom: 25px; left: 20px; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 8px; border-radius: 30px; display: flex; gap: 8px; box-shadow: var(--glass-shadow); border: 1px solid var(--glass-border); z-index: 9998; }
         [data-theme="dark"] .color-palette { background: rgba(30,26,28,0.7); border-color: rgba(255,255,255,0.08); }
         .palette-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .palette-dot:active { transform: scale(0.8); }
 
-       footer { 
-    margin-top: 4rem; 
-    text-align: center; 
-    width: 100%; 
-    padding-bottom: 5rem;
-    display: flex;             /* Adicionamos isso para controlar o layout interno */
-    flex-direction: column;    /* Coloca um item embaixo do outro */
-    align-items: center;       /* Centraliza horizontalmente */
-    gap: 30px;                 /* AQUI É O SEGREDO: aumenta o espaço entre a frase e o nome */
-}
+        footer { 
+            margin-top: 4rem; 
+            text-align: center; 
+            width: 100%; 
+            padding-bottom: 5rem;
+            display: flex;             
+            flex-direction: column;    
+            align-items: center;       
+            gap: 30px;                 
+        }
         .signature-mark { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--text-muted); opacity: 0.6; }
 
         @media (min-width: 768px) {
@@ -339,13 +336,14 @@
         @keyframes kissFade { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); } 20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(-15deg); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(-15deg); } }
         @keyframes blinkRed { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         @keyframes loadProgress { 0% { width: 0; } 100% { width: 65%; } }
+        
         /* --- ESTILOS DO VÍDEO DE MAKE --- */
         .item-video-makeup { 
             grid-column: span 2; 
             grid-row: span 2; 
             position: relative; 
             padding: 15px; 
-            overflow: visible; /* Permite que o batom vaze um pouquinho para fora do card */
+            overflow: visible; 
         }
         
         /* A figurinha de batom flutuante */
@@ -367,7 +365,6 @@
             position: relative; 
             padding: 12px; 
             border-radius: 20px; 
-            /* Desenho sutil de pétalas de fundo */
             background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0c5 5 10 5 15 0 0 5 5 10 0 15 5 5 5 10 0 15 0 5-5 10-15 0-5 5-10 5-15 0 0-5-5-10 0-15-5-5-5-10 0-15 0-5 5-10 15 0z" fill="%23c07c88" fill-opacity="0.15"/></svg>'); 
             background-color: var(--glass-bg); 
             border: 2px solid var(--rose-gold-light); 
@@ -400,7 +397,7 @@
             display: flex; 
             flex-direction: column; 
             justify-content: space-between; 
-            background: linear-gradient(145deg, #fff5f5, #ffe8e8); /* Fundo com tom leve de maçã */
+            background: linear-gradient(145deg, #fff5f5, #ffe8e8); 
             border-color: #ffbaba; 
         }
         [data-theme="dark"] .item-apple-release { 
@@ -452,11 +449,11 @@
             align-items: center; 
             color: #d81b60; 
             cursor: pointer; 
-            border: none; /* Tira borda de botão */
+            border: none; 
             animation: pulseAttention 2s infinite; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
-            z-index: 20; /* Força ficar por cima da imagem */
-            pointer-events: auto !important; /* Libera o clique à força */
+            z-index: 20; 
+            pointer-events: auto !important; 
         }
         /* --- BADGE RECRUTAMENTO VIP --- */
         .badge-recrutamento {
@@ -473,7 +470,7 @@
             letter-spacing: 1px;
             z-index: 10;
             box-shadow: 0 0 10px rgba(216, 27, 96, 0.6);
-            animation: pulseAlert 2s infinite; /* Usa a mesma animação de pulso do seu botão SOS */
+            animation: pulseAlert 2s infinite; 
         }
     </style>
 </head>
@@ -757,7 +754,8 @@
                     <p class="card-subtitle">Descubra como iniciar sua jornada de sucesso</p>
                 </div>
             </a>
-<div class="bento-card item-video-makeup stagger-item">
+            
+            <div class="bento-card item-video-makeup stagger-item">
                 <div class="lipstick-sticker">💄</div>
                 <div class="floral-frame">
                     <iframe id="videoMake" class="makeup-video" 
@@ -770,6 +768,7 @@
                 <h2 class="card-title">Make Básica para o Dia a Dia</h2>
                 <p class="card-subtitle">Vem se maquiar comigo!</p>
             </div>
+            
             <a href="https://loja.marykay.com.br/minha-vitrine?slug=dilmara" target="_blank" class="bento-card item-polo1 stagger-item touch-target" style="border-left: 3px solid var(--rose-gold);">
                 <i class="ph-light ph-map-pin card-icon"></i>
                 <h2 class="card-title">Loja Online PB</h2>
@@ -900,6 +899,7 @@
                 });
             }
             
+            // AUDIO
             const btnAudio = document.getElementById('btnAudio');
             const audioIcon = document.getElementById('audioIcon');
             const vipAudio = document.getElementById('vipAudio');
@@ -912,6 +912,7 @@
             });
             vipAudio.onended = () => { isPlaying = false; audioIcon.classList.replace('ph-pause', 'ph-play'); };
 
+            // FLIP CARD
             const phrases = ["Você é incrivelmente linda hoje! ✨", "Sua força inspira. Arrase! 👑", "O mundo precisa da sua luz. Brilhe! 💖", "Você é capaz de coisas maravilhosas! 🌟", "Seu sorriso é o seu melhor acessório! 😊"];
             const flipCard = document.getElementById('flipCard');
             flipCard.addEventListener('click', () => {
@@ -920,6 +921,7 @@
                 else { flipCard.classList.remove('is-flipped'); }
             });
 
+            // UNBOXING LOGIC
             document.body.style.overflow = 'hidden'; 
             const unboxingLayer = document.getElementById('unboxing-layer');
             const giftTrigger = document.getElementById('giftTrigger');
@@ -964,6 +966,7 @@
                 let timeLeft = 10; 
                 const countdownEl = document.getElementById('countdownTimer');
                 const sneakCard = document.getElementById('sneakCard');
+                if(!countdownEl || !sneakCard) return;
                 const timerInterval = setInterval(() => {
                     if(timeLeft <= 0) { clearInterval(timerInterval); sneakCard.classList.add('sneak-unlocked'); vibrate([30, 30, 50]); } 
                     else {
@@ -973,6 +976,7 @@
                 }, 1000);
             };
 
+            // THEMES
             const themes = {
                 classic: { p: '#d81b60', pr: 216, pg: 27, pb: 96, r: '#c07c88', rr: 192, rg: 124, rb: 136, rl: '#e8c5cb' },
                 nude: { p: '#8b5a4b', pr: 139, pg: 90, pb: 75, r: '#bca398', rr: 188, rg: 163, rb: 152, rl: '#e3d1c9' },
@@ -988,6 +992,7 @@
                 });
             });
 
+            // DARK MODE
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             themeToggle.addEventListener('click', () => {
@@ -996,6 +1001,7 @@
                 else { document.body.setAttribute('data-theme', 'dark'); themeIcon.classList.replace('ph-moon', 'ph-sun'); }
             });
 
+            // MODALS
             const modalRegion = document.getElementById('regionModal');
             const modalSos = document.getElementById('sosModal');
             const modalCopyWa = document.getElementById('copyWaModal');
@@ -1008,6 +1014,7 @@
             document.getElementById('btnSosMake').addEventListener('click', () => { vibrate(15); modalSos.classList.add('active'); });
             document.querySelector('.btn-vip-trigger').addEventListener('click', (e) => { e.preventDefault(); vibrate(15); modalVipVideo.classList.add('active'); });
             
+            // LINKS CATALOGO
             const catalogLinks = {
                 'maquiagem': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/NO-mcm6Rp64H', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/ZdumWWIXOBZM' },
                 'fragrancia': { sp: 'https://lojaconsultora.marykay.com.br/dilmara-santos-da-silva/rcEq56Gr4e4e', pb: 'https://lojaconsultora.marykay.com.br/joao-batista-soares-da-silva/vxLwYwz7W8V4' },
@@ -1027,6 +1034,7 @@
                 });
             });
 
+            // QUIZ
             let currentQuizUrl = '';
             document.querySelectorAll('.btn-quiz-trigger').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -1042,6 +1050,7 @@
                 setTimeout(() => { window.open(currentQuizUrl, '_blank'); blushSweep.classList.remove('active'); }, 600);
             });
 
+            // WHATSAPP COPY/OPEN
             const waBaseUrl = 'https://wa.me/message/CNUK2VEUY6WSG1';
             let globalTextToCopy = '';
             document.querySelectorAll('.btn-wa-trigger').forEach(btn => {
@@ -1068,35 +1077,7 @@
             document.getElementById('btnCopyAndGo').addEventListener('click', () => copyAndRedirect('btnCopyAndGo', modalCopyWa));
             document.getElementById('btnCopyVip').addEventListener('click', () => copyAndRedirect('btnCopyVip', modalVipVideo));
 
-            const sliderPairs = [{ bg: 'image2.jpeg', fg: 'image1.jpeg' }, { bg: 'image4.jpeg', fg: 'image3.jpeg' }, { bg: 'image6.jpeg', fg: 'image5.jpeg' }];
-            const baSlider = document.getElementById('baSlider');
-            const imgBg = document.getElementById('imgBackground');
-            const imgFg = document.getElementById('imgForeground');
-            const sliderLine = document.getElementById('sliderLine');
-            const sliderBtn = document.getElementById('sliderBtn');
-            const sliderDots = document.querySelectorAll('.slider-dot');
-
-            if(baSlider) {
-                baSlider.addEventListener('input', (e) => {
-                    const val = e.target.value; imgFg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-                    sliderLine.style.left = `${val}%`; sliderBtn.style.left = `${val}%`;
-                    if(val % 10 === 0) vibrate(5); 
-                });
-                sliderDots.forEach(dot => {
-                    dot.addEventListener('click', (e) => {
-                        vibrate(10); sliderDots.forEach(d => d.classList.remove('active')); e.target.classList.add('active');
-                        const index = parseInt(e.target.getAttribute('data-index'));
-                        imgBg.style.opacity = '0.5'; imgFg.style.opacity = '0.5';
-                        setTimeout(() => {
-                            imgBg.src = sliderPairs[index].bg; imgFg.src = sliderPairs[index].fg;
-                            baSlider.value = 50; imgFg.style.clipPath = `polygon(0 0, 50% 0, 50% 100%, 0 100%)`;
-                            sliderLine.style.left = `50%`; sliderBtn.style.left = `50%`;
-                            imgBg.style.opacity = '1'; imgFg.style.opacity = '1';
-                        }, 200);
-                    });
-                });
-            }
-
+            // ALARM CALENDAR
             document.getElementById('btnAlarm').addEventListener('click', () => {
                 vibrate(30); 
                 const now = new Date(); const reminderDate = new Date(now); 
@@ -1111,6 +1092,7 @@
                 window.open(googleCalendarUrl, '_blank');
             });
 
+            // FAIRY DUST
             const dustContainer = document.getElementById('fairy-dust-container');
             const colorVars = () => [
                 getComputedStyle(document.documentElement).getPropertyValue('--pink-vibrant').trim() || '#d81b60',
@@ -1143,6 +1125,7 @@
                 }
             };
 
+            // INTERAÇÕES GERAIS E CLIQUES
             let lastTapTime = 0;
             let lastSparkleTime = 0;
             
@@ -1166,6 +1149,7 @@
                 }
             });
 
+            // REVIEWS
             const reviews = document.querySelectorAll('.review-box');
             if(reviews.length > 0) {
                 let currentReview = 0; reviews[0].classList.add('active'); 
@@ -1176,6 +1160,7 @@
                 }, 4000); 
             }
 
+            // SCRATCH CARD
             const setupScratchCard = () => {
                 const canvas = document.getElementById('scratchPad');
                 if(!canvas) return;
@@ -1237,20 +1222,18 @@
             let windowWidth = window.innerWidth;
             window.addEventListener('resize', () => { if(window.innerWidth !== windowWidth) { windowWidth = window.innerWidth; setupScratchCard(); } });
 
-            // --- CARROSSEL MELHORADO COM TRAVA DE UX ---
+            // --- CARROSSEL KITS FAVORITOS ---
             const kitsCarousel = document.getElementById('kitsCarousel');
             let scrollDir = 1, isHover = false, hoverTimeout;
             
             kitsCarousel.addEventListener('mouseenter', () => isHover = true); 
             kitsCarousel.addEventListener('mouseleave', () => isHover = false);
             
-            // Quando a usuária tocar no carrossel, ele pausa.
             kitsCarousel.addEventListener('touchstart', () => {
                 isHover = true;
                 clearTimeout(hoverTimeout);
             }, {passive: true}); 
             
-            // Quando a usuária soltar o dedo, aguarda 2s antes de voltar a andar sozinho
             kitsCarousel.addEventListener('touchend', () => {
                 hoverTimeout = setTimeout(() => { isHover = false; }, 2000);
             });
@@ -1261,10 +1244,9 @@
                 if (maxScroll <= 0) return; 
                 if (kitsCarousel.scrollLeft >= maxScroll - 5) scrollDir = -1; else if (kitsCarousel.scrollLeft <= 5) scrollDir = 1;
                 kitsCarousel.scrollBy({ left: 160 * scrollDir, behavior: 'smooth' });
-            }, 5000); // MUDANÇA: de 3000 para 5000 (5 segundos)
+            }, 5000); 
 
-        });
-        // --- INÍCIO DO SLIDER AUTOMÁTICO ANTES/DEPOIS ---
+            // --- SLIDER AUTOMÁTICO ANTES/DEPOIS ---
             const sliderPairs = [{ bg: 'image2.jpeg', fg: 'image1.jpeg' }, { bg: 'image4.jpeg', fg: 'image3.jpeg' }, { bg: 'image6.jpeg', fg: 'image5.jpeg' }];
             const baSlider = document.getElementById('baSlider');
             const imgBg = document.getElementById('imgBackground');
@@ -1277,9 +1259,8 @@
                 let currentSlide = 0;
                 let isInteracting = false; 
                 let autoSlideTimer;
-                let sliderPhase = 0; // Ajuda a fazer o movimento suave de vai e vem
+                let sliderPhase = 0; 
 
-                // Função para atualizar a posição da barra visualmente
                 const updateSliderPos = (val) => {
                     imgFg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
                     sliderLine.style.left = `${val}%`; 
@@ -1287,7 +1268,6 @@
                     baSlider.value = val;
                 };
 
-                // Função para trocar de imagem
                 const goToSlide = (index) => {
                     currentSlide = index;
                     sliderDots.forEach(d => d.classList.remove('active'));
@@ -1297,30 +1277,23 @@
                     setTimeout(() => {
                         imgBg.src = sliderPairs[index].bg; 
                         imgFg.src = sliderPairs[index].fg;
-                        updateSliderPos(50); // Volta pro meio quando troca a foto
+                        updateSliderPos(50); 
                         imgBg.style.opacity = '1'; imgFg.style.opacity = '1';
-                        sliderPhase = 0; // Reinicia o movimento
+                        sliderPhase = 0; 
                     }, 200);
                 };
 
-                // Animação de vai e vem suave (se a usuária não estiver tocando)
                 const animateSlider = () => {
                     if (!isInteracting) {
-                        sliderPhase += 0.015; // Velocidade do vai e vem
-                        
-                        // Mudamos de 35 para 50 para ir de 0% a 100%
+                        sliderPhase += 0.015; 
                         let autoVal = 50 + Math.sin(sliderPhase) * 50;
-                        
-                        // Trava de segurança para garantir que não passe das bordas
                         if (autoVal < 0) autoVal = 0;
                         if (autoVal > 100) autoVal = 100;
-
                         updateSliderPos(autoVal);
                     }
-                    requestAnimationFrame(animateSlider); // Fica repetindo a animação
+                    requestAnimationFrame(animateSlider); 
                 };
 
-                // Trocar de foto automaticamente a cada 6 segundos
                 const startAutoSwitch = () => {
                     clearInterval(autoSlideTimer);
                     autoSlideTimer = setInterval(() => {
@@ -1331,16 +1304,12 @@
                     }, 15000); 
                 };
 
-                // Pausar automação quando a usuária interagir
                 const stopAuto = () => { isInteracting = true; };
-                
-                // Voltar automação quando a usuária soltar
                 const resumeAuto = () => { 
                     isInteracting = false; 
-                    startAutoSwitch(); // Zera o tempo para não mudar a foto do nada
+                    startAutoSwitch(); 
                 };
 
-                // Eventos de toque e mouse na barra
                 baSlider.addEventListener('input', (e) => {
                     isInteracting = true;
                     updateSliderPos(e.target.value);
@@ -1353,97 +1322,62 @@
                 baSlider.addEventListener('touchend', resumeAuto);
                 baSlider.addEventListener('mouseleave', resumeAuto);
 
-                // Evento de clique nas bolinhas (dots)
                 sliderDots.forEach((dot, index) => {
                     dot.addEventListener('click', (e) => {
                         vibrate(10); 
-                        stopAuto(); // Pausa a animação enquanto troca
+                        stopAuto(); 
                         goToSlide(index);
-                        // Espera 3 segundos após o clique manual para voltar a ser automático
                         setTimeout(resumeAuto, 3000);
                     });
                 });
 
-                // Inicia o processo quando a página carrega
                 startAutoSwitch();
                 animateSlider();
             }
-            // --- FIM DO SLIDER AUTOMÁTICO ---
-      // FORÇAR O AUTOPLAY DO VÍDEO DE MAKE
-        const videoMake = document.getElementById('videoMake');
-        if (videoMake) {
-            // Tenta dar o play assim que a página carrega
-            setTimeout(() => {
-                videoMake.muted = true; // Reforça que está mudo
-                videoMake.play().catch((erro) => {
-                    console.log("O celular bloqueou o autoplay de primeira, aguardando interação.");
-                });
-            }, 1000);
-        }
-        // --- CARROSSEL AUTOMÁTICO DA MAÇÃ ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const appleScroll = document.querySelector('.apple-scroll');
             
+            // --- VÍDEO DE MAKE AUTOPLAY ---
+            const videoMake = document.getElementById('videoMake');
+            if (videoMake) {
+                setTimeout(() => {
+                    videoMake.muted = true; 
+                    videoMake.play().catch((erro) => {
+                        console.log("O celular bloqueou o autoplay de primeira, aguardando interação.");
+                    });
+                }, 1000);
+            }
+
+            // --- CARROSSEL AUTOMÁTICO DA MAÇÃ ---
+            const appleScroll = document.querySelector('.apple-scroll');
             if (appleScroll) {
                 let appleHover = false;
                 let appleTimeout;
 
-                // Pausa a animação se a cliente colocar o dedo ou o mouse
                 appleScroll.addEventListener('touchstart', () => { 
                     appleHover = true; 
                     clearTimeout(appleTimeout); 
                 }, {passive: true});
                 
                 appleScroll.addEventListener('touchend', () => { 
-                    appleTimeout = setTimeout(() => appleHover = false, 2000); // Volta 2 seg após soltar o dedo
+                    appleTimeout = setTimeout(() => appleHover = false, 2000); 
                 });
                 
                 appleScroll.addEventListener('mouseenter', () => appleHover = true);
                 appleScroll.addEventListener('mouseleave', () => appleHover = false);
 
-                // Motorzinho que roda sozinho a cada 3 segundos (3000 milissegundos)
                 setInterval(() => {
-                    if(appleHover) return; // Não faz nada se a cliente estiver mexendo
-                    
+                    if(appleHover) return; 
                     let maxScroll = appleScroll.scrollWidth - appleScroll.clientWidth;
                     if (maxScroll <= 0) return;
 
-                    // Se chegou na última foto, volta pro começo
                     if (appleScroll.scrollLeft >= maxScroll - 10) {
                         appleScroll.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
-                        // Se não, vai para a próxima foto
                         appleScroll.scrollBy({ left: appleScroll.clientWidth * 0.85, behavior: 'smooth' });
                     }
                 }, 3000); 
             }
-        });
+
+        }); // FIM DO DOMContentLoaded UNIFICADO
     </script>
-    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
