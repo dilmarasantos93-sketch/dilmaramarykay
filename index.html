@@ -445,16 +445,18 @@
             background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(4px); 
             border-radius: 50%; 
-            width: 32px; 
-            height: 32px; 
+            width: 36px; 
+            height: 36px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             color: #d81b60; 
-            cursor: pointer; /* Transformamos em cursor de mãozinha */
+            cursor: pointer; 
+            border: none; /* Tira borda de botão */
             animation: pulseAttention 2s infinite; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
-            z-index: 5; /* Garante que fique por cima da foto para receber o clique */
+            z-index: 20; /* Força ficar por cima da imagem */
+            pointer-events: auto !important; /* Libera o clique à força */
         }
     </style>
 </head>
@@ -642,7 +644,7 @@
                         <img src="lancamento3.jpeg" alt="Lançamento Maçã 2" class="apple-img">
                         <img src="lancamento4.jpeg" alt="Lançamento Maçã 3" class="apple-img">
                     </div>
-                    <div class="scroll-hint-apple"><i class="ph-bold ph-caret-right"></i></div>
+<button class="scroll-hint-apple" id="appleBtn"><i class="ph-bold ph-caret-right"></i></button>
                 </div>
 
                 <button class="btn-primary touch-target btn-wa-trigger" style="margin-bottom: 0;" data-wa-text="Oi, Dilmara! Fiquei apaixonada pelo lançamento de Retinol. Quero garantir o meu com você!">
@@ -1375,6 +1377,7 @@
     
 </body>
 </html>
+
 
 
 
