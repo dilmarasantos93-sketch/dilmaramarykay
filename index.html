@@ -451,9 +451,10 @@
             justify-content: center; 
             align-items: center; 
             color: #d81b60; 
-            pointer-events: none; 
+            cursor: pointer; /* Transformamos em cursor de mãozinha */
             animation: pulseAttention 2s infinite; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
+            z-index: 5; /* Garante que fique por cima da foto para receber o clique */
         }
     </style>
 </head>
@@ -1354,9 +1355,27 @@
                 });
             }, 1000);
         }
+        // --- BOTÃO DO CARROSSEL DE MAÇÃ ---
+            const appleScroll = document.querySelector('.apple-scroll');
+            const appleBtn = document.querySelector('.scroll-hint-apple');
+
+            if (appleBtn && appleScroll) {
+                appleBtn.addEventListener('click', (e) => {
+                    vibrate(10); // Dá aquela tremidinha no celular
+                    
+                    // Verifica se já chegou no final. Se sim, volta pro começo. Se não, vai pro lado.
+                    if (appleScroll.scrollLeft + appleScroll.clientWidth >= appleScroll.scrollWidth - 10) {
+                        appleScroll.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        appleScroll.scrollBy({ left: appleScroll.clientWidth * 0.9, behavior: 'smooth' });
+                    }
+                });
+            }
     </script>
+    
 </body>
 </html>
+
 
 
 
