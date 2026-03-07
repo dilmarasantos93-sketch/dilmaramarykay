@@ -458,6 +458,23 @@
             z-index: 20; /* Força ficar por cima da imagem */
             pointer-events: auto !important; /* Libera o clique à força */
         }
+        /* --- BADGE RECRUTAMENTO VIP --- */
+        .badge-recrutamento {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink-vibrant);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(216, 27, 96, 0.6);
+            animation: pulseAlert 2s infinite; /* Usa a mesma animação de pulso do seu botão SOS */
+        }
     </style>
 </head>
 <body>
@@ -538,12 +555,12 @@
 
     <div id="vipVideoModal" class="custom-modal">
         <div class="modal-content" style="max-width: 400px; padding: 20px;">
-            <h3 class="modal-title" style="font-size: 1.4rem;">Oportunidade Mary Kay</h3>
+            <h3 class="modal-title" style="font-size: 1.4rem;">Apresentação da Oportunidade de Negócio Mary Kay!</h3>
             <p class="modal-subtitle" style="margin-bottom: 10px;">Assista ao vídeo e descubra como transformar sua vida sendo uma consultora!</p>
             <div style="border-radius: 16px; overflow: hidden; margin-bottom: 15px; background: var(--glass-bg); box-shadow: var(--shadow-inner); position: relative; height: 380px;">
                 <iframe src="https://www.instagram.com/reel/DUMtf1HEY62/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position: absolute; top: 0; left: 0;" loading="lazy"></iframe>
             </div>
-            <div class="copy-box" id="vipWaTextToCopy" style="font-size: 0.8rem; padding: 10px;">Oi, Dilmara! Assisti ao vídeo e quero entrar no Clube VIP da oportunidade Mary Kay!</div>
+            <div class="copy-box" id="vipWaTextToCopy" style="font-size: 0.8rem; padding: 10px;">Oi, Dilmara! Assisti ao vídeo e quero saber como começar meu negócio Mary Kay e ter minha renda extra!</div>
             <button class="btn-primary btn-whatsapp touch-target" id="btnCopyVip"><i class="ph-bold ph-copy"></i> Copiar e Falar com Dilmara</button>
             <button class="btn-close close-modal-generic">Fechar</button>
         </div>
@@ -730,9 +747,15 @@
                 <p class="card-subtitle">Nunca mais fique sem sua make! Toque para eu te lembrar no Google Agenda.</p>
             </div>
 
-            <a href="#" class="bento-card item-vip card-vip stagger-item touch-target btn-vip-trigger">
-                <i class="ph-fill ph-lock-key card-icon"></i>
-                <div class="text-box"><h2 class="card-title">Clube VIP</h2><p class="card-subtitle">Oportunidade Mary Kay</p></div>
+           <a href="#" class="bento-card item-vip card-vip stagger-item touch-target btn-vip-trigger">
+                <div class="badge-recrutamento">Vagas Abertas</div>
+                
+                <i class="ph-fill ph-crown card-icon"></i>
+                
+                <div class="text-box">
+                    <h2 class="card-title">Trabalhe Comigo!</h2>
+                    <p class="card-subtitle">Descubra como ter sua renda extra</p>
+                </div>
             </a>
 <div class="bento-card item-video-makeup stagger-item">
                 <div class="lipstick-sticker">💄</div>
@@ -1399,6 +1422,7 @@
     
 </body>
 </html>
+
 
 
 
