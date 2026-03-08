@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mary Kay | Dilmara Santos - Curadoria Premium</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    
+    <style>
+        /* =========================================
+           0. VARIÁVEIS GLOBAIS DE ALTO LUXO E RESET
+           ========================================= */
+        :root {
+            --mk-pink: #E25098;
+            --mk-dark-pink: #B83A79;
+            --mk-light-pink: #F4ACB6;
+            --mk-glow: #ff7bb8;
+            --obsidian: #050505;
+            --obsidian-deep: #000000;
+            --charcoal: #121212;
+            --rose-gold: #D4AF37;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --wpp-green: #25D366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body, html { width: 100%; min-height: 100vh; background-color: var(--obsidian); color: var(--text-main); overflow-x: hidden; overflow-y: hidden; animation: unlockScroll 0.1s forwards 4s; position: relative; }
+        
+        a { text-decoration: none; color: inherit; }
+        button { font-family: 'Montserrat', sans-serif; outline: none; }
+        
+        @keyframes unlockScroll { to { overflow-y: auto; } }
+
+        .master-container { max-width: 1250px; margin: 0 auto; width: 100%; position: relative; z-index: 2; padding: 0 5%; }
+
+        /* =========================================
+           EFECTS: BEIJO DE BATOM
+           ========================================= */
+        .lipstick-kiss {
+            position: absolute; font-size: clamp(2rem, 5vw, 3rem); color: rgba(226, 80, 152, 0.8); pointer-events: none; z-index: 99999;
+            animation: kissAnimation 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; text-shadow: 0 0 15px rgba(226, 80, 152, 0.5);
+        }
+
+        @keyframes kissAnimation {
+            0% { transform: translate(-50%, -50%) scale(0.1) rotate(-15deg); opacity: 0; }
+            20% { transform: translate(-50%, -50%) scale(1) rotate(-15deg); opacity: 1; }
+            80% { transform: translate(-50%, -50%) scale(1.1) rotate(-15deg); opacity: 0.8; }
+            100% { transform: translate(-50%, -150%) scale(1.2) rotate(-15deg); opacity: 0; }
+        }
+
+        /* =========================================
+           0.5. NAVBAR DE VIDRO & LOGO & MENU MOBILE
+           ========================================= */
+        .elite-navbar { position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(226, 80, 152, 0.1); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; z-index: 9990; opacity: 0; transform: translateY(-100%); transition: all 0.6s ease; }
+        .elite-navbar.scrolled { opacity: 1; transform: translateY(0); }
+        
+        .nav-logo { display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; cursor: pointer; transition: transform 0.3s ease; z-index: 9993; }
+        .nav-logo:hover { transform: scale(1.05); }
+        .logo-name { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--mk-pink); letter-spacing: 1px; line-height: 0.9; text-shadow: 0 0 15px rgba(226, 80, 152, 0.3); }
+        .logo-brand { font-family: 'Montserrat', sans-serif; font-size: clamp(0.55rem, 1.5vw, 0.65rem); text-transform: uppercase; letter-spacing: 4px; color: var(--rose-gold); margin-top: 2px; font-weight: 500; }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); transition: color 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--mk-pink); }
+
+        .menu-toggle, .close-menu { display: none; background: none; border: none; color: var(--text-main); font-size: 2.2rem; cursor: pointer; transition: color 0.3s ease; }
+        .menu-toggle:hover, .close-menu:hover { color: var(--mk-pink); }
+
+        /* =========================================
+           1. NOVA INTRO CINEMATOGRÁFICA (FUNDO LUXO)
+           ========================================= */
+        .cinematic-intro { 
+            position: fixed; inset: 0; 
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            overflow: hidden; pointer-events: auto; 
+            background: linear-gradient(-45deg, #0a0206, #1f0511, #050103, #14030a);
+            background-size: 400% 400%;
+            animation: introVelvetMove 4s ease infinite, fadeOutIntroRevealer 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards 3.5s; 
+        }
+
+        @keyframes introVelvetMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .intro-signature-group { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
+
+        .intro-signature { 
+            font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 10vw, 6rem); color: var(--mk-pink); 
+            opacity: 0; filter: blur(10px); transform: scale(0.9); 
+            animation: revealSignature 2s ease-out forwards 0.5s; text-align: center;
+        }
+        .intro-loader { 
+            width: 0px; height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent); 
+            margin-top: 30px; box-shadow: 0 0 10px var(--rose-gold); 
+            animation: drawLine 2s cubic-bezier(0.8, 0, 0.2, 1) forwards 1s; 
+        }
+
+        .intro-pink-car-container { 
+            position: absolute; bottom: 10%; right: -100%; 
+            width: clamp(250px, 50vw, 400px); z-index: 1; 
+            opacity: 0; animation: carDriveIn 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+        }
+        .intro-pink-car { width: 100%; height: auto; object-fit: contain; }
+
+        @keyframes revealSignature { to { opacity: 1; filter: blur(0px); transform: scale(1); text-shadow: 0 0 30px rgba(226, 80, 152, 0.4); } }
+        @keyframes drawLine { to { width: clamp(200px, 60vw, 300px); opacity: 0; } }
+        @keyframes carDriveIn { 0% { right: -100%; opacity: 0; } 10% { opacity: 1; } 80% { right: 5%; } 100% { right: 5%; opacity: 1; } }
+        
+        @keyframes fadeOutIntroRevealer { 
+            0%, 80% { opacity: 1; visibility: visible; } 
+            100% { opacity: 0; visibility: hidden; pointer-events: none; } 
+        }
+
+        /* =========================================
+           2. HERO SECTION
+           ========================================= */
+        .hero-section { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px 0; overflow: hidden; }
+        .structured-background { position: absolute; inset: 0; background-image: linear-gradient(rgba(226, 80, 152, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(226, 80, 152, 0.04) 1px, transparent 1px); background-size: 80px 80px; z-index: 0; opacity: 0; animation: fadeInBg 2s ease forwards 4s; }
+        .ambient-glow { position: absolute; top: -20%; left: -20%; width: 100vw; height: 100vw; max-width: 1000px; max-height: 1000px; background: radial-gradient(circle, rgba(226, 80, 152, 0.12) 0%, transparent 60%); z-index: 1; opacity: 0; animation: pulseGlow 4s infinite alternate forwards 4s; pointer-events: none; }
+        
+        @keyframes fadeInBg { to { opacity: 1; } }
+        @keyframes pulseGlow { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+        
+        .hero-layout { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+        .text-content { flex: 1 1 300px; opacity: 0; animation: fadeUpText 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 4.2s; z-index: 2; }
+        @keyframes fadeUpText { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero-pre-title { display: inline-block; font-size: clamp(0.65rem, 2vw, 0.75rem); text-transform: uppercase; letter-spacing: 6px; color: var(--mk-light-pink); margin-bottom: 25px; position: relative; padding-left: 60px; font-weight: 500; }
+        .hero-pre-title::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 45px; height: 1px; background-color: var(--rose-gold); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 8vw, 4.8rem); line-height: 1.05; font-weight: 300; margin-bottom: 25px; letter-spacing: -1px; }
+        .hero-title .cursive-highlight { font-family: 'Great Vibes', cursive; font-size: clamp(4rem, 12vw, 6.5rem); color: var(--mk-pink); display: block; margin-top: -10px; text-shadow: 0 10px 30px rgba(226, 80, 152, 0.2); }
+        .hero-desc { font-size: clamp(0.95rem, 2.5vw, 1.1rem); color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 40px; max-width: 90%; }
+
+        .btn-wrapper { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .btn-premium { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 18px 40px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--obsidian); background: linear-gradient(45deg, var(--mk-pink), #ff7bb8); border: none; border-radius: 4px; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(226, 80, 152, 0.3); z-index: 1; cursor: pointer; text-align: center; }
+        .btn-premium::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: rgba(255, 255, 255, 0.2); transform: rotate(45deg) translateY(-100%); transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1); z-index: -1; }
+        .btn-premium:hover { transform: translateY(-4px); box-shadow: 0 25px 50px rgba(226, 80, 152, 0.5); }
+        .btn-premium:hover::after { transform: rotate(45deg) translateY(100%); }
+        .btn-secondary { color: var(--text-main); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; position: relative; padding-bottom: 5px; cursor: pointer;}
+        .btn-secondary::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 1px; background-color: var(--rose-gold); transition: width 0.4s ease; }
+        .btn-secondary:hover::after { width: 100%; }
+
+        .image-structure-wrapper { flex: 1 1 300px; max-width: 500px; margin: 0 auto; position: relative; display: flex; justify-content: center; align-items: center; opacity: 0; animation: fadeLeftImage 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 4.5s; z-index: 2; }
+        @keyframes fadeLeftImage { 0% { opacity: 0; transform: translateX(60px); } 100% { opacity: 1; transform: translateX(0); } }
+        
+        .frame-backdrop { position: absolute; width: 80%; height: 90%; background-color: var(--charcoal); border-left: 1px solid rgba(255,255,255,0.05); top: 5%; right: 5%; z-index: 1; box-shadow: -20px 20px 50px rgba(0,0,0,0.9); }
+        .frame-outline { position: absolute; width: 85%; height: 100%; border: 1px solid var(--rose-gold); top: -3%; left: 3%; z-index: 2; opacity: 0.5; }
+        
+        .photo-container { position: relative; width: 80%; aspect-ratio: 3/4; z-index: 3; overflow: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.6); }
+        .main-photo { width: 100%; height: 100%; object-fit: cover; filter: contrast(115%) brightness(90%); transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .photo-container:hover .main-photo { transform: scale(1.05); }
+
+        .status-badge { position: absolute; bottom: 5%; left: -5%; background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(226, 80, 152, 0.3); border-radius: 4px; padding: 20px 25px; z-index: 4; display: flex; align-items: center; gap: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); animation: floatBadge 6s ease-in-out infinite alternate; }
+        @keyframes floatBadge { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+        .badge-icon { width: 45px; height: 45px; background: linear-gradient(135deg, var(--mk-pink), var(--mk-dark-pink)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: bold; flex-shrink: 0; }
+        .badge-text { display: flex; flex-direction: column; }
+        .badge-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); margin-bottom: 2px; font-weight: 500; }
+        .badge-sub { font-size: 0.7rem; color: var(--mk-light-pink); font-style: italic; }
+
+        /* =========================================
+           4. SEÇÃO QUEM SOU EU & HISTÓRIA (C/ BORBOLETAS)
+           ========================================= */
+        .about-elite { position: relative; width: 100%; padding: 10% 0; background-color: var(--obsidian-deep); overflow: hidden; z-index: 4; }
+        .background-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: clamp(8rem, 18vw, 18rem); color: rgba(255, 255, 255, 0.015); white-space: nowrap; z-index: 0; pointer-events: none; }
+        
+        .about-layout { display: flex; align-items: center; justify-content: space-between; gap: 8%; flex-wrap: wrap; }
+        
+        .about-image-column { flex: 1 1 300px; position: relative; display: flex; justify-content: center; margin-bottom: 40px; }
+        .arch-outline { position: absolute; top: -20px; left: 10%; width: 80%; height: 100%; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 200px 200px 0 0; z-index: 1; }
+        .arch-wrapper { position: relative; width: 80%; aspect-ratio: 3/4; max-width: 400px; border-radius: 200px 200px 0 0; overflow: hidden; z-index: 2; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); margin: 0 auto; }
+        .about-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(20%) contrast(115%); transition: transform 1s ease; }
+        .arch-wrapper:hover .about-photo { transform: scale(1.05); }
+        .expertise-tag { position: absolute; bottom: 20px; right: 0; background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-left: 2px solid var(--mk-pink); padding: 15px 25px; z-index: 3; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); animation: floatTag 5s infinite ease-in-out alternate; }
+        @keyframes floatTag { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+        .tag-number { display: block; font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.5rem); color: var(--rose-gold); line-height: 1; margin-bottom: 5px; }
+        .tag-text { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-main); }
+        
+        .about-text-column { flex: 1 1 300px; }
+        .about-pre-title { display: inline-flex; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 6px; color: var(--mk-pink); margin-bottom: 25px; align-items: center; gap: 15px; }
+        .about-pre-title::before { content: ''; width: 40px; height: 1px; background-color: var(--mk-pink); }
+        
+        .about-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 8vw, 4rem); line-height: 1.1; font-weight: 300; margin-bottom: 35px; position: relative; display: inline-block; z-index: 2; }
+        .about-title .cursive { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--text-main); display: block; margin-top: -10px; margin-left: 40px; text-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+        
+        /* BORBOLETAS CSS */
+        .butterflies-container { position: absolute; top: -40px; right: -50px; width: 120px; height: 120px; z-index: -1; pointer-events: none; }
+        .butterfly { position: absolute; display: inline-block; animation: flutterWing 0.2s infinite alternate ease-in-out, flyAround 8s infinite alternate ease-in-out; }
+        .b-1 { color: var(--mk-pink); font-size: 2.8rem; top: 0; left: 0; animation-delay: 0s, 0s; filter: drop-shadow(0 5px 10px rgba(226,80,152,0.4)); }
+        .b-2 { color: var(--rose-gold); font-size: 1.8rem; top: 50px; left: 60px; animation-delay: -0.1s, -2s; filter: drop-shadow(0 5px 10px rgba(212,175,55,0.4)); }
+        .b-3 { color: var(--mk-light-pink); font-size: 1.2rem; top: 90px; left: 20px; animation-delay: -0.2s, -4s; filter: drop-shadow(0 5px 10px rgba(244,172,182,0.4)); }
+
+        @keyframes flutterWing { 0% { transform: scaleX(1); } 100% { transform: scaleX(0.2); } }
+        @keyframes flyAround { 0% { transform: translate(0, 0) translateY(0); } 50% { transform: translate(15px, -25px) translateY(-15px); } 100% { transform: translate(-10px, -40px) translateY(10px); } }
+
+        .about-description { font-size: clamp(1rem, 2.5vw, 1.1rem); color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
+        .about-description strong { color: var(--rose-gold); font-weight: 400; }
+        .personal-signature { font-family: 'Great Vibes', cursive; font-size: clamp(2.5rem, 8vw, 3.5rem); color: var(--mk-pink); margin-top: 30px; opacity: 0.8; display: inline-block; cursor: default; }
+
+        /* HISTÓRIA */
+        .history-section { position: relative; width: 100%; padding: 5% 0 10% 0; background: var(--obsidian-deep); overflow: hidden; z-index: 3; display: flex; justify-content: center; }
+        .velvet-orb-1, .velvet-orb-2 { position: absolute; border-radius: 50%; filter: blur(150px); opacity: 0.4; z-index: 0; animation: driftOrb 15s infinite alternate ease-in-out; pointer-events: none; }
+        .velvet-orb-1 { width: 50vw; height: 50vw; background: rgba(184, 58, 121, 0.12); top: -10%; left: -20%; }
+        .velvet-orb-2 { width: 40vw; height: 40vw; background: rgba(212, 175, 55, 0.06); bottom: -10%; right: -10%; animation-delay: -5s; }
+        @keyframes driftOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.2); } }
+        
+        .history-layout { display: grid; grid-template-columns: 38% 55%; justify-content: space-between; align-items: start; gap: 5%; }
+        .history-quote-wrapper { position: sticky; top: 15vh; }
+        .history-quote-card { background: rgba(15, 15, 15, 0.6); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(226, 80, 152, 0.15); border-top: 3px solid var(--mk-pink); padding: 50px 30px; border-radius: 4px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .history-quote-card::before { content: '“'; position: absolute; top: -30px; left: 20px; font-family: 'Playfair Display', serif; font-size: 8rem; color: rgba(212, 175, 55, 0.2); line-height: 1; }
+        .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.6rem); line-height: 1.6; color: var(--text-main); font-style: italic; margin-bottom: 25px; position: relative; z-index: 2; }
+        .quote-author { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: var(--mk-pink); font-weight: 600; display: block; }
+        
+        .history-text-content { padding-top: 5px; }
+        .history-text-content .section-label { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 5px; color: var(--rose-gold); margin-bottom: 20px; border-bottom: 1px solid var(--rose-gold); padding-bottom: 5px; }
+        .history-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.1; margin-bottom: 30px; }
+        .history-title .highlight { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 8vw, 4.5rem); color: var(--mk-pink); font-weight: 400; display: block; margin-top: -10px; }
+        .history-paragraph { font-size: clamp(1rem, 2vw, 1.05rem); color: var(--text-muted); line-height: 1.9; margin-bottom: 25px; font-weight: 300; }
+        .history-paragraph strong { color: #fff; font-weight: 500; }
+
+        /* =========================================
+           4.5. BENEFÍCIOS MARY KAY
+           ========================================= */
+        .benefits-section { position: relative; width: 100%; padding: 10% 0 0 0; background: linear-gradient(to bottom, var(--obsidian-deep), var(--obsidian)); z-index: 4; border-top: 1px solid rgba(255,255,255,0.05); }
+        .benefits-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-inline: auto; padding: 0 5%; }
+        .benefits-header .section-label { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 5px; color: var(--rose-gold); margin-bottom: 15px; border-bottom: 1px solid var(--rose-gold); padding-bottom: 5px; }
+        .benefits-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--text-main); margin-bottom: 15px; line-height: 1.1; }
+        .benefits-header h2 .highlight { font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 8vw, 4.5rem); color: var(--mk-pink); font-weight: 400; display: inline-block; }
+        .benefits-subtitle { font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+
+        /* FLEXBOX PARA O TRIÂNGULO INVERTIDO NOS CARDS */
+        .benefits-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; width: 100%; max-width: 1150px; margin: 0 auto; padding: 0 5% 8% 5%; }
+        
+        .benefit-card {
+            background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 40px 30px;
+            text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex: 1 1 calc(33.333% - 30px); min-width: 280px; max-width: 350px; /* Triângulo Mágico */
+        }
+        .benefit-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:3px; background: linear-gradient(90deg, var(--rose-gold), var(--mk-pink)); opacity: 0; transition: opacity 0.4s ease; }
+        .benefit-card:hover { transform: translateY(-10px); border-color: rgba(226, 80, 152, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(226, 80, 152, 0.1); }
+        .benefit-card:hover::before { opacity: 1; }
+        
+        .benefit-icon {
+            width: 70px; height: 70px; margin: 0 auto 25px auto;
+            background: rgba(212, 175, 55, 0.1); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: var(--rose-gold); font-size: 2.2rem; border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+        }
+        .benefit-card:hover .benefit-icon { background: var(--mk-pink); color: #fff; border-color: var(--mk-pink); box-shadow: 0 10px 20px rgba(226, 80, 152, 0.4); transform: scale(1.1) rotate(5deg); }
+        .benefit-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 15px; }
+        .benefit-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+        /* =========================================
+           Onda Rosa (Divisor Brilhante)
+           ========================================= */
+        .pink-wave-divider {
+            width: 100%; height: 60px; background: var(--obsidian);
+            display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+            position: relative; z-index: 5; margin-bottom: -1px; margin-top: -1px;
+        }
+        .pink-wave-divider svg { width: 100%; height: 100%; min-width: 1000px; display: block; }
+
+        /* =========================================
+           5. SEÇÃO SEJA UMA CONSULTORA
+           ========================================= */
+        .consultant-section { position: relative; width: 100%; padding: 8% 0; background: linear-gradient(to bottom, var(--obsidian), var(--charcoal)); z-index: 4;}
+        .consultant-header { text-align: center; margin-bottom: 60px; padding: 0 5%; }
+        .consultant-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--text-main); margin-bottom: 15px; }
+        .consultant-header p { font-size: clamp(0.8rem, 2vw, 1rem); color: var(--mk-pink); text-transform: uppercase; letter-spacing: 4px; }
+
+        .steps-grid { display: flex; justify-content: center; gap: 30px; margin-bottom: 80px; flex-wrap: wrap; padding: 0 5%; }
+        .step-card { background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(226, 80, 152, 0.2); padding: 50px 30px; border-radius: 4px; flex: 1 1 250px; max-width: 350px; text-align: center; transition: transform 0.4s ease; }
+        .step-card:hover { transform: translateY(-10px); border-color: var(--mk-pink); box-shadow: 0 15px 30px rgba(226, 80, 152, 0.1); }
+        .step-number { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--rose-gold); line-height: 1; margin-bottom: 20px; display: block; opacity: 0.5; }
+        .step-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; }
+
+        .mk-quote-banner { background: linear-gradient(135deg, rgba(226, 80, 152, 0.08), rgba(20, 20, 20, 0.8)); border-left: 4px solid var(--mk-pink); padding: 50px 60px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); flex-wrap: wrap; margin: 0 5%; }
+        .mk-quote-text { flex: 1 1 300px; }
+        .mk-quote-text h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--rose-gold); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        .mk-quote-text p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-main); font-style: italic; line-height: 1.8; margin-bottom: 15px; }
+        .mk-quote-text span { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--mk-pink); }
+
+        /* =========================================
+           4.8. SEÇÃO RESULTADOS COMPROVADOS
+           ========================================= */
+        .ba-section { position: relative; width: 100%; padding: 10% 0; background: var(--obsidian); z-index: 4; border-top: 1px solid rgba(255,255,255,0.05); }
+        .ba-header { text-align: center; margin-bottom: 60px; }
+        .ba-header .section-label { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 5px; color: var(--rose-gold); margin-bottom: 15px; border-bottom: 1px solid var(--rose-gold); padding-bottom: 5px; }
+        .ba-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--text-main); margin-bottom: 10px; }
+        .ba-header h2 .highlight { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 8vw, 4.5rem); color: var(--mk-pink); font-weight: 400; display: block; margin-top: -10px; }
+        
+        .ba-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; max-width: 1150px; margin: 0 auto; padding: 0 5%; }
+
+        .ba-card { background: rgba(20, 20, 20, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(226, 80, 152, 0.2); border-radius: 8px; padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); display: flex; flex-direction: column; transition: transform 0.4s ease; }
+        .ba-card:hover { transform: translateY(-10px); border-color: var(--mk-pink); }
+        .ba-slider { position: relative; width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden; margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); background: #111; }
+        .ba-bg, .ba-fg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .ba-fg { clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); z-index: 2; }
+        .ba-line { position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background: rgba(255,255,255,0.8); z-index: 3; transform: translateX(-50%); box-shadow: 0 0 10px rgba(226, 80, 152, 0.8); pointer-events: none; }
+        .ba-btn-icon { position: absolute; top: 50%; left: 50%; width: 36px; height: 36px; background: rgba(20,20,20,0.8); border: 2px solid var(--mk-pink); border-radius: 50%; transform: translate(-50%, -50%); z-index: 3; display: flex; align-items: center; justify-content: center; color: var(--mk-pink); font-size: 1.2rem; pointer-events: none; backdrop-filter: blur(4px); box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .ba-labels { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: space-between; padding: 0 15px; z-index: 3; pointer-events: none; }
+        .ba-label { background: rgba(0,0,0,0.7); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); }
+        .ba-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 10; cursor: ew-resize; touch-action: pan-y; }
+        .ba-info { text-align: center; }
+        .ba-info h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--rose-gold); margin-bottom: 5px; }
+        .ba-info p { font-size: 0.85rem; color: var(--text-muted); }
+        .ba-action-container { text-align: center; margin-top: 50px; }
+
+        /* =========================================
+           6. SEÇÃO PRODUTOS (FUNDO ROSA & TEXTOS ESCUROS)
+           ========================================= */
+        /* Transição Suave Escuro para Rosa */
+        .wave-dark-to-pink { width: 100%; height: 80px; background: var(--obsidian); line-height: 0; overflow: hidden; margin-bottom: -1px; margin-top: -1px; }
+        .wave-dark-to-pink svg { width: 100%; height: 100%; display: block; }
+        
+        .products-section { position: relative; width: 100%; padding: 5% 0 10% 0; background: linear-gradient(180deg, #FDE6EC 0%, #F8BBD0 100%); z-index: 4; }
+        .products-header { text-align: center; margin-bottom: 80px; }
+        
+        /* Cores escuras para contraste no fundo rosa */
+        .products-header .section-label { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 5px; color: var(--mk-dark-pink); margin-bottom: 20px; border-bottom: 1px solid var(--mk-dark-pink); padding-bottom: 5px; }
+        .products-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.8rem); line-height: 1.1; font-weight: 300; color: var(--obsidian); }
+        .products-header h2 .highlight { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 8vw, 5rem); color: var(--mk-dark-pink); display: block; margin-top: -15px; }
+        
+        /* Flexbox para Triângulo Invertido nos Produtos */
+        .products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; width: 100%; max-width: 1150px; margin: 0 auto; padding: 0 5%; }
+        
+        .product-card { 
+            background: rgba(255, 255, 255, 0.85); /* Vidro Branco sobre Rosa */
+            border: 1px solid rgba(226, 80, 152, 0.3); border-radius: 8px; padding: 40px 30px; 
+            position: relative; overflow: hidden; transition: all 0.5s ease; 
+            flex: 1 1 calc(33.333% - 30px); min-width: 280px; max-width: 350px; 
+            display: flex; flex-direction: column; box-shadow: 0 15px 35px rgba(226, 80, 152, 0.15);
+        }
+        .product-card::before { content: attr(data-rank); position: absolute; top: -15px; right: 10px; font-family: 'Playfair Display', serif; font-size: 12rem; color: rgba(226, 80, 152, 0.08); line-height: 1; z-index: 0; transition: color 0.5s; }
+        .product-card:hover { border-color: var(--mk-pink); background: #ffffff; transform: translateY(-10px); box-shadow: 0 25px 50px rgba(226, 80, 152, 0.3); }
+        
+        .prod-badge { position: absolute; top: 20px; left: 20px; background: rgba(226, 80, 152, 0.1); border: 1px solid var(--mk-pink); color: var(--mk-pink); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; padding: 5px 10px; border-radius: 30px; z-index: 2; font-weight: 600; }
+        .prod-badge.pink { background: var(--mk-pink); border-color: var(--mk-pink); color: #fff; }
+        
+        .prod-img-wrapper { height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; z-index: 1; }
+        .prod-img { max-height: 100%; max-width: 90%; filter: drop-shadow(0 20px 20px rgba(0,0,0,0.3)); transition: transform 0.6s ease; }
+        .product-card:hover .prod-img { transform: scale(1.15) translateY(-10px); }
+        
+        .prod-info { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+        .prod-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--obsidian); margin-bottom: 10px; font-weight: 600; }
+        .prod-desc { font-size: 0.9rem; color: #444; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; font-weight: 500;}
+        .prod-btn { align-self: center; color: var(--mk-dark-pink); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; padding-bottom: 5px; border-bottom: 1px solid var(--mk-dark-pink); background: none; border-top: none; border-left:none; border-right:none; cursor: pointer; transition: all 0.3s; }
+        .product-card:hover .prod-btn { color: var(--obsidian); border-bottom-color: var(--obsidian); }
+
+        /* Onda Rosa para Escuro (Saída) */
+        .wave-pink-to-dark { width: 100%; height: 80px; background: #F8BBD0; line-height: 0; overflow: hidden; margin-top: -1px; margin-bottom: -1px; }
+        .wave-pink-to-dark svg { width: 100%; height: 100%; display: block; transform: rotate(180deg); }
+
+        /* =========================================
+           6.5. SEÇÃO GALERIA DE FOTOS (10 FOTOS)
+           ========================================= */
+        .gallery-section { position: relative; width: 100%; padding: 10% 0; background: linear-gradient(180deg, var(--obsidian-deep) 0%, #0a0a0a 40%, #1a1a1a 100%); z-index: 4; border-top: 1px solid rgba(212, 175, 55, 0.15); }
+        .gallery-header { text-align: center; margin-bottom: 60px; }
+        .gallery-header .section-label { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 5px; color: var(--mk-pink); margin-bottom: 15px; border-bottom: 1px solid var(--mk-pink); padding-bottom: 5px; }
+        .gallery-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--text-main); margin-bottom: 10px; }
+        .gallery-header h2 .highlight { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 8vw, 4.5rem); color: var(--text-main); display: block; margin-top: -10px; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; width: 100%; padding: 0 5%; }
+        .gallery-item { position: relative; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: all 0.4s ease; cursor: pointer; }
+        .gallery-item:hover { transform: scale(1.05); border-color: var(--rose-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.2); z-index: 10; }
+        .gallery-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) contrast(105%); transition: filter 0.4s ease, transform 0.6s ease; }
+        .gallery-item:hover .gallery-img { filter: grayscale(0%) contrast(110%); }
+        .gallery-item::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(18, 18, 18, 0.5), transparent); opacity: 0; transition: opacity 0.4s ease; }
+        .gallery-item:hover::after { opacity: 1; }
+
+        /* =========================================
+           7. MODAIS
+           ========================================= */
+        .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 15px; }
+        .custom-modal.active { opacity: 1; pointer-events: auto; }
+        .modal-backdrop { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); cursor: pointer; }
+        
+        .modal-content-prod { position: relative; z-index: 1; background: var(--charcoal); width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; border-radius: 4px; border: 1px solid rgba(226, 80, 152, 0.2); box-shadow: 0 40px 100px rgba(0,0,0,0.9); transform: translateY(50px) scale(0.95); transition: all 0.4s ease; display: flex; flex-wrap: wrap; }
+        .custom-modal.active .modal-content-prod { transform: translateY(0) scale(1); }
+        .close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 2rem; cursor: pointer; z-index: 10; transition: color 0.3s; }
+        .close-modal-btn:hover { color: var(--mk-pink); }
+
+        .modal-img-col { flex: 1 1 300px; background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .modal-img-col img { width: 100%; max-width: 300px; object-fit: contain; }
+        .modal-info-col { flex: 1 1 300px; padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; }
+        .modal-tag { display: inline-block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: var(--mk-pink); margin-bottom: 15px; font-weight: 600; }
+        .modal-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 2.5rem); line-height: 1.1; margin-bottom: 20px; }
+        .modal-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+        
+        .modal-content-wpp { position: relative; z-index: 1; background: var(--charcoal); width: 100%; max-width: 500px; border-radius: 8px; border: 1px solid var(--wpp-green); padding: 40px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8); transform: translateY(30px); transition: all 0.4s ease;}
+        .custom-modal.active .modal-content-wpp { transform: translateY(0); }
+        .wpp-icon { font-size: 3rem; color: var(--wpp-green); margin-bottom: 15px; }
+        .wpp-icon i { font-style: normal; }
+        .wpp-modal-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .wpp-modal-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .wpp-textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 15px; border-radius: 4px; resize: none; height: 80px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; margin-bottom: 25px; outline: none; }
+        .btn-wpp-action { display: inline-flex; align-items: center; justify-content: center; padding: 15px 30px; background: var(--wpp-green); color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+        .btn-wpp-action:hover { background: #1ebd5a; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
+        /* =========================================
+           8. FOOTER ELEGANTE NÍVEL OUTRO MUNDO
+           ========================================= */
+        .elite-footer { background-color: var(--obsidian-deep); padding: 80px 5%; border-top: 1px solid rgba(226, 80, 152, 0.2); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; max-width: 1250px; margin: 0 auto 50px; text-align: left; }
+        .footer-brand .nav-logo { margin-bottom: 20px; display: inline-flex; }
+        .footer-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 25px; max-width: 90%; }
+        
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; justify-content: center; align-items: center; color: var(--rose-gold); font-size: 1.3rem; transition: all 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .social-icons a:hover { background: var(--mk-pink); color: #fff; border-color: var(--mk-pink); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(226, 80, 152, 0.4); }
+        
+        .footer-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 25px; letter-spacing: 1px; }
+        .footer-links-col { display: flex; flex-direction: column; gap: 15px; }
+        .footer-links-col a { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s, transform 0.3s; display: inline-block; width: fit-content; }
+        .footer-links-col a:hover { color: var(--mk-pink); transform: translateX(8px); }
+        
+        .footer-bottom { max-width: 1250px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .footer-copy { font-size: 0.8rem; color: #777; }
+        .footer-signature { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--rose-gold); opacity: 0.5; }
+
+        /* --- ANIMAÇÕES DE SCROLL --- */
+        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+
+        /* =========================================
+           9. AJUSTES FINOS E MENU MOBILE
+           ========================================= */
+        @media (max-width: 1024px) {
+            .elite-navbar { padding: 0 5%; justify-content: space-between;} 
+            
+            /* Lógica Visual do Menu Mobile */
+            .menu-toggle { display: block; z-index: 9995; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: rgba(5, 5, 5, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 40px;
+                transition: right 0.5s cubic-bezier(0.8, 0, 0.2, 1); z-index: 9994;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.5rem; letter-spacing: 4px; }
+            .close-menu { display: block; position: absolute; top: 25px; right: 5%; }
+
+            .nav-logo { align-items: center; } 
+            .logo-brand { margin-left: 0; }
+            
+            .hero-layout, .about-layout { flex-direction: column; text-align: center; gap: 40px; }
+            .history-layout { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .history-quote-wrapper { position: relative; top: 0; }
+            
+            .hero-pre-title::before, .about-pre-title::before { display: none; } 
+            .hero-pre-title, .about-pre-title { padding-left: 0; }
+            .about-title .cursive { margin-left: 0; }
+            
+            .btn-wrapper { justify-content: center; flex-direction: column; width: 100%; }
+            .btn-premium { width: 100%; max-width: 350px; }
+            
+            .arch-outline { left: 0; max-width: 90%; margin: 0 auto; } 
+            .arch-wrapper { max-width: 90%; margin: 0 auto; }
+            
+            .status-badge { left: 50%; transform: translateX(-50%); bottom: -20px; width: 90%; justify-content: center; }
+            @keyframes floatBadge { 0% { transform: translate(-50%, 0); } 100% { transform: translate(-50%, -10px); } }
+            
+            .mk-quote-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-left: none; border-top: 4px solid var(--mk-pink); }
+            
+            .modal-img-col { padding: 30px 20px 0 20px; }
+            .modal-info-col { padding: 30px 20px; text-align: center; align-items: center; }
+
+            .butterflies-container { right: 0; left: 50%; transform: translateX(-50%); top: -60px; }
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .footer-desc { max-width: 100%; margin: 0 auto 20px; }
+            .footer-brand .nav-logo { align-items: center; width: 100%; }
+            .social-icons { justify-content: center; }
+            .footer-links-col a { margin: 0 auto; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <nav class="elite-navbar" id="navbar">
+        <a href="#inicio" class="nav-logo">
+            <span class="logo-name">Dilmara Santos</span>
+            <span class="logo-brand">Mary Kay</span>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle"><i class="ph-light ph-list"></i></button>
+
+        <div class="nav-links" id="navLinks">
+            <button class="close-menu" id="closeMenu"><i class="ph-light ph-x"></i></button>
+            <a href="#inicio" class="nav-item">Início</a>
+            <a href="#consultora" class="nav-item">A Curadora</a>
+            <a href="#beneficios" class="nav-item">Benefícios</a>
+            <a href="#resultados" class="nav-item">Resultados</a>
+            <a href="#produtos" class="nav-item">Portfólio</a>
+            <a href="#galeria" class="nav-item">Momentos</a>
+        </div>
+    </nav>
+
+    <div class="cinematic-intro">
+        <div class="intro-pink-car-container">
+            <img src="carro.PNG" class="intro-pink-car" alt="Carro Rosa Mary Kay" onerror="this.src='https://images.unsplash.com/photo-1543465077-db45d34b88a5?auto=format&fit=crop&q=80&w=400'; this.style.filter='hue-rotate(300deg) saturate(2)';">
+        </div>
+
+        <div class="intro-signature-group">
+            <div class="intro-signature">Dilmara Santos</div>
+            <div class="intro-loader"></div>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <div class="structured-background"></div>
+        <div class="ambient-glow"></div>
+        <div class="master-container hero-layout">
+            <div class="text-content">
+                <span class="hero-pre-title">Alta Cosmética & Estética</span>
+                <h1 class="hero-title">Descubra a sua <br> <span class="cursive-highlight">Verdadeira Beleza</span></h1>
+                <p class="hero-desc">Mais do que produtos de alta performance. Oferecemos uma curadoria exclusiva focada no seu biotipo, elevando sua rotina a um patamar de pura sofisticação.</p>
+                <div class="btn-wrapper">
+                    <button onclick="openWppRedirect('Olá Dilmara! Gostaria de agendar uma Sessão de Beleza gratuita com você.')" class="btn-premium">Agendar Consultoria</button>
+                    <a href="#produtos" class="btn-secondary">Explorar Produtos</a>
+                </div>
+            </div>
+            <div class="image-structure-wrapper">
+                <div class="frame-backdrop"></div><div class="frame-outline"></div>
+                <div class="photo-container"><img src="dilmara.jpeg" alt="Consultora" class="main-photo" onerror="this.src='https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&q=80&w=400'"></div>
+                <div class="status-badge">
+                    <div class="badge-icon">MK</div>
+                    <div class="badge-text">
+                        <span class="badge-title">Atendimento VIP</span>
+                        <span class="badge-sub">Consultoria Personalizada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="veil-transition"><div class="golden-thread"></div></div>
+
+    <section class="about-elite" id="consultora">
+        <div class="background-watermark">Mary Kay</div>
+        <div class="master-container about-layout">
+            <div class="about-image-column reveal-on-scroll">
+                <div class="arch-outline"></div>
+                <div class="arch-wrapper"><img src="dilmara2.jpeg" alt="Consultora" class="about-photo" onerror="this.src='https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400'"></div>
+                <div class="expertise-tag"><span class="tag-number">Top 1%</span><span class="tag-text">Consultoria VIP</span></div>
+            </div>
+            <div class="about-text-column reveal-on-scroll delay-1">
+                <span class="about-pre-title">A Mestre por trás da Arte</span>
+                
+                <h2 class="about-title">
+                    Sua Curadora <br><span class="cursive">Pessoal</span>
+                    <div class="butterflies-container">
+                        <i class="ph-fill ph-butterfly butterfly b-1"></i>
+                        <i class="ph-fill ph-butterfly butterfly b-2"></i>
+                        <i class="ph-fill ph-butterfly butterfly b-3"></i>
+                    </div>
+                </h2>
+
+                <p class="about-description">Acredito firmemente que a sua pele não aceita atalhos. Meu trabalho não é vender cosméticos, é atuar como sua arquiteta de beleza. Analiso seu biotipo para montar protocolos <strong>estritamente personalizados</strong>.</p>
+                <p class="about-description">Com acesso exclusivo aos lançamentos mais avançados da Mary Kay, eu decodifico a ciência por trás de cada fórmula para entregar a você o que realmente importa: resultados incontestáveis, autoestima elevada e uma pele que respira luxo.</p>
+                <div class="personal-signature">Dilmara Santos</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section">
+        <div class="velvet-orb-1"></div><div class="velvet-orb-2"></div>
+        <div class="master-container history-layout">
+            <div class="history-quote-wrapper reveal-on-scroll">
+                <div class="history-quote-card">
+                    <p class="quote-text">"A Mary Kay me ofereceu não apenas um negócio, mas uma plataforma para ajudar outras mulheres a se sentirem confiantes."</p>
+                    <span class="quote-author">— Dilmara Santos</span>
+                </div>
+            </div>
+            <div class="history-text-content">
+                <span class="section-label reveal-on-scroll delay-1">Propósito</span>
+                <h2 class="history-title reveal-on-scroll delay-1">Muito além da beleza. <br><span class="highlight">Uma Missão.</span></h2>
+                <p class="history-paragraph reveal-on-scroll delay-2">Olá! Sou Consultora Independente Mary Kay, esposa, mãe e dona do lar. Formada em Letras, passei anos no mercado convencional até perceber que buscava algo alinhado aos meus valores.</p>
+                <p class="history-paragraph reveal-on-scroll delay-2">O desejo de flexibilidade e de impactar vidas me motivou a empreender. O ambiente de apoio da Mary Kay é inspirador, ajudando a desenvolver liderança e dedicação à família.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section" id="beneficios">
+        <div class="master-container">
+            <div class="benefits-header reveal-on-scroll">
+                <span class="section-label">O Poder do Rosa</span>
+                <h2>Benefícios <span class="highlight">Exclusivos</span></h2>
+                <p class="benefits-subtitle">Você decide o que a motiva, define os seus objetivos e nós celebramos as suas conquistas.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card reveal-on-scroll">
+                    <div class="benefit-icon"><i class="ph-light ph-chart-line-up"></i></div>
+                    <h3>Ganhos Extraordinários</h3>
+                    <p>Lucro de até 100% em tudo o que vende. Uma das maiores percentagens da indústria.</p>
+                </div>
+                <div class="benefit-card reveal-on-scroll delay-1">
+                    <div class="benefit-icon"><i class="ph-light ph-sparkle"></i></div>
+                    <h3>Lançamentos VIP</h3>
+                    <p>Acesso exclusivo em primeira mão à mais alta tecnologia em cuidados com a pele.</p>
+                </div>
+                <div class="benefit-card reveal-on-scroll delay-2">
+                    <div class="benefit-icon"><i class="ph-light ph-car-profile"></i></div>
+                    <h3>O Troféu Sobre Rodas</h3>
+                    <p>Ao atingir o topo, ganhe o direito de usar o icônico Carro Rosa Mary Kay.</p>
+                </div>
+                <div class="benefit-card reveal-on-scroll">
+                    <div class="benefit-icon"><i class="ph-light ph-airplane-tilt"></i></div>
+                    <h3>Viagens de Luxo</h3>
+                    <p>Conquiste viagens inesquecíveis para destinos exóticos com tudo pago pela companhia.</p>
+                </div>
+                <div class="benefit-card reveal-on-scroll delay-1">
+                    <div class="benefit-icon"><i class="ph-light ph-crown"></i></div>
+                    <h3>Reconhecimento</h3>
+                    <p>De joias exclusivas a eventos de gala. Aqui o seu esforço é aplaudido e valorizado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pink-wave-divider">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C320,70 420,-10 1440,30" stroke="var(--mk-pink)" stroke-width="4" style="filter: drop-shadow(0 0 12px var(--mk-pink));"/>
+        </svg>
+    </div>
+
+    <section class="consultant-section" id="seja-consultora">
+        <div class="master-container">
+            <div class="consultant-header reveal-on-scroll">
+                <p>Enriquecendo a vida das mulheres desde 1963</p>
+                <h2>Seja uma Consultora de Beleza</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card reveal-on-scroll">
+                    <span class="step-number">1</span>
+                    <p class="step-desc">Fale comigo e descubra tudo sobre o modelo de negócio Mary Kay e suas vantagens.</p>
+                </div>
+                <div class="step-card reveal-on-scroll delay-1">
+                    <span class="step-number">2</span>
+                    <p class="step-desc">Faça o seu Cadastro Online e escolha a melhor forma para iniciar a sua jornada.</p>
+                </div>
+                <div class="step-card reveal-on-scroll delay-2">
+                    <span class="step-number">3</span>
+                    <p class="step-desc">Adquira o seu Kit de Início e prepare-se para lucrar muito com o seu próprio negócio!</p>
+                </div>
+            </div>
+
+            <div class="mk-quote-banner reveal-on-scroll delay-1">
+                <div class="mk-quote-text">
+                    <h3>Nossa Fundadora</h3>
+                    <p>"Em 1963, eu acreditei nas mulheres, acreditei no que elas poderiam fazer, apesar de todos que falavam que não poderia ser feito. Mas vocês fizeram! Eu acreditei que todas nós poderíamos olhar para um futuro de grande sucesso."</p>
+                    <span>Mary Kay Ash</span>
+                </div>
+                <button onclick="openWppRedirect('Olá Dilmara! Quero aproveitar os benefícios da Mary Kay, me tornar uma Consultora e entrar para a sua equipe.')" class="btn-premium" style="white-space: nowrap;">Começar Meu Negócio</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="ba-section" id="resultados">
+        <div class="master-container">
+            <div class="ba-header reveal-on-scroll">
+                <span class="section-label">Transformações Reais</span>
+                <h2>Resultados <span class="highlight">Comprovados</span></h2>
+            </div>
+
+            <div class="ba-grid">
+                <div class="ba-card reveal-on-scroll">
+                    <div class="ba-slider" id="baSlider1">
+                        <img src="image2.jpeg" class="ba-bg" alt="Antes">
+                        <img src="image1.jpeg" class="ba-fg" alt="Depois">
+                        <div class="ba-line"></div>
+                        <div class="ba-btn-icon"><i class="ph-bold ph-arrows-left-right"></i></div>
+                        <div class="ba-labels"><span class="ba-label">Antes</span><span class="ba-label">Depois</span></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-range">
+                    </div>
+                    <div class="ba-info">
+                        <h3>Make Básica</h3>
+                        <p>Faz toda a diferença!</p>
+                    </div>
+                </div>
+                <div class="ba-card reveal-on-scroll delay-1">
+                    <div class="ba-slider" id="baSlider2">
+                        <img src="image4.jpeg" class="ba-bg" alt="Antes">
+                        <img src="image3.jpeg" class="ba-fg" alt="Depois">
+                        <div class="ba-line"></div>
+                        <div class="ba-btn-icon"><i class="ph-bold ph-arrows-left-right"></i></div>
+                        <div class="ba-labels"><span class="ba-label">Antes</span><span class="ba-label">Depois</span></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-range">
+                    </div>
+                    <div class="ba-info">
+                        <h3>Make Dia a Dia</h3>
+                        <p>Mais elaborada.</p>
+                    </div>
+                </div>
+                <div class="ba-card reveal-on-scroll delay-2">
+                    <div class="ba-slider" id="baSlider3">
+                        <img src="image6.jpeg" class="ba-bg" alt="Antes">
+                        <img src="image5.jpeg" class="ba-fg" alt="Depois">
+                        <div class="ba-line"></div>
+                        <div class="ba-btn-icon"><i class="ph-bold ph-arrows-left-right"></i></div>
+                        <div class="ba-labels"><span class="ba-label">Antes</span><span class="ba-label">Depois</span></div>
+                        <input type="range" min="0" max="100" value="50" class="ba-range">
+                    </div>
+                    <div class="ba-info">
+                        <h3>Make Casual</h3>
+                        <p>Elegante para toda ocasião.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ba-action-container reveal-on-scroll delay-1">
+                <button onclick="openWppRedirect('Olá Dilmara! Vi os resultados de Antes e Depois no seu site e quero minha transformação também.')" class="btn-premium">Quero Meu Resultado</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-dark-to-pink">
+        <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,50 C480,120 960,-20 1440,50 L1440,100 L0,100 Z" fill="#FDE6EC"></path>
+        </svg>
+    </div>
+
+    <section class="products-section" id="produtos">
+        <div class="master-container">
+            <div class="products-header">
+                <span class="section-label reveal-on-scroll">O Portfólio</span>
+                <h2 class="reveal-on-scroll delay-1">Os 5 Essenciais <br><span class="highlight">da Curadoria</span></h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card reveal-on-scroll" data-rank="1">
+                    <span class="prod-badge pink">Base Mary Kay</span>
+                    <div class="prod-img-wrapper"><img src="produto1.jpeg" class="prod-img" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300'"></div>
+                    <div class="prod-info">
+                        <h3 class="prod-title">Base Timewise 3D</h3>
+                        <p class="prod-desc">Acabamento matte natural que controla a oleosidade e previne envelhecimento.</p>
+                        <button class="prod-btn" onclick="openProdModal('timewise')">Ver Detalhes</button>
+                    </div>
+                </div>
+                <div class="product-card reveal-on-scroll delay-1" data-rank="2">
+                    <span class="prod-badge">Banho de Rainha</span>
+                    <div class="prod-img-wrapper"><img src="produto2.jpeg" class="prod-img" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300'"></div>
+                    <div class="prod-info">
+                        <h3 class="prod-title">Kit de Banho Satin Body</h3>
+                        <p class="prod-desc">Sistema corporal que limpa, esfolia e hidrata, deixando a pele sedosa.</p>
+                        <button class="prod-btn" onclick="openProdModal('base')">Ver Detalhes</button>
+                    </div>
+                </div>
+                <div class="product-card reveal-on-scroll delay-2" data-rank="3">
+                    <span class="prod-badge pink">O Queridinho</span>
+                    <div class="prod-img-wrapper"><img src="produto4.jpeg" class="prod-img" onerror="this.src='https://images.unsplash.com/photo-1583241475880-083f84372725?auto=format&fit=crop&q=80&w=300'"></div>
+                    <div class="prod-info">
+                        <h3 class="prod-title">Demaquilante Bifásico</h3>
+                        <p class="prod-desc">Remove maquiagens à prova d’água de forma rápida e suave, sem oleosidade.</p>
+                        <button class="prod-btn" onclick="openProdModal('demaquilante')">Ver Detalhes</button>
+                    </div>
+                </div>
+                <div class="product-card reveal-on-scroll" data-rank="4">
+                    <span class="prod-badge">Meu Favorito</span>
+                    <div class="prod-img-wrapper"><img src="produto3.jpeg" class="prod-img" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=300'"></div>
+                    <div class="prod-info">
+                        <h3 class="prod-title">Fragrância Black Diamonds</h3>
+                        <p class="prod-desc">Perfume sofisticado com notas elegantes que deixam presença por onde passa.</p>
+                        <button class="prod-btn" onclick="openProdModal('mascara')">Ver Detalhes</button>
+                    </div>
+                </div>
+                <div class="product-card reveal-on-scroll delay-1" data-rank="5">
+                    <span class="prod-badge pink">Must-Have</span>
+                    <div class="prod-img-wrapper"><img src="produto5.jpeg" class="prod-img" onerror="this.src='https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300'"></div>
+                    <div class="prod-info">
+                        <h3 class="prod-title">Batom Líquido Matte</h3>
+                        <p class="prod-desc">Batom de alta pigmentação com acabamento matte confortável e longa duração.</p>
+                        <button class="prod-btn" onclick="openProdModal('batom')">Ver Detalhes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-pink-to-dark">
+        <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,50 C480,-20 960,120 1440,50 L1440,100 L0,100 Z" fill="#0A0A0A"></path>
+        </svg>
+    </div>
+
+    <section class="gallery-section" id="galeria">
+        <div class="master-container">
+            <div class="gallery-header reveal-on-scroll">
+                <span class="section-label">Paixão em Ação</span>
+                <h2>Minha Jornada <span class="highlight">Mary Kay</span></h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item reveal-on-scroll"><img src="1.jpeg" alt="Dilmara Consultora 1" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-1"><img src="2.jpeg" alt="Dilmara Consultora 2" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-2"><img src="3.jpeg" alt="Dilmara Consultora 3" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-1"><img src="4.jpeg" alt="Dilmara Consultora 4" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll"><img src="5.jpeg" alt="Dilmara Consultora 5" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300'"></div>
+                
+                <div class="gallery-item reveal-on-scroll"><img src="6.jpeg" alt="Dilmara Consultora 6" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-1"><img src="7.jpeg" alt="Dilmara Consultora 7" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-2"><img src="8.jpeg" alt="Dilmara Consultora 8" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1583241475880-083f84372725?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll delay-1"><img src="9.jpeg" alt="Dilmara Consultora 9" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300'"></div>
+                <div class="gallery-item reveal-on-scroll"><img src="10.jpeg" alt="Dilmara Consultora 10" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300'"></div>
+              <div class="gallery-item reveal-on-scroll"><img src="11.jpeg" alt="Dilmara Consultora 10" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300'"></div>
+              <div class="gallery-item reveal-on-scroll"><img src="12.jpeg" alt="Dilmara Consultora 10" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300'"></div>
+            </div>
+            
+            <div class="ba-action-container reveal-on-scroll delay-1">
+                <button onclick="openWppRedirect('Olá Dilmara! Vi as fotos da sua jornada e me inspirei. Quero ser atendida por você!')" class="btn-premium">Descubra, já, a sua melhor versão!</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="elite-footer">
+        <div class="master-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#inicio" class="nav-logo" style="margin-bottom: 20px;">
+                        <span class="logo-name">Dilmara Santos</span>
+                        <span class="logo-brand">Mary Kay</span>
+                    </a>
+                    <p class="footer-desc">Elevando a sua rotina de beleza a um patamar de pura sofisticação com curadoria personalizada e produtos de alta performance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-tiktok-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-title">Navegação</h4>
+                    <a href="#consultora">A Curadora</a>
+                    <a href="#beneficios">Benefícios VIP</a>
+                    <a href="#resultados">Resultados Reais</a>
+                    <a href="#produtos">Portfólio Premium</a>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-title">Atendimento</h4>
+                    <a href="javascript:void(0)" onclick="openWppRedirect('Olá Dilmara, quero agendar minha consultoria gratuita!')">Agendar Consultoria</a>
+                    <a href="javascript:void(0)" onclick="openWppRedirect('Olá Dilmara, quero saber mais sobre ser uma consultora!')">Seja uma Consultora</a>
+                    <a href="#">Políticas de Privacidade</a>
+                    <a href="#">Código de Conduta</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2024 Dilmara Santos - Consultora de Beleza Independente Mary Kay. Todos os direitos reservados.</p>
+                <div class="footer-signature">Dilmara</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="custom-modal" id="prodModal">
+        <div class="modal-backdrop" onclick="closeModals()"></div>
+        <div class="modal-content-prod">
+            <button class="close-modal-btn" onclick="closeModals()">×</button>
+            <div class="modal-img-col"><img id="modalImg" src="" alt="Produto"></div>
+            <div class="modal-info-col">
+                <span id="modalTag" class="modal-tag"></span>
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <p id="modalDesc" class="modal-desc"></p>
+                <button id="modalWppBtn" class="btn-premium" style="width: fit-content;" onclick="transferToWppModal()">Pedir pelo WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-modal" id="wppRedirectModal">
+        <div class="modal-backdrop" onclick="closeModals()"></div>
+        <div class="modal-content-wpp">
+            <button class="close-modal-btn" onclick="closeModals()">×</button>
+            <div class="wpp-icon"><i class="ph-fill ph-whatsapp-logo"></i></div>
+            <h2 class="wpp-modal-title">Contato Direto</h2>
+            <p class="wpp-modal-desc">Você será direcionada para o WhatsApp da Dilmara. Copie a mensagem recomendada para iniciar o atendimento VIP.</p>
+            <textarea id="wppMessageToCopy" class="wpp-textarea" readonly></textarea>
+            <button class="btn-wpp-action" onclick="copyAndRedirect()"><i class="ph-bold ph-copy" style="margin-right: 8px;"></i> Copiar texto e ir para WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        const waLinkOficial = "https://wa.me/message/CNUK2VEUY6WSG1";
+
+        // BANCO DE PRODUTOS
+        const produtosDB = {
+            'timewise': { 
+                tag: 'Base Mary Kay', 
+                title: 'Base TimeWise® 3D', 
+                desc: 'Base de acabamento matte natural que controla a oleosidade e ajuda a manter a pele com aparência jovem ao longo do dia.', 
+                img: 'produto1.jpeg', 
+                msg: 'Olá Dilmara! Gostaria de saber mais sobre a Base TimeWise 3D.' 
+            },
+
+            'base': { 
+                tag: 'Banho de Rainha', 
+                title: 'Kit de Banho Satin Body®', 
+                desc: 'Sistema completo de cuidados corporais que limpa, esfolia e hidrata profundamente, deixando a pele macia e sedosa.', 
+                img: 'produto2.jpeg', 
+                msg: 'Olá Dilmara! Gostaria de saber mais sobre o Kit de Banho Satin Body.' 
+            },
+
+            'demaquilante': { 
+                tag: 'O Queridinho', 
+                title: 'Demaquilante Bifásico', 
+                desc: 'Remove maquiagens à prova d’água de forma rápida e suave, sem deixar a pele oleosa.', 
+                img: 'produto4.jpeg', 
+                msg: 'Olá Dilmara! Gostaria de pedir o Demaquilante Bifásico.' 
+            },
+
+            'mascara': { 
+                tag: 'Meu Favorito', 
+                title: 'Fragrância Black Diamonds', 
+                desc: 'Perfume sofisticado e marcante, com notas elegantes que deixam presença por onde você passa.', 
+                img: 'produto3.jpeg', 
+                msg: 'Olá Dilmara! Gostaria de saber mais sobre a fragrância Black Diamonds.' 
+            },
+
+            'batom': { 
+                tag: 'Must-Have', 
+                title: 'Batom Líquido Matte', 
+                desc: 'Batom de alta pigmentação com acabamento matte confortável e longa duração.', 
+                img: 'produto5.jpeg', 
+                msg: 'Olá Dilmara! Gostaria de ver as cores do Batom Líquido Matte.' 
+            }
+        };
+
+        let currentProdMessage = "";
+
+        function closeModals() {
+            document.getElementById('prodModal').classList.remove('active');
+            document.getElementById('wppRedirectModal').classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        function openProdModal(prodId) {
+            const prod = produtosDB[prodId];
+            if(!prod) return;
+            document.getElementById('modalTag').innerText = prod.tag;
+            document.getElementById('modalTitle').innerText = prod.title;
+            document.getElementById('modalDesc').innerText = prod.desc;
+            document.getElementById('modalImg').src = prod.img;
+            currentProdMessage = prod.msg;
+            document.getElementById('prodModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function transferToWppModal() {
+            document.getElementById('prodModal').classList.remove('active');
+            setTimeout(() => { openWppRedirect(currentProdMessage); }, 400); 
+        }
+
+        function openWppRedirect(mensagem) {
+            document.getElementById('wppMessageToCopy').value = mensagem;
+            document.getElementById('wppRedirectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function copyAndRedirect() {
+            const msg = document.getElementById('wppMessageToCopy').value;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(msg).then(() => {
+                    window.open(waLinkOficial, '_blank');
+                    closeModals();
+                }).catch(err => {
+                    window.open(waLinkOficial, '_blank');
+                    closeModals();
+                });
+            } else {
+                window.open(waLinkOficial, '_blank');
+                closeModals();
+            }
+        }
+
+        // LÓGICA GERAL E DO MENU MOBILE
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            const menuToggle = document.getElementById('menuToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            if(menuToggle && closeMenu && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                closeMenu.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 200) { navbar.classList.add('scrolled'); } 
+                else { navbar.classList.remove('scrolled'); }
+            });
+
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const elementObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            revealElements.forEach(function(el) { elementObserver.observe(el); });
+
+            const sliders = document.querySelectorAll('.ba-slider');
+            sliders.forEach(slider => {
+                const fgImg = slider.querySelector('.ba-fg');
+                const line = slider.querySelector('.ba-line');
+                const btn = slider.querySelector('.ba-btn-icon');
+                const range = slider.querySelector('.ba-range');
+                let isInteracting = false;
+                let phase = Math.random() * Math.PI * 2; 
+
+                const updateSliderPosition = (val) => {
+                    fgImg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                    line.style.left = `${val}%`;
+                    btn.style.left = `${val}%`;
+                    range.value = val;
+                };
+
+                const animateAuto = () => {
+                    if (!isInteracting) {
+                        phase += 0.015;
+                        let autoVal = 50 + Math.sin(phase) * 40; 
+                        updateSliderPosition(autoVal);
+                    }
+                    requestAnimationFrame(animateAuto);
+                };
+
+                range.addEventListener('input', (e) => {
+                    isInteracting = true;
+                    updateSliderPosition(e.target.value);
+                });
+
+                const stopAuto = () => isInteracting = true;
+                let timeout;
+                const resumeAuto = () => {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => { isInteracting = false; }, 3000);
+                };
+
+                range.addEventListener('mousedown', stopAuto);
+                range.addEventListener('touchstart', stopAuto, {passive: true});
+                range.addEventListener('mouseup', resumeAuto);
+                range.addEventListener('touchend', resumeAuto);
+                range.addEventListener('mouseleave', resumeAuto);
+                animateAuto();
+            });
+
+            document.addEventListener('dblclick', function(e) {
+                const kiss = document.createElement('div');
+                kiss.className = 'lipstick-kiss';
+                kiss.innerText = '💋';
+                kiss.style.left = e.pageX + 'px';
+                kiss.style.top = e.pageY + 'px';
+                document.body.appendChild(kiss);
+                
+                setTimeout(() => {
+                    kiss.remove();
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
